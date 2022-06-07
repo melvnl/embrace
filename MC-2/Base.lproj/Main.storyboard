@@ -53,13 +53,21 @@
                                     <constraint firstItem="Rwe-T5-HY9" firstAttribute="height" secondItem="AFY-bE-YXJ" secondAttribute="height" id="h12-Jl-B56"/>
                                 </constraints>
                             </stackView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="applelogo" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="F1g-VV-7pa">
+                                <rect key="frame" x="87" y="384.5" width="240" height="126.5"/>
+                                <color key="tintColor" red="1" green="0.30196078430000001" blue="0.42745098040000001" alpha="1" colorSpace="calibratedRGB"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="F1g-VV-7pa" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="296" id="1XI-d0-ScB"/>
                             <constraint firstItem="3Ke-tE-atI" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="1uu-Fx-HrQ"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="3Ke-tE-atI" secondAttribute="bottom" constant="40" id="7Eo-ZH-NkW"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="3Ke-tE-atI" secondAttribute="trailing" constant="20" id="DvB-2o-vuL"/>
+                            <constraint firstItem="F1g-VV-7pa" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Vjf-8S-GSr"/>
+                            <constraint firstItem="F1g-VV-7pa" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Yoe-21-onl"/>
+                            <constraint firstItem="F1g-VV-7pa" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="87" id="inK-1a-hjL"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="XM5-oW-8j5"/>
@@ -348,6 +356,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="applelogo" catalog="system" width="103" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
