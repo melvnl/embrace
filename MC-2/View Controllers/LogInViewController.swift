@@ -37,11 +37,11 @@ class LogInViewController: UIViewController {
     }
     */
     
-    @IBAction func loginTapped(
+    @IBAction func loginTapped(_
         sender: Any){
     }
     
-    @IBAction func buatAkunTapped(
+    @IBAction func buatAkunTapped(_
         sender: Any){
     }
 

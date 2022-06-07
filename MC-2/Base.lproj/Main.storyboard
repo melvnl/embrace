@@ -135,7 +135,7 @@
                                             <color key="baseBackgroundColor" red="1" green="0.30196078430000001" blue="0.42745098040000001" alpha="1" colorSpace="calibratedRGB"/>
                                         </buttonConfiguration>
                                         <connections>
-                                            <action selector="loginTappedWithSender:" destination="7FA-X7-0yQ" eventType="touchUpInside" id="n8i-IE-OzD"/>
+                                            <action selector="loginTapped:" destination="7FA-X7-0yQ" eventType="touchUpInside" id="5Ij-Ni-bh3"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mgI-4j-Bpj">
@@ -164,7 +164,7 @@
                                                     <fontDescription key="titleFontDescription" type="system" pointSize="17"/>
                                                 </buttonConfiguration>
                                                 <connections>
-                                                    <action selector="buatAkunTappedWithSender:" destination="7FA-X7-0yQ" eventType="touchUpInside" id="5DC-cZ-YAX"/>
+                                                    <action selector="buatAkunTapped:" destination="7FA-X7-0yQ" eventType="touchUpInside" id="VU5-fW-olT"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -201,7 +201,7 @@
         <!--Home View Controller-->
         <scene sceneID="nCv-ac-IOv">
             <objects>
-                <viewController id="Fya-zX-3IU" customClass="HomeViewController" customModule="MC_2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeVC" id="Fya-zX-3IU" customClass="HomeViewController" customModule="MC_2" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="btF-kd-u7t">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -288,7 +288,7 @@
                                             <color key="baseBackgroundColor" red="1" green="0.30196078430000001" blue="0.42745098040000001" alpha="1" colorSpace="calibratedRGB"/>
                                         </buttonConfiguration>
                                         <connections>
-                                            <action selector="signUpTappedWithSender:" destination="QIe-ue-lDZ" eventType="touchUpInside" id="aw0-Jh-0eT"/>
+                                            <action selector="signUpTapped:" destination="QIe-ue-lDZ" eventType="touchUpInside" id="DMG-IL-dIE"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ewx-Y2-TxO">
@@ -321,6 +321,7 @@
                         <outlet property="namaTextField" destination="WEw-UE-81b" id="NJk-GL-v5g"/>
                         <outlet property="passwordTextField" destination="8Hz-jg-Hgi" id="E5Z-DN-J9a"/>
                         <outlet property="signUpButton" destination="iXS-Vz-u1m" id="S00-yT-Ykq"/>
+                        <outlet property="usernameTextField" destination="zdb-Yi-sD0" id="L4O-OX-5L4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j5F-sc-JbD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
