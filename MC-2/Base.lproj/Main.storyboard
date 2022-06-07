@@ -77,7 +77,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="eCa-WN-skE">
-                                <rect key="frame" x="20" y="128" width="374" height="469"/>
+                                <rect key="frame" x="20" y="128" width="374" height="472.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Selamat datang kembali, Bun!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5fg-tE-CdQ">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="25.5"/>
@@ -133,10 +133,10 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="hjv-uD-BXk">
-                                        <rect key="frame" x="0.0" y="438" width="374" height="31"/>
+                                        <rect key="frame" x="0.0" y="438" width="374" height="34.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Belum punya akun?" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sJB-Ci-kBP">
-                                                <rect key="frame" x="0.0" y="0.0" width="220" height="31"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="220" height="34.5"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="220" id="CVb-eQ-Nr4"/>
                                                 </constraints>
@@ -145,10 +145,12 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JIS-cO-mlT">
-                                                <rect key="frame" x="220" y="0.0" width="154" height="31"/>
+                                                <rect key="frame" x="220" y="0.0" width="154" height="34.5"/>
                                                 <color key="tintColor" red="1" green="0.30196078430000001" blue="0.42745098040000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title="Buat akun"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="Buat akun">
+                                                    <fontDescription key="titleFontDescription" type="system" pointSize="17"/>
+                                                </buttonConfiguration>
                                                 <connections>
                                                     <action selector="buatAkunTappedWithSender:" destination="7FA-X7-0yQ" eventType="touchUpInside" id="5DC-cZ-YAX"/>
                                                 </connections>
