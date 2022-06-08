@@ -46,6 +46,7 @@ class SignUpViewController: UIViewController {
         //closeeye openeye password
         passwordTextField.isSecureTextEntry = true
         imageIcon.image = UIImage(systemName: "eye.slash")
+        imageIcon.tintColor = UIColor.systemGray2
         
         let contentView = UIView()
         contentView.addSubview(imageIcon)
@@ -68,10 +69,12 @@ class SignUpViewController: UIViewController {
         if iconClick {
             iconClick = false
             tappedImage.image = UIImage(systemName: "eye")
+            tappedImage.tintColor = UIColor.systemGray2
             passwordTextField.isSecureTextEntry = false
         }else{
             iconClick = true
             tappedImage.image = UIImage(systemName: "eye.slash")
+            tappedImage.tintColor = UIColor.systemGray2
             passwordTextField.isSecureTextEntry = true
         }
     }

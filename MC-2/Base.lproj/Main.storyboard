@@ -165,6 +165,7 @@
                                                 </buttonConfiguration>
                                                 <connections>
                                                     <action selector="buatAkunTapped:" destination="7FA-X7-0yQ" eventType="touchUpInside" id="VU5-fW-olT"/>
+                                                    <segue destination="QIe-ue-lDZ" kind="push" identifier="gotosignup" id="UJl-qh-OTs"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -359,6 +360,9 @@
             <point key="canvasLocation" x="121.73913043478262" y="109.82142857142857"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="UJl-qh-OTs"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="eye" catalog="system" width="128" height="81"/>
         <systemColor name="systemBackgroundColor">
