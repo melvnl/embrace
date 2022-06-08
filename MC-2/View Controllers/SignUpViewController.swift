@@ -29,6 +29,8 @@ class SignUpViewController: UIViewController {
         // Do any additional setup after loading the view.
         navigationController?.navigationBar.tintColor = UIColor(red: 255/255, green: 77/255, blue: 109/255, alpha: 1)
         
+        navigationController?.navigationBar.topItem!.title = " "
+        
         styleTextField(namaTextField)
         
         styleTextField(emailTextField)
@@ -36,6 +38,7 @@ class SignUpViewController: UIViewController {
         styleTextField(usernameTextField)
         
         styleTextField(passwordTextField)
+        
     }
     
     func styleTextField(_ textfield:UITextField) {
