@@ -30,6 +30,12 @@ class SignUpViewController: UIViewController {
         navigationController?.navigationBar.tintColor = UIColor(red: 255/255, green: 77/255, blue: 109/255, alpha: 1)
         
         styleTextField(namaTextField)
+        
+        styleTextField(emailTextField)
+        
+        styleTextField(usernameTextField)
+        
+        styleTextField(passwordTextField)
     }
     
     func styleTextField(_ textfield:UITextField) {
@@ -37,9 +43,9 @@ class SignUpViewController: UIViewController {
         // Create the bottom line
         let bottomLine = CALayer()
         
-        bottomLine.frame = CGRect(x: 0, y: textfield.frame.height - 2, width: textfield.frame.width, height: 2)
+        bottomLine.frame = CGRect(x: 0, y: textfield.frame.height - 2, width: textfield.frame.width - 25, height: 1)
         
-        bottomLine.backgroundColor = UIColor.init(red: 48/255, green: 173/255, blue: 99/255, alpha: 1).cgColor
+        bottomLine.backgroundColor = UIColor.init(red: 197/255, green: 199/255, blue: 196/255, alpha: 1).cgColor
         
         // Remove border on text field
         textfield.borderStyle = .none

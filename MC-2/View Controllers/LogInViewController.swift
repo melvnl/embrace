@@ -24,18 +24,29 @@ class LogInViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         navigationController?.navigationBar.tintColor = UIColor(red: 255/255, green: 77/255, blue: 109/255, alpha: 1)
+        
+        styleTextField(emailTextField)
+        
+        styleTextField(passwordTextField)
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func styleTextField(_ textfield:UITextField) {
+        
+        // Create the bottom line
+        let bottomLine = CALayer()
+        
+        bottomLine.frame = CGRect(x: 0, y: textfield.frame.height - 2, width: textfield.frame.width - 25, height: 1)
+        
+        bottomLine.backgroundColor = UIColor.init(red: 197/255, green: 199/255, blue: 196/255, alpha: 1).cgColor
+        
+        // Remove border on text field
+        textfield.borderStyle = .none
+        
+        // Add the line to the text field
+        textfield.layer.addSublayer(bottomLine)
+        
     }
-    */
     
     @IBAction func loginTapped(_
         sender: Any){

@@ -148,16 +148,16 @@
                                         <rect key="frame" x="0.0" y="438" width="374" height="34.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Belum punya akun?" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sJB-Ci-kBP">
-                                                <rect key="frame" x="0.0" y="0.0" width="220" height="34.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="205" height="34.5"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="220" id="CVb-eQ-Nr4"/>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="205" id="MdB-7A-M2B"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JIS-cO-mlT">
-                                                <rect key="frame" x="220" y="0.0" width="154" height="34.5"/>
+                                                <rect key="frame" x="205" y="0.0" width="169" height="34.5"/>
                                                 <color key="tintColor" red="1" green="0.30196078430000001" blue="0.42745098040000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="Buat akun">
