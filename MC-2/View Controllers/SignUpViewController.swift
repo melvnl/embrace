@@ -22,6 +22,10 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var signUpButton: UIButton!
     
     @IBOutlet weak var errorLabel: UILabel!
+    
+    var iconClick = true
+    
+    let imageIcon = UIImageView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +43,39 @@ class SignUpViewController: UIViewController {
         
         styleTextField(passwordTextField)
         
+        //closeeye openeye password
+        passwordTextField.isSecureTextEntry = true
+        imageIcon.image = UIImage(systemName: "eye.slash")
+        
+        let contentView = UIView()
+        contentView.addSubview(imageIcon)
+        
+        contentView.frame = CGRect(x: 0, y: 0, width: Int(UIImage(systemName: "eye.slash")!.size.width), height: Int(UIImage(systemName: "eye.slash")!.size.height))
+        
+        imageIcon.frame = CGRect(x: -10, y: 0, width: Int(UIImage(systemName: "eye.slash")!.size.width), height: Int(UIImage(systemName: "eye.slash")!.size.height))
+        
+        passwordTextField.rightView = contentView
+        passwordTextField.rightViewMode = .always
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(UITapGestureRecognizer:)))
+        imageIcon.isUserInteractionEnabled = true
+        imageIcon.addGestureRecognizer(tapGestureRecognizer)
     }
+    
+    @objc func imageTapped(UITapGestureRecognizer:UITapGestureRecognizer) {
+        let tappedImage = UITapGestureRecognizer.view as! UIImageView
+        
+        if iconClick {
+            iconClick = false
+            tappedImage.image = UIImage(systemName: "eye")
+            passwordTextField.isSecureTextEntry = false
+        }else{
+            iconClick = true
+            tappedImage.image = UIImage(systemName: "eye.slash")
+            passwordTextField.isSecureTextEntry = true
+        }
+    }
+    
     
     func styleTextField(_ textfield:UITextField) {
         
@@ -132,5 +168,9 @@ class SignUpViewController: UIViewController {
 
     func transitionToHome() {
         
+        let homeViewController = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.homeViewController) as? HomeViewController
+        
+        view.window?.rootViewController = homeViewController
+        view.window?.makeKeyAndVisible()
     }
 }
