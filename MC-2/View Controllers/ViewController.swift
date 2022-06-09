@@ -18,6 +18,10 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         onboardImage.image = UIImage(named: "onboardImage")
+        loginButton.layer.borderWidth = 1
+        loginButton.layer.cornerRadius = 10
+        loginButton.layer.borderColor = CGColor(red: 255/255, green: 77/255, blue: 109/255, alpha: 1)
+        signUpButton.layer.cornerRadius = 10
     }
 
 

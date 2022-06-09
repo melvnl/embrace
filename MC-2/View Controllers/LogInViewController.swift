@@ -26,6 +26,8 @@ class LogInViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        logInButton.layer.cornerRadius = 10
 
         // Do any additional setup after loading the view.
         navigationController?.navigationBar.tintColor = UIColor(red: 58/255, green: 58/255, blue: 58/255, alpha: 1)
