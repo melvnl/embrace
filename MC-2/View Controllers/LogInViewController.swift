@@ -31,6 +31,8 @@ class LogInViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         navigationController?.navigationBar.tintColor = UIColor(red: 58/255, green: 58/255, blue: 58/255, alpha: 1)
+        let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor(red: 58/255, green: 58/255, blue: 58/255, alpha: 1)]
+        navigationController?.navigationBar.titleTextAttributes = textAttributes
         
         navigationController?.navigationBar.topItem!.title = " "
         
