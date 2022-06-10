@@ -151,6 +151,11 @@ class SignUpViewController: UIViewController {
                     self.showError("Error dalam membuat akun")
                 }else {
                     // User was created successfully, now store name & username
+                    
+                    let user = result?.user
+                    
+                    user?.sendEmailVerification()
+                    
                     let db = Firestore.firestore()
                     db.collection("users").addDocument(data: ["nama":nama, "username":username, "uid":result!.user.uid]) { error in
                         if error != nil {
@@ -158,8 +163,9 @@ class SignUpViewController: UIViewController {
                             self.showError("Error dalam menyimpan data akun")
                         }
                     }
+                    
                     // Transition to the home screen
-                    self.transitionToHome()
+                    self.transitionToLogin()
                 }
             }
                     
@@ -173,11 +179,11 @@ class SignUpViewController: UIViewController {
         errorLabel.alpha = 1
     }
 
-    func transitionToHome() {
+    func transitionToLogin() {
         
-        let homeViewController = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.homeViewController) as? HomeViewController
+        let loginViewController = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.loginViewController) as? LogInViewController
         
-        view.window?.rootViewController = homeViewController
+        view.window?.rootViewController = loginViewController
         view.window?.makeKeyAndVisible()
     }
 }

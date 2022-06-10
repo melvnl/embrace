@@ -109,10 +109,18 @@ class LogInViewController: UIViewController {
                 self.errorLabel.text = error!.localizedDescription
                 self.errorLabel.alpha = 1
             }else{
-                let homeViewController = self.storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.homeViewController) as? HomeViewController
+                let user = result?.user
                 
-                self.view.window?.rootViewController = homeViewController
-                self.view.window?.makeKeyAndVisible()
+                if(user?.isEmailVerified == true) {
+                    let homeViewController = self.storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.homeViewController) as? HomeViewController
+                    
+                    self.view.window?.rootViewController = homeViewController
+                    self.view.window?.makeKeyAndVisible()
+                }
+                else{
+                    self.errorLabel.text = "email belum terverifikasi"
+                    self.errorLabel.alpha = 1
+                }
             }
         }
     }

@@ -109,7 +109,7 @@
         <!--Masuk akun-->
         <scene sceneID="7Ho-be-sJH">
             <objects>
-                <viewController id="7FA-X7-0yQ" customClass="LogInViewController" customModule="MC_2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginVC" id="7FA-X7-0yQ" customClass="LogInViewController" customModule="MC_2" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Xt8-y4-vtf">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
