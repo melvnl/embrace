@@ -45,6 +45,7 @@
 		953FE95328519F4C00DCB3E4 /* EntryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953FE94F28519F4C00DCB3E4 /* EntryCell.swift */; };
 		953FE95428519F4C00DCB3E4 /* EntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953FE95028519F4C00DCB3E4 /* EntryViewController.swift */; };
 		95A8109F2853363E00D55D3D /* FirestoreHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A8109E2853363E00D55D3D /* FirestoreHelper.swift */; };
+		95A810A3285360F400D55D3D /* JournalRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A810A2285360F400D55D3D /* JournalRepository.swift */; };
 		B0FEA0DF2845117B00EF8DD9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FEA0DE2845117B00EF8DD9 /* AppDelegate.swift */; };
 		B0FEA0E12845117B00EF8DD9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FEA0E02845117B00EF8DD9 /* SceneDelegate.swift */; };
 		B0FEA0E32845117B00EF8DD9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FEA0E22845117B00EF8DD9 /* ViewController.swift */; };
@@ -65,6 +66,7 @@
 		953FE94F28519F4C00DCB3E4 /* EntryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryCell.swift; sourceTree = "<group>"; };
 		953FE95028519F4C00DCB3E4 /* EntryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryViewController.swift; sourceTree = "<group>"; };
 		95A8109E2853363E00D55D3D /* FirestoreHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreHelper.swift; sourceTree = "<group>"; };
+		95A810A2285360F400D55D3D /* JournalRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalRepository.swift; sourceTree = "<group>"; };
 		B0FEA0DB2845117B00EF8DD9 /* MC-2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MC-2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0FEA0DE2845117B00EF8DD9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B0FEA0E02845117B00EF8DD9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				95A8109E2853363E00D55D3D /* FirestoreHelper.swift */,
+				95A810A2285360F400D55D3D /* JournalRepository.swift */,
 			);
 			path = Firebase;
 			sourceTree = "<group>";
@@ -295,6 +298,7 @@
 				B0FEA0DF2845117B00EF8DD9 /* AppDelegate.swift in Sources */,
 				72C66AFA284F382800261C91 /* SignUpViewController.swift in Sources */,
 				72C66AFC284F383900261C91 /* LogInViewController.swift in Sources */,
+				95A810A3285360F400D55D3D /* JournalRepository.swift in Sources */,
 				953FE95428519F4C00DCB3E4 /* EntryViewController.swift in Sources */,
 				72A92CC6284F9CAC00B2F1F4 /* Constants.swift in Sources */,
 				95A8109F2853363E00D55D3D /* FirestoreHelper.swift in Sources */,

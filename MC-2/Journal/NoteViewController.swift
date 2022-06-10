@@ -16,6 +16,8 @@ class NoteViewController: UIViewController {
     public var noteTitle: String = ""
     public var note: String = ""
     public var currEntry : Entry? = nil
+    
+    public var completion: (() -> Void)?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,33 +32,47 @@ class NoteViewController: UIViewController {
         setBarButtons()
     }
     
-    @objc func editNote(){
+    @objc func editEntry(){
         titleLabel.isEditable = true
         noteLabel.isEditable = true
         titleLabel.becomeFirstResponder()
         
-        let SaveBarButtonItem = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(saveNote))
+        let SaveBarButtonItem = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(saveEntry))
         self.navigationItem.rightBarButtonItems = [SaveBarButtonItem]
     }
     
-    @objc func saveNote(){
+    @objc func saveEntry(){
         titleLabel.isEditable = false
         noteLabel.isEditable = false
         setBarButtons()
         
-        //save data below
+        //update document
+        let newEntry = Entry(
+            id: currEntry!.id,
+            title: titleLabel.text,
+            desc: noteLabel.text,
+            mood: currEntry!.mood,
+            date: currEntry!.date,
+            user_id: currEntry!.user_id
+        )
+        
+        title = newEntry.title
+        
+        journalRepo.updateJournal(id: currEntry!.id, entry: newEntry)
     }
     
-    @objc func deleteNote(){
-        // delete here
+    @objc func deleteEntry(){
+        // delete document
+        journalRepo.deleteJournal(currEntry!.id)
+        //navigate to journals
+        _ = navigationController?.popViewController(animated: true)
     }
     
     private func setBarButtons(){
-        let EditBarButtonItem = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(editNote))
-        let DeleteBarButtonItem = UIBarButtonItem(title: "Delete", style: .plain, target: self, action: #selector(deleteNote))
+        let EditBarButtonItem = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(editEntry))
+        let DeleteBarButtonItem = UIBarButtonItem(title: "Delete", style: .plain, target: self, action: #selector(deleteEntry))
         
         self.navigationItem.rightBarButtonItems  = [DeleteBarButtonItem, EditBarButtonItem]
     }
-
-
 }
+

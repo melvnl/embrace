@@ -30,6 +30,7 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         super.viewDidLoad()
         
+        table.isHidden = false
         table.delegate = self
         table.dataSource = self
         
@@ -43,18 +44,19 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
         searchController.searchBar.tintColor = UIColor.orange
 
         title = "Journal"
-        
-        //Fill table from firestore
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         fillTable()
     }
     
     func fillTable(){
-        fs.fetchJournals { (entries) -> Void in
+        journalRepo.fetchJournals { (entries) -> Void in
             DispatchQueue.main.async {
                 self.entries = entries
-                self.table.isHidden = false
                 self.table.dataSource = self
                 self.table.delegate = self
+                self.table.isHidden = false
                 self.table.reloadData()
             }
         }
@@ -71,25 +73,18 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
         vc.navigationItem.largeTitleDisplayMode = .never
         vc.completion = { noteTitle, note in
             self.navigationController?.popToRootViewController(animated: true)
-            
-            fs.rootJournal.addDocument(data: [
-                "title": noteTitle,
-                "desc": note,
-                "mood": 1,
-                "date": Date().timeIntervalSinceReferenceDate,
-                "user_id": Auth.auth().currentUser!.uid
-            ]) { err in
-                if let err = err {
-                    print("Error writing document: \(err)")
-                } else {
-                    print("Document successfully written!")
-                }
-            }
+            let newEntry = Entry(
+                id: "",
+                title: noteTitle,
+                desc: note,
+                mood: 1,
+                date: Date().timeIntervalSinceReferenceDate,
+                user_id: Auth.auth().currentUser!.uid
+            )
+            journalRepo.createJournal(entry: newEntry)
             
             self.label.isHidden = true
             self.table.isHidden = false
-
-            self.fillTable()
         }
         navigationController?.pushViewController(vc, animated: true)
     }
@@ -120,13 +115,14 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         let currEntry = (self.searchController.isActive) ? self.searchResults[(indexPath as NSIndexPath).row] : entries[(indexPath as NSIndexPath).row]
         
-        cell.alpha = 0
+        
         cell.title.text = currEntry.title
         cell.desc.text = currEntry.desc
         cell.date.text = String(currEntry.date)
         cell.setMoodImage(currEntry.mood)
         
-        UIView.animate(withDuration: 0.5, animations: { cell.alpha = 1 })
+        cell.alpha = 0
+        UIView.animate(withDuration: 1, animations: { cell.alpha = 1 })
         
         return cell
     }
@@ -135,7 +131,7 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
         tableView.deselectRow(at: indexPath, animated: true)
 
         // Show note controller
-        guard let vc = storyboard?.instantiateViewController(identifier: "note") as? NoteViewController else {
+        guard let vc = storyboard?.instantiateViewController(identifier: "ViewJournal") as? NoteViewController else {
             return
         }
         
@@ -159,7 +155,8 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
                 table.reloadData()
         }
     }
-
 }
+
+
 
 

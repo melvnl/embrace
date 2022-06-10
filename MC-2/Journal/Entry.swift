@@ -8,6 +8,7 @@
 import Foundation
 
 struct Entry{
+    var id = ""
     var title = ""
     var desc = ""
     var mood = 0
