@@ -375,7 +375,7 @@
         <!--Notes-->
         <scene sceneID="uNu-B8-yfb">
             <objects>
-                <viewController id="Tkn-J0-urq" customClass="JournalViewController" customModule="MC_2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Journal" id="Tkn-J0-urq" customClass="JournalViewController" customModule="MC_2" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="HVG-88-kVZ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -386,16 +386,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t0B-Tc-VF0">
-                                <rect key="frame" x="11" y="140" width="67" height="31"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Button"/>
-                                <connections>
-                                    <action selector="didTapFilter:" destination="Tkn-J0-urq" eventType="touchUpInside" id="KrY-zT-bue"/>
-                                </connections>
-                            </button>
                             <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Cer-TX-whm">
-                                <rect key="frame" x="0.0" y="192" width="414" height="722"/>
+                                <rect key="frame" x="0.0" y="140" width="414" height="722"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <searchBar key="tableHeaderView" contentMode="redraw" text="" id="zJw-li-9HX">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
@@ -462,12 +454,9 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Sgr-M2-iSe" firstAttribute="centerY" secondItem="HVG-88-kVZ" secondAttribute="centerY" id="5SV-39-O4x"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="Cer-TX-whm" secondAttribute="bottom" constant="-52" id="8Ze-aA-A2G"/>
-                            <constraint firstItem="Cer-TX-whm" firstAttribute="top" secondItem="t0B-Tc-VF0" secondAttribute="bottom" constant="21" id="AGB-qY-Jpl"/>
-                            <constraint firstItem="R2J-Bl-4xO" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="t0B-Tc-VF0" secondAttribute="trailing" symbolic="YES" id="Eo1-gW-EiC"/>
                             <constraint firstItem="Cer-TX-whm" firstAttribute="leading" secondItem="R2J-Bl-4xO" secondAttribute="leading" id="RaA-v8-1JQ"/>
-                            <constraint firstItem="t0B-Tc-VF0" firstAttribute="top" secondItem="R2J-Bl-4xO" secondAttribute="top" id="moC-T6-oAt"/>
-                            <constraint firstItem="t0B-Tc-VF0" firstAttribute="leading" secondItem="R2J-Bl-4xO" secondAttribute="leading" constant="11" id="nAh-H6-xZF"/>
+                            <constraint firstItem="Cer-TX-whm" firstAttribute="top" secondItem="R2J-Bl-4xO" secondAttribute="top" id="RwA-OF-bVU"/>
+                            <constraint firstItem="R2J-Bl-4xO" firstAttribute="bottom" secondItem="Cer-TX-whm" secondAttribute="bottom" id="kYf-cN-xEw"/>
                             <constraint firstItem="Sgr-M2-iSe" firstAttribute="centerX" secondItem="HVG-88-kVZ" secondAttribute="centerX" id="o7H-ax-e2o"/>
                             <constraint firstItem="R2J-Bl-4xO" firstAttribute="trailing" secondItem="Cer-TX-whm" secondAttribute="trailing" id="vbK-1O-ST8"/>
                         </constraints>
@@ -539,7 +528,7 @@
         <!--Entry View Controller-->
         <scene sceneID="rXr-Eo-lQO">
             <objects>
-                <viewController storyboardIdentifier="new" id="pph-ZJ-wAc" customClass="EntryViewController" customModule="MC_2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NewJournal" id="pph-ZJ-wAc" customClass="EntryViewController" customModule="MC_2" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NYN-I6-nFQ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

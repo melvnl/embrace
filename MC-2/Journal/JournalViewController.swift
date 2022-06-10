@@ -13,6 +13,7 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 import FirebaseAuth
 import Firebase
+import simd
 
 @available(iOS 15.0, *)
 class JournalViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating {
@@ -24,24 +25,13 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
     var searchController:UISearchController!
     var searchResults:[Entry] = []
     var entries: [Entry] = []
-    var db: Firestore!
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
-        //Firestore setup
-        let settings = FirestoreSettings()
-        Firestore.firestore().settings = settings
-        db = Firestore.firestore()
-        
         table.delegate = self
         table.dataSource = self
-    
-        fetchData() {() in
-            print("reloading table")
-            self.table.reloadData()
-        }
         
         // Add a Search Bar Programmtically
         searchController = UISearchController(searchResultsController: nil)
@@ -51,50 +41,29 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
         searchController.searchBar.placeholder = "Search by Title"
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.searchBar.tintColor = UIColor.orange
-        
-        
+
         title = "Journal"
+        
+        //Fill table from firestore
+        fillTable()
     }
     
-    func fetchData(completion: @escaping() -> Void){
-        db.collection("journals").whereField("user_id", isEqualTo: Auth.auth().currentUser!.uid)
-            .getDocuments() { (querySnapshot, err) in
-                if let err = err {
-                    print("Error getting journal entries: \(err)")
-                }
-                else {
-                    if querySnapshot!.documents.isEmpty {
-                        print("No documents")
-                        print(Auth.auth().currentUser!.uid)
-                    }
-                    else{
-                        var entries : [Entry] = []
-                        for document in querySnapshot!.documents {
-                            let currEntry = Entry(
-                                title: document.get("title")! as! String,
-                                desc: document.get("desc")! as! String,
-                                mood: document.get("mood") as! Int,
-                                date: document.get("date") as! Double,
-                                user_id: Auth.auth().currentUser!.uid
-                            )
-                            entries.append(currEntry)
-                        }
-                        
-                        DispatchQueue.main.async {
-                            self.entries = entries
-                            self.table.reloadData()
-                            print(self.entries)
-                            completion()
-                        }
-                    }
-                }
+    func fillTable(){
+        fs.fetchJournals { (entries) -> Void in
+            DispatchQueue.main.async {
+                self.entries = entries
+                self.table.isHidden = false
+                self.table.dataSource = self
+                self.table.delegate = self
+                self.table.reloadData()
             }
+        }
     }
 
     @IBAction func didTapNewNote() {
         searchController.isActive = false
         
-        guard let vc = storyboard?.instantiateViewController(identifier: "new") as? EntryViewController else {
+        guard let vc = storyboard?.instantiateViewController(identifier: "NewJournal") as? EntryViewController else {
             return
         }
         
@@ -103,7 +72,7 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
         vc.completion = { noteTitle, note in
             self.navigationController?.popToRootViewController(animated: true)
             
-            self.db.collection("journals").addDocument(data: [
+            fs.rootJournal.addDocument(data: [
                 "title": noteTitle,
                 "desc": note,
                 "mood": 1,
@@ -120,10 +89,7 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
             self.label.isHidden = true
             self.table.isHidden = false
 
-            self.fetchData() {() in
-                print("reloading table")
-                self.table.reloadData()
-            }
+            self.fillTable()
         }
         navigationController?.pushViewController(vc, animated: true)
     }
@@ -154,11 +120,13 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         let currEntry = (self.searchController.isActive) ? self.searchResults[(indexPath as NSIndexPath).row] : entries[(indexPath as NSIndexPath).row]
         
+        cell.alpha = 0
         cell.title.text = currEntry.title
         cell.desc.text = currEntry.desc
         cell.date.text = String(currEntry.date)
-        
         cell.setMoodImage(currEntry.mood)
+        
+        UIView.animate(withDuration: 0.5, animations: { cell.alpha = 1 })
         
         return cell
     }
@@ -166,17 +134,13 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
 
-        let entry = entries[indexPath.row]
-
         // Show note controller
         guard let vc = storyboard?.instantiateViewController(identifier: "note") as? NoteViewController else {
             return
         }
         
         vc.navigationItem.largeTitleDisplayMode = .never
-        vc.title = entry.title
-        vc.noteTitle = entry.title
-        vc.note = entry.desc
+        vc.currEntry = entries[indexPath.row]
         navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -189,6 +153,7 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func updateSearchResults(for searchController: UISearchController) {
+        searchController.searchResultsController?.view.isHidden = false
         if let searchText = searchController.searchBar.text {
                 filterContentForSearchText(searchText)
                 table.reloadData()

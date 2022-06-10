@@ -15,11 +15,14 @@ class NoteViewController: UIViewController {
 
     public var noteTitle: String = ""
     public var note: String = ""
+    public var currEntry : Entry? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        titleLabel.text = noteTitle
-        noteLabel.text = note
+        
+        titleLabel.text = currEntry?.title
+        noteLabel.text = currEntry?.desc
+        title = currEntry?.title
         
         titleLabel.isEditable = false
         noteLabel.isEditable = false
