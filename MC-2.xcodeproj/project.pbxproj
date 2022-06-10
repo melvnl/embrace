@@ -39,6 +39,11 @@
 		72C66AFA284F382800261C91 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C66AF9284F382800261C91 /* SignUpViewController.swift */; };
 		72C66AFC284F383900261C91 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C66AFB284F383900261C91 /* LogInViewController.swift */; };
 		72C66AFE284F384F00261C91 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C66AFD284F384F00261C91 /* HomeViewController.swift */; };
+		953FE94C28519C9D00DCB3E4 /* JournalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953FE94B28519C9D00DCB3E4 /* JournalViewController.swift */; };
+		953FE95128519F4C00DCB3E4 /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953FE94D28519F4C00DCB3E4 /* Entry.swift */; };
+		953FE95228519F4C00DCB3E4 /* NoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953FE94E28519F4C00DCB3E4 /* NoteViewController.swift */; };
+		953FE95328519F4C00DCB3E4 /* EntryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953FE94F28519F4C00DCB3E4 /* EntryCell.swift */; };
+		953FE95428519F4C00DCB3E4 /* EntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953FE95028519F4C00DCB3E4 /* EntryViewController.swift */; };
 		B0FEA0DF2845117B00EF8DD9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FEA0DE2845117B00EF8DD9 /* AppDelegate.swift */; };
 		B0FEA0E12845117B00EF8DD9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FEA0E02845117B00EF8DD9 /* SceneDelegate.swift */; };
 		B0FEA0E32845117B00EF8DD9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FEA0E22845117B00EF8DD9 /* ViewController.swift */; };
@@ -53,6 +58,11 @@
 		72C66AF9284F382800261C91 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		72C66AFB284F383900261C91 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		72C66AFD284F384F00261C91 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		953FE94B28519C9D00DCB3E4 /* JournalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalViewController.swift; sourceTree = "<group>"; };
+		953FE94D28519F4C00DCB3E4 /* Entry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
+		953FE94E28519F4C00DCB3E4 /* NoteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteViewController.swift; sourceTree = "<group>"; };
+		953FE94F28519F4C00DCB3E4 /* EntryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryCell.swift; sourceTree = "<group>"; };
+		953FE95028519F4C00DCB3E4 /* EntryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryViewController.swift; sourceTree = "<group>"; };
 		B0FEA0DB2845117B00EF8DD9 /* MC-2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MC-2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0FEA0DE2845117B00EF8DD9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B0FEA0E02845117B00EF8DD9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -120,6 +130,18 @@
 			path = "View Controllers";
 			sourceTree = "<group>";
 		};
+		953FE94A28519C5500DCB3E4 /* Journal */ = {
+			isa = PBXGroup;
+			children = (
+				953FE94D28519F4C00DCB3E4 /* Entry.swift */,
+				953FE94F28519F4C00DCB3E4 /* EntryCell.swift */,
+				953FE95028519F4C00DCB3E4 /* EntryViewController.swift */,
+				953FE94E28519F4C00DCB3E4 /* NoteViewController.swift */,
+				953FE94B28519C9D00DCB3E4 /* JournalViewController.swift */,
+			);
+			path = Journal;
+			sourceTree = "<group>";
+		};
 		B0FEA0D22845117B00EF8DD9 = {
 			isa = PBXGroup;
 			children = (
@@ -141,6 +163,7 @@
 			children = (
 				B0FEA0DE2845117B00EF8DD9 /* AppDelegate.swift */,
 				B0FEA0E02845117B00EF8DD9 /* SceneDelegate.swift */,
+				953FE94A28519C5500DCB3E4 /* Journal */,
 				72C66AFF284F385B00261C91 /* View Controllers */,
 				72A92CC4284F9C7300B2F1F4 /* Helper */,
 				B0FEA0E42845117B00EF8DD9 /* Main.storyboard */,
@@ -256,12 +279,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				953FE94C28519C9D00DCB3E4 /* JournalViewController.swift in Sources */,
 				B0FEA0E32845117B00EF8DD9 /* ViewController.swift in Sources */,
 				B0FEA0DF2845117B00EF8DD9 /* AppDelegate.swift in Sources */,
 				72C66AFA284F382800261C91 /* SignUpViewController.swift in Sources */,
 				72C66AFC284F383900261C91 /* LogInViewController.swift in Sources */,
+				953FE95428519F4C00DCB3E4 /* EntryViewController.swift in Sources */,
 				72A92CC6284F9CAC00B2F1F4 /* Constants.swift in Sources */,
+				953FE95128519F4C00DCB3E4 /* Entry.swift in Sources */,
 				B0FEA0E12845117B00EF8DD9 /* SceneDelegate.swift in Sources */,
+				953FE95328519F4C00DCB3E4 /* EntryCell.swift in Sources */,
+				953FE95228519F4C00DCB3E4 /* NoteViewController.swift in Sources */,
 				72C66AFE284F384F00261C91 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

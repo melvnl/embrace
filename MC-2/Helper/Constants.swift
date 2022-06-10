@@ -12,3 +12,7 @@ struct Constants {
         static let homeViewController = "HomeVC"
     }
 }
+
+let MOOD_HAPPY = 1
+let MOOD_SAD = 2
+let MOOD_ANGRY = 3
