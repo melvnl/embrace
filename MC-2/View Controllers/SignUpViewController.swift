@@ -9,6 +9,23 @@ import UIKit
 import FirebaseAuth
 import Firebase
 
+extension UIView {
+
+    func applyGradient(colours: [UIColor]) -> CAGradientLayer {
+        return self.applyGradient(colours: colours, locations: nil)
+    }
+
+
+    func applyGradient(colours: [UIColor], locations: [NSNumber]?) -> CAGradientLayer {
+        let gradient: CAGradientLayer = CAGradientLayer()
+        gradient.frame = self.bounds
+        gradient.colors = colours.map { $0.cgColor }
+        gradient.locations = locations
+        self.layer.insertSublayer(gradient, at: 0)
+        return gradient
+    }
+}
+
 class SignUpViewController: UIViewController {
     
     @IBOutlet weak var namaTextField: UITextField!
@@ -30,7 +47,14 @@ class SignUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        signUpButton.layer.cornerRadius = 10
+        signUpButton.layer.cornerRadius = 100
+        
+        signUpButton.setTitleColor(.black, for: .normal)
+        
+        let gradientColor = CAGradientLayer()
+        gradientColor.frame = signUpButton.frame
+        gradientColor.colors = [UIColor.blue.cgColor,UIColor.red.withAlphaComponent(1).cgColor]
+        self.signUpButton.layer.insertSublayer(gradientColor, at: 0)
 
         // Do any additional setup after loading the view.
         navigationController?.navigationBar.tintColor = UIColor(red: 58/255, green: 58/255, blue: 58/255, alpha: 1)
@@ -127,6 +151,21 @@ class SignUpViewController: UIViewController {
         return nil
     }
     
+    override func shouldPerformSegue(withIdentifier identifier: String,
+                                sender: Any?) -> Bool{
+        
+
+        if(identifier == "toVerif"){
+            if((validationFields()) != nil) {
+                return false
+            }
+                return true
+            }
+        else{
+            return true
+        }
+        }
+    
     
     @IBAction func signUpTapped(_ sender: Any) {
 //        Validate the fields
@@ -165,7 +204,7 @@ class SignUpViewController: UIViewController {
                     }
                     
                     // Transition to the home screen
-                    self.transitionToLogin()
+                    self.transitionToVerification()
                 }
             }
                     
@@ -184,6 +223,14 @@ class SignUpViewController: UIViewController {
         let loginViewController = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.loginViewController) as? LogInViewController
         
         view.window?.rootViewController = loginViewController
+        view.window?.makeKeyAndVisible()
+    }
+    
+    func transitionToVerification() {
+        
+        let verificationController = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.verificationViewController) as? VerificationController
+        
+        view.window?.rootViewController = verificationController
         view.window?.makeKeyAndVisible()
     }
 }

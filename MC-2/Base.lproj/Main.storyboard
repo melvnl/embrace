@@ -8,10 +8,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--First-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="MC_2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="First" id="BYZ-38-t0r" customClass="ViewController" customModule="MC_2" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -236,6 +236,45 @@
             </objects>
             <point key="canvasLocation" x="1683" y="453"/>
         </scene>
+        <!--Verification-->
+        <scene sceneID="UsT-Cn-JCi">
+            <objects>
+                <viewController storyboardIdentifier="VerifVC" title="Verification" id="Wbg-cp-8MC" customClass="VerificationController" customModule="MC_2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="nPg-Tf-pT6">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="verif" translatesAutoresizingMaskIntoConstraints="NO" id="c4F-pR-n4P">
+                                <rect key="frame" x="0.0" y="222" width="351" height="276"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Verifikasi Email" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jAA-Iw-BVr">
+                                <rect key="frame" x="113" y="499" width="164" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Too-jA-tR0">
+                                <rect key="frame" x="20" y="536" width="350" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="agP-MD-8Ih"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Verifikasi Email" id="6uc-va-Db7"/>
+                    <connections>
+                        <outlet property="verifLabel" destination="Too-jA-tR0" id="hbN-dY-IcC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6Xq-yQ-XnB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2444.6153846153848" y="813.98104265402844"/>
+        </scene>
         <!--Home View Controller-->
         <scene sceneID="nCv-ac-IOv">
             <objects>
@@ -258,7 +297,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zOM-MD-cx3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2513.04347826087" y="109.82142857142857"/>
+            <point key="canvasLocation" x="3255" y="94"/>
         </scene>
         <!--Daftar akun-->
         <scene sceneID="f4L-zf-7jA">
@@ -355,6 +394,7 @@
                                         </buttonConfiguration>
                                         <connections>
                                             <action selector="signUpTapped:" destination="QIe-ue-lDZ" eventType="touchUpInside" id="EHU-o8-zSD"/>
+                                            <segue destination="Wbg-cp-8MC" kind="show" identifier="toVerif" id="iWd-Dl-1kJ"/>
                                         </connections>
                                     </button>
                                     <stackView opaque="NO" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="ytl-V6-hve">
@@ -378,7 +418,7 @@
                                                 </buttonConfiguration>
                                                 <connections>
                                                     <action selector="buatAkunTapped:" destination="7FA-X7-0yQ" eventType="touchUpInside" id="k3P-Vk-gU2"/>
-                                                    <segue destination="7FA-X7-0yQ" kind="push" id="znw-ZQ-HH6"/>
+                                                    <segue destination="7FA-X7-0yQ" kind="push" identifier="toLogin" id="znw-ZQ-HH6"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -442,6 +482,7 @@
         <segue reference="znw-ZQ-HH6"/>
     </inferredMetricsTieBreakers>
     <resources>
+        <image name="verif" width="302.33334350585938" height="225"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
