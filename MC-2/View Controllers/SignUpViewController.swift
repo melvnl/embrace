@@ -192,16 +192,26 @@ class SignUpViewController: UIViewController {
                     // User was created successfully, now store name & username
                     
                     let user = result?.user
+                    let userUid = result?.user.uid
                     
                     user?.sendEmailVerification()
                     
                     let db = Firestore.firestore()
-                    db.collection("users").addDocument(data: ["nama":nama, "username":username, "uid":result!.user.uid]) { error in
-                        if error != nil {
-                            //show error message
-                            self.showError("Error dalam menyimpan data akun")
-                        }
-                    }
+                    //firebaseUid and firestoreUid is diff
+//                    db.collection("users").addDocument(data: ["nama":nama, "username":username, "uid":result!.user.uid]) { error in
+//                        if error != nil {
+//                            //show error message
+//                            self.showError("Error dalam menyimpan data akun")
+//                        }
+//                    }
+                    
+                    //firebaseUid and firestoreUid is equal
+                    db.collection("users").document(userUid ?? "").setData(["nama":nama, "username":username, "uid":result!.user.uid]) { error in
+                                                if error != nil {
+                                                    //show error message
+                                                    self.showError("Error dalam menyimpan data akun")
+                                                }
+                                            }
                     
                     // Transition to the home screen
                     self.transitionToVerification()
