@@ -16,14 +16,11 @@ import Firebase
 import simd
 
 @available(iOS 15.0, *)
-class JournalViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating {
+class JournalViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet var table: UITableView!
     @IBOutlet var label: UILabel!
     
-    @IBOutlet weak var searchBar: UISearchBar!
-    var searchController:UISearchController!
-    var searchResults:[Entry] = []
     var entries: [Entry] = []
     
     override func viewDidLoad() {
@@ -33,15 +30,6 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
         table.isHidden = false
         table.delegate = self
         table.dataSource = self
-        
-        // Add a Search Bar Programmtically
-        searchController = UISearchController(searchResultsController: nil)
-        table.tableHeaderView = searchController.searchBar
-        searchController.searchResultsUpdater = self
-        searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Search by Title"
-        searchController.hidesNavigationBarDuringPresentation = false
-        searchController.searchBar.tintColor = UIColor.orange
 
         title = "Journal"
     }
@@ -63,24 +51,12 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
 
     @IBAction func didTapNewNote() {
-        searchController.isActive = false
         
         guard let vc = storyboard?.instantiateViewController(identifier: "NewJournal") as? EntryViewController else {
             return
         }
-        
-        vc.title = "New Note"
-        vc.navigationItem.largeTitleDisplayMode = .never
-        vc.completion = { noteTitle, note in
+        vc.completion = { newEntry in
             self.navigationController?.popToRootViewController(animated: true)
-            let newEntry = Entry(
-                id: "",
-                title: noteTitle,
-                desc: note,
-                mood: 1,
-                date: Date().timeIntervalSinceReferenceDate,
-                user_id: Auth.auth().currentUser!.uid
-            )
             journalRepo.createJournal(entry: newEntry)
             
             self.label.isHidden = true
@@ -88,8 +64,40 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
         navigationController?.pushViewController(vc, animated: true)
     }
-
+    
     @IBAction func didTapFilter(_ sender: Any) {
+        let alert = UIAlertController(title: nil, message: "Saring berdasarkan", preferredStyle: .actionSheet)
+            
+            alert.addAction(UIAlertAction(title: "Hari", style: .default , handler:{ (UIAlertAction)in
+                print("User click hari button")
+            }))
+
+            alert.addAction(UIAlertAction(title: "Minggu", style: .default , handler:{ (UIAlertAction)in
+                print("User click minggu button")
+            }))
+        
+            alert.addAction(UIAlertAction(title: "Bulan", style: .default , handler:{ (UIAlertAction)in
+                print("User click bulan button")
+            }))
+            
+            alert.addAction(UIAlertAction(title: "Tahun", style: .default, handler:{ (UIAlertAction)in
+                print("User click tahun button")
+            }))
+        
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler:{ (UIAlertAction)in
+                print("User click cancel button")
+            }))
+
+            
+            //uncomment for iPad Support
+            //alert.popoverPresentationController?.sourceView = self.view
+
+            self.present(alert, animated: true, completion: {
+                print("completion block")
+            })
+    }
+    
+    func popUpModal(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "FilterPopup")
             
@@ -101,20 +109,14 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if searchController.isActive {
-            return searchResults.count
-        }
-        else {
-            return entries.count
-        }
+        return entries.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "EntryCell", for: indexPath) as! EntryCell
         
-        let currEntry = (self.searchController.isActive) ? self.searchResults[(indexPath as NSIndexPath).row] : entries[(indexPath as NSIndexPath).row]
-        
+        let currEntry = entries[(indexPath as NSIndexPath).row]
         
         cell.title.text = currEntry.title
         cell.desc.text = currEntry.desc
@@ -131,29 +133,13 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
         tableView.deselectRow(at: indexPath, animated: true)
 
         // Show note controller
-        guard let vc = storyboard?.instantiateViewController(identifier: "ViewJournal") as? NoteViewController else {
+        guard let vc = storyboard?.instantiateViewController(identifier: "ViewJournal") as? EntryDetailViewController else {
             return
         }
         
         vc.navigationItem.largeTitleDisplayMode = .never
         vc.currEntry = entries[indexPath.row]
         navigationController?.pushViewController(vc, animated: true)
-    }
-    
-    func filterContentForSearchText(_ searchText: String) {
-            searchResults = entries.filter({ (entry:Entry) -> Bool in
-                let titleMatch = entry.title.range(of: searchText, options: NSString.CompareOptions.caseInsensitive)
-            return titleMatch != nil
-            }
-        )
-    }
-    
-    func updateSearchResults(for searchController: UISearchController) {
-        searchController.searchResultsController?.view.isHidden = false
-        if let searchText = searchController.searchBar.text {
-                filterContentForSearchText(searchText)
-                table.reloadData()
-        }
     }
 }
 

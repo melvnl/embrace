@@ -8,13 +8,12 @@
 
 import UIKit
 
-class NoteViewController: UIViewController {
+class EntryDetailViewController: UIViewController {
 
-    @IBOutlet weak var titleLabel: UITextView!
-    @IBOutlet var noteLabel: UITextView!
-
-    public var noteTitle: String = ""
-    public var note: String = ""
+    
+    @IBOutlet weak var entryTitle: UITextView!
+    @IBOutlet weak var entryDesc: UITextView!
+    
     public var currEntry : Entry? = nil
     
     public var completion: (() -> Void)?
@@ -22,35 +21,35 @@ class NoteViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        titleLabel.text = currEntry?.title
-        noteLabel.text = currEntry?.desc
+        entryTitle.text = currEntry?.title
+        entryDesc.text = currEntry?.desc
         title = currEntry?.title
         
-        titleLabel.isEditable = false
-        noteLabel.isEditable = false
+        entryTitle.isEditable = false
+        entryDesc.isEditable = false
         
         setBarButtons()
     }
     
     @objc func editEntry(){
-        titleLabel.isEditable = true
-        noteLabel.isEditable = true
-        titleLabel.becomeFirstResponder()
+        entryTitle.isEditable = true
+        entryDesc.isEditable = true
+        entryTitle.becomeFirstResponder()
         
         let SaveBarButtonItem = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(saveEntry))
         self.navigationItem.rightBarButtonItems = [SaveBarButtonItem]
     }
     
     @objc func saveEntry(){
-        titleLabel.isEditable = false
-        noteLabel.isEditable = false
+        entryTitle.isEditable = false
+        entryDesc.isEditable = false
         setBarButtons()
         
         //update document
         let newEntry = Entry(
             id: currEntry!.id,
-            title: titleLabel.text,
-            desc: noteLabel.text,
+            title: entryTitle.text,
+            desc: entryDesc.text,
             mood: currEntry!.mood,
             date: currEntry!.date,
             user_id: currEntry!.user_id

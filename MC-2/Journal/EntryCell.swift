@@ -14,11 +14,20 @@ class EntryCell: UITableViewCell {
 
     func setMoodImage(_ mood: Int){
         switch (mood){
+        case MOOD_VHAPPY:
+            moodImage.image = UIImage(systemName: "face.smiling")
+            break;
         case MOOD_HAPPY:
-            moodImage.image = UIImage(named: "smile")
+            moodImage.image = UIImage(named: "face.smiling")
+            break;
+        case MOOD_NORMAL:
+            moodImage.image = UIImage(named: "face.dashed")
             break;
         case MOOD_SAD:
-            moodImage.image = UIImage(named: "sad")
+            moodImage.image = UIImage(named: "face.smiling")
+            break;
+        case MOOD_VSAD:
+            moodImage.image = UIImage(named: "face.smiling")
             break;
         default: break;
         }

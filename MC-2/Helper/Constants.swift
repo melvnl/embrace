@@ -13,6 +13,8 @@ struct Constants {
     }
 }
 
-let MOOD_HAPPY = 1
-let MOOD_SAD = 2
-let MOOD_ANGRY = 3
+let MOOD_VHAPPY = 1
+let MOOD_HAPPY = 2
+let MOOD_NORMAL = 3
+let MOOD_SAD = 4
+let MOOD_VSAD = 5
