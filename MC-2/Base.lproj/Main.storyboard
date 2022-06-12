@@ -24,11 +24,11 @@
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="KVx-ZN-eil"/>
                                         </constraints>
-                                        <color key="tintColor" red="1" green="0.30196078431372547" blue="0.42745098039215684" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="Daftar">
                                             <fontDescription key="titleFontDescription" type="system" pointSize="16"/>
-                                            <color key="baseBackgroundColor" red="1" green="0.30196078430000001" blue="0.42745098040000001" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="baseBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </buttonConfiguration>
                                         <connections>
                                             <segue destination="QIe-ue-lDZ" kind="show" id="gT0-GT-zaA"/>
@@ -169,10 +169,11 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="W2G-JZ-UYz"/>
                                         </constraints>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="Masuk">
                                             <fontDescription key="titleFontDescription" type="system" pointSize="16"/>
-                                            <color key="baseBackgroundColor" red="1" green="0.30196078430000001" blue="0.42745098040000001" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="baseBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </buttonConfiguration>
                                         <connections>
                                             <action selector="loginTapped:" destination="7FA-X7-0yQ" eventType="touchUpInside" id="hvC-iq-nh8"/>
@@ -362,11 +363,11 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="NBt-8U-vgU"/>
                                         </constraints>
-                                        <color key="tintColor" red="1" green="0.30196078430000001" blue="0.42745098040000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="Daftar">
                                             <fontDescription key="titleFontDescription" type="system" pointSize="16"/>
-                                            <color key="baseBackgroundColor" red="1" green="0.30196078430000001" blue="0.42745098040000001" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="baseBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </buttonConfiguration>
                                         <connections>
                                             <action selector="signUpTapped:" destination="QIe-ue-lDZ" eventType="touchUpInside" id="EHU-o8-zSD"/>

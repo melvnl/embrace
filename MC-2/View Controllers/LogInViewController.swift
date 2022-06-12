@@ -31,6 +31,12 @@ class LogInViewController: UIViewController {
         super.viewDidLoad()
         
         logInButton.layer.cornerRadius = 10
+        
+        let gradient = CAGradientLayer()
+        gradient.colors = [CGColor(red: 255/255, green: 77/255, blue: 109/255, alpha: 1), CGColor(red: 208/255, green: 46/255, blue: 75/255, alpha: 1)]
+        gradient.frame = logInButton.bounds
+        logInButton.layer.insertSublayer(gradient, at: 0)
+        logInButton.layer.masksToBounds = true;
 
         // Do any additional setup after loading the view.
         navigationController?.navigationBar.tintColor = UIColor(red: 58/255, green: 58/255, blue: 58/255, alpha: 1)
