@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="0Io-AK-KF9">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
@@ -18,7 +18,13 @@
                         <viewLayoutGuide key="safeArea" id="Ivf-vV-bmu"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Journal" image="book" id="J5I-aS-a0V"/>
+                    <tabBarItem key="tabBarItem" title="Journal" image="book.fill" catalog="system" id="J5I-aS-a0V">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                <color key="value" red="1" green="0.30196078430000001" blue="0.42745098040000001" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </tabBarItem>
                     <navigationItem key="navigationItem" id="xXI-2c-9rd"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pkc-OE-vfK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -35,7 +41,13 @@
                         <viewLayoutGuide key="safeArea" id="6Nk-2f-r5Y"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Profil" image="person" id="5Hu-Mg-f9x"/>
+                    <tabBarItem key="tabBarItem" title="Profil" image="person.fill" catalog="system" id="5Hu-Mg-f9x">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                <color key="value" red="1" green="0.30196078430000001" blue="0.42745098040000001" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </tabBarItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Pc-NZ-bgf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -51,7 +63,13 @@
                         <viewLayoutGuide key="safeArea" id="jk1-DP-CYu"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Topik" image="newspaper" id="b1c-jQ-aSZ"/>
+                    <tabBarItem key="tabBarItem" title="Topik" image="newspaper" catalog="system" id="b1c-jQ-aSZ">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                <color key="value" red="1" green="0.30196078431372547" blue="0.42745098039215684" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </tabBarItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="25V-cl-5n9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -60,7 +78,7 @@
         <!--Forum-->
         <scene sceneID="M6S-lo-TQY">
             <objects>
-                <viewController storyboardIdentifier="HomeVC" id="eTP-Js-7DS" customClass="HomeViewController" customModule="MC_2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="eTP-Js-7DS" customClass="HomeViewController" customModule="MC_2" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lVY-8O-VV9">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -76,7 +94,14 @@
                         <viewLayoutGuide key="safeArea" id="XWQ-CW-GMF"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Forum" image="scroll" id="D7P-Qp-QSg"/>
+                    <tabBarItem key="tabBarItem" title="Forum" image="scroll" catalog="system" id="D7P-Qp-QSg">
+                        <color key="badgeColor" red="0.81568627449999997" green="0.18039215689999999" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                <color key="value" red="1" green="0.30196078430000001" blue="0.42745098040000001" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </tabBarItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iy8-y2-m8V" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -85,11 +110,13 @@
         <!--Tab Bar Controller-->
         <scene sceneID="tih-Ag-WiG">
             <objects>
-                <tabBarController id="0Io-AK-KF9" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="HomeVC" id="0Io-AK-KF9" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="uaD-Sz-m2w">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" red="1" green="0.30196078431372547" blue="0.42745098039215684" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="selectedImageTintColor" red="0.81568627449999997" green="0.18039215689999999" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="eTP-Js-7DS" kind="relationship" relationship="viewControllers" id="NuO-j0-Hgn"/>
@@ -100,14 +127,14 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aq6-AI-C6g" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2155" y="-289"/>
+            <point key="canvasLocation" x="-2164" y="-290"/>
         </scene>
     </scenes>
     <resources>
-        <image name="book" width="28.5" height="28"/>
-        <image name="newspaper" width="28.5" height="28"/>
-        <image name="person" width="28.5" height="28"/>
-        <image name="scroll" width="28.5" height="28"/>
+        <image name="book.fill" catalog="system" width="128" height="95"/>
+        <image name="newspaper" catalog="system" width="128" height="111"/>
+        <image name="person.fill" catalog="system" width="128" height="120"/>
+        <image name="scroll" catalog="system" width="128" height="116"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

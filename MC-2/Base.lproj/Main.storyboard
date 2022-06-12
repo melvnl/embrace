@@ -231,11 +231,22 @@
                         <outlet property="errorLabel" destination="O9A-8i-QWg" id="Cen-kc-Joj"/>
                         <outlet property="logInButton" destination="xgq-Sv-tLQ" id="sma-SE-MKW"/>
                         <outlet property="passwordTextField" destination="3SS-ui-kOx" id="od2-37-QpW"/>
+                        <segue destination="1Ez-Ql-C8K" kind="show" id="BDr-6a-f2y"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vyr-84-EFT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1683" y="453"/>
+            <point key="canvasLocation" x="1655" y="697"/>
+        </scene>
+        <!--HomeVC-->
+        <scene sceneID="Whs-4z-T7g">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="HomeVC" storyboardName="Home" referencedIdentifier="HomeVC" id="1Ez-Ql-C8K" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="0dN-QI-Ygr"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dqm-gu-ukN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2569" y="232"/>
         </scene>
         <!--Verification-->
         <scene sceneID="UsT-Cn-JCi">
@@ -274,7 +285,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Xq-yQ-XnB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2444.6153846153848" y="813.98104265402844"/>
+            <point key="canvasLocation" x="2749" y="855"/>
         </scene>
         <!--Daftar akun-->
         <scene sceneID="f4L-zf-7jA">
