@@ -45,6 +45,7 @@
 		953FE95328519F4C00DCB3E4 /* EntryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953FE94F28519F4C00DCB3E4 /* EntryCell.swift */; };
 		953FE95428519F4C00DCB3E4 /* EntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953FE95028519F4C00DCB3E4 /* EntryViewController.swift */; };
 		9577BCBA285619F30052B504 /* iOSDropDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9577BCB9285619F30052B504 /* iOSDropDown.swift */; };
+		95888DA32856ED7300C65751 /* UIView+Fade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95888DA22856ED7300C65751 /* UIView+Fade.swift */; };
 		95A8109F2853363E00D55D3D /* FirestoreHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A8109E2853363E00D55D3D /* FirestoreHelper.swift */; };
 		95A810A3285360F400D55D3D /* JournalRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A810A2285360F400D55D3D /* JournalRepository.swift */; };
 		B0FEA0DF2845117B00EF8DD9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FEA0DE2845117B00EF8DD9 /* AppDelegate.swift */; };
@@ -67,6 +68,7 @@
 		953FE94F28519F4C00DCB3E4 /* EntryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryCell.swift; sourceTree = "<group>"; };
 		953FE95028519F4C00DCB3E4 /* EntryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryViewController.swift; sourceTree = "<group>"; };
 		9577BCB9285619F30052B504 /* iOSDropDown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSDropDown.swift; sourceTree = "<group>"; };
+		95888DA22856ED7300C65751 /* UIView+Fade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Fade.swift"; sourceTree = "<group>"; };
 		95A8109E2853363E00D55D3D /* FirestoreHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreHelper.swift; sourceTree = "<group>"; };
 		95A810A2285360F400D55D3D /* JournalRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalRepository.swift; sourceTree = "<group>"; };
 		B0FEA0DB2845117B00EF8DD9 /* MC-2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MC-2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -122,6 +124,7 @@
 			children = (
 				72A92CC5284F9CAC00B2F1F4 /* Constants.swift */,
 				9577BCB9285619F30052B504 /* iOSDropDown.swift */,
+				95888DA22856ED7300C65751 /* UIView+Fade.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -296,6 +299,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95888DA32856ED7300C65751 /* UIView+Fade.swift in Sources */,
 				953FE94C28519C9D00DCB3E4 /* JournalViewController.swift in Sources */,
 				B0FEA0E32845117B00EF8DD9 /* ViewController.swift in Sources */,
 				B0FEA0DF2845117B00EF8DD9 /* AppDelegate.swift in Sources */,

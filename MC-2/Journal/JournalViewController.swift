@@ -13,13 +13,15 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 import FirebaseAuth
 import Firebase
-import simd
 
 @available(iOS 15.0, *)
 class JournalViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet var table: UITableView!
-    @IBOutlet var label: UILabel!
+    @IBOutlet weak var emptyJournalView: UIView!
+    
+    let cellReuseIdentifier = "EntryCell"
+    let cellSpacingHeight: CGFloat = 3
     
     var entries: [Entry] = []
     
@@ -30,8 +32,7 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
         table.isHidden = false
         table.delegate = self
         table.dataSource = self
-
-        title = "Journal"
+//        table.rowHeight = 240
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -46,6 +47,8 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
                 self.table.delegate = self
                 self.table.isHidden = false
                 self.table.reloadData()
+                
+                self.emptyJournalView.isHidden = entries.count > 0 ? true : false
             }
         }
     }
@@ -55,46 +58,48 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
         guard let vc = storyboard?.instantiateViewController(identifier: "NewJournal") as? EntryViewController else {
             return
         }
+        
         vc.completion = { newEntry in
             self.navigationController?.popToRootViewController(animated: true)
             journalRepo.createJournal(entry: newEntry)
-            
-            self.label.isHidden = true
+
             self.table.isHidden = false
         }
+        
+        setBackBarItem()
         navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func didTapFilter(_ sender: Any) {
         let alert = UIAlertController(title: nil, message: "Saring berdasarkan", preferredStyle: .actionSheet)
             
-            alert.addAction(UIAlertAction(title: "Hari", style: .default , handler:{ (UIAlertAction)in
-                print("User click hari button")
+        alert.addAction(UIAlertAction(title: "Hari", style: .default , handler:{ (UIAlertAction)in
+            print("User click hari button")
             }))
 
-            alert.addAction(UIAlertAction(title: "Minggu", style: .default , handler:{ (UIAlertAction)in
-                print("User click minggu button")
+        alert.addAction(UIAlertAction(title: "Minggu", style: .default , handler:{ (UIAlertAction)in
+            print("User click minggu button")
             }))
         
-            alert.addAction(UIAlertAction(title: "Bulan", style: .default , handler:{ (UIAlertAction)in
-                print("User click bulan button")
+        alert.addAction(UIAlertAction(title: "Bulan", style: .default , handler:{ (UIAlertAction)in
+            print("User click bulan button")
             }))
             
-            alert.addAction(UIAlertAction(title: "Tahun", style: .default, handler:{ (UIAlertAction)in
-                print("User click tahun button")
+        alert.addAction(UIAlertAction(title: "Tahun", style: .default, handler:{ (UIAlertAction)in
+            print("User click tahun button")
             }))
         
-            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler:{ (UIAlertAction)in
-                print("User click cancel button")
+        alert.addAction(UIAlertAction(title: "Batal", style: .cancel, handler:{ (UIAlertAction)in
+            print("User click cancel button")
             }))
 
             
-            //uncomment for iPad Support
-            //alert.popoverPresentationController?.sourceView = self.view
+        //uncomment for iPad Support
+        //alert.popoverPresentationController?.sourceView = self.view
 
-            self.present(alert, animated: true, completion: {
-                print("completion block")
-            })
+        self.present(alert, animated: true, completion: {
+            print("completion block")
+        })
     }
     
     func popUpModal(_ sender: Any) {
@@ -107,29 +112,52 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
                 
         self.present(viewController, animated: true)
     }
-
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return entries.count
+    // MARK: - Table View delegate methods
+        
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return self.entries.count
     }
-
+    
+    // There is just one row in every section
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    // Set the spacing between sections
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return cellSpacingHeight
+    }
+    
+    // Make the background color show through
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView()
+        headerView.backgroundColor = UIColor.clear
+        return headerView
+    }
+    
+    // create a cell for each table view row
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! EntryCell
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "EntryCell", for: indexPath) as! EntryCell
+        // note that indexPath.section is used rather than indexPath.row
+        let currEntry = entries[(indexPath as NSIndexPath).section]
         
-        let currEntry = entries[(indexPath as NSIndexPath).row]
-        
+        // Set cell data
         cell.title.text = currEntry.title
         cell.desc.text = currEntry.desc
-        cell.date.text = String(currEntry.date)
-        cell.setMoodImage(currEntry.mood)
+        cell.moodImage.image = getEntryMoodImage(currEntry)
         
-        cell.alpha = 0
-        UIView.animate(withDuration: 1, animations: { cell.alpha = 1 })
+        // Convert date to string
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMM d, hh:mm"
+        cell.date.text = dateFormatter.string(from: currEntry.date)
         
         return cell
     }
-
+    
+    // method to run when table view cell is tapped
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // note that indexPath.section is used rather than indexPath.row
         tableView.deselectRow(at: indexPath, animated: true)
 
         // Show note controller
@@ -138,8 +166,18 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
         
         vc.navigationItem.largeTitleDisplayMode = .never
-        vc.currEntry = entries[indexPath.row]
+        vc.currEntry = entries[indexPath.section]
+        
+        
+        setBackBarItem()
         navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func setBackBarItem(){
+        let backBarItem = UIBarButtonItem()
+        backBarItem.title = ""
+        backBarItem.tintColor = UIColor.black
+        navigationItem.backBarButtonItem = backBarItem
     }
 }
 

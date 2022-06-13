@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import FirebaseAuth
+import FirebaseFirestore
 
 let journalRepo = JournalRepository()
 
@@ -31,12 +32,13 @@ class JournalRepository{
                     else{
                         var entryList : [Entry] = []
                         for document in querySnapshot!.documents {
+                            let ts = document.get("date") as! Timestamp
                             let currEntry = Entry(
                                 id: document.documentID,
                                 title: document.get("title")! as! String,
                                 desc: document.get("desc")! as! String,
                                 mood: document.get("mood") as! Int,
-                                date: document.get("date") as! Double,
+                                date: ts.dateValue(),
                                 user_id: Auth.auth().currentUser!.uid
                             )
                             entryList.append(currEntry)
@@ -52,7 +54,7 @@ class JournalRepository{
             "title": entry.title,
             "desc": entry.desc,
             "mood": entry.mood,
-            "date": entry.date,
+            "date": FieldValue.serverTimestamp(),
             "user_id": entry.user_id
         ]) { err in
             if let err = err {

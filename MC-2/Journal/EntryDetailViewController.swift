@@ -9,10 +9,13 @@
 import UIKit
 
 class EntryDetailViewController: UIViewController {
-
     
-    @IBOutlet weak var entryTitle: UITextView!
+    @IBOutlet weak var entryTitle: UILabel!
     @IBOutlet weak var entryDesc: UITextView!
+    @IBOutlet weak var entryMood: UILabel!
+    @IBOutlet weak var entryMoodIcon: UIImageView!
+    @IBOutlet weak var entryDate: UILabel!
+    @IBOutlet weak var entryImage: UIImageView!
     
     public var currEntry : Entry? = nil
     
@@ -23,55 +26,57 @@ class EntryDetailViewController: UIViewController {
         
         entryTitle.text = currEntry?.title
         entryDesc.text = currEntry?.desc
-        title = currEntry?.title
         
-        entryTitle.isEditable = false
-        entryDesc.isEditable = false
+        entryMood.text = getEntryMoodText(currEntry!)
+        entryMoodIcon.image = getEntryMoodImage(currEntry!)
         
-        setBarButtons()
+        // Convert date to string
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMM d, hh.mm"
+        entryDate.text = dateFormatter.string(from: currEntry!.date)
+        
+        title = "Lihat jurnal"
+    
+        // Add edit bar item
+        let EditBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: #selector(editEntry))
+        EditBarButtonItem.image = UIImage(systemName: "pencil")
+        EditBarButtonItem.tintColor = UIColor.black
+        self.navigationItem.rightBarButtonItem = EditBarButtonItem
     }
     
     @objc func editEntry(){
-        entryTitle.isEditable = true
-        entryDesc.isEditable = true
-        entryTitle.becomeFirstResponder()
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+            
+        alert.addAction(UIAlertAction(title: "Ubah", style: .default , handler:{ (UIAlertAction)in
+            print("User click hari button")
+            }))
         
-        let SaveBarButtonItem = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(saveEntry))
-        self.navigationItem.rightBarButtonItems = [SaveBarButtonItem]
+        alert.addAction(UIAlertAction(title: "Hapus", style: .destructive, handler:{ (UIAlertAction)in
+            self.showDeleteAlert()
+            }))
+        
+        alert.addAction(UIAlertAction(title: "Batal", style: .cancel, handler:{ (UIAlertAction)in
+            print("User click cancel button")
+            }))
+
+            
+        //uncomment for iPad Support
+        //alert.popoverPresentationController?.sourceView = self.view
+
+        self.present(alert, animated: true, completion: {
+            print("completion block")
+        })
     }
     
-    @objc func saveEntry(){
-        entryTitle.isEditable = false
-        entryDesc.isEditable = false
-        setBarButtons()
-        
-        //update document
-        let newEntry = Entry(
-            id: currEntry!.id,
-            title: entryTitle.text,
-            desc: entryDesc.text,
-            mood: currEntry!.mood,
-            date: currEntry!.date,
-            user_id: currEntry!.user_id
-        )
-        
-        title = newEntry.title
-        
-        journalRepo.updateJournal(id: currEntry!.id, entry: newEntry)
-    }
-    
-    @objc func deleteEntry(){
-        // delete document
-        journalRepo.deleteJournal(currEntry!.id)
-        //navigate to journals
-        _ = navigationController?.popViewController(animated: true)
-    }
-    
-    private func setBarButtons(){
-        let EditBarButtonItem = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(editEntry))
-        let DeleteBarButtonItem = UIBarButtonItem(title: "Delete", style: .plain, target: self, action: #selector(deleteEntry))
-        
-        self.navigationItem.rightBarButtonItems  = [DeleteBarButtonItem, EditBarButtonItem]
+    func showDeleteAlert(){
+        let alert = UIAlertController(title: "Hapus Jurnal?", message: "Apakah Anda yakin ingin menghapus jurnal ini?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Batal", style: UIAlertAction.Style.default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Hapus", style: UIAlertAction.Style.destructive, handler: { action in
+            journalRepo.deleteJournal(self.currEntry!.id)
+            self.navigationController?.popViewController(animated: true)
+        }))
+       
+        self.present(alert, animated: true, completion: nil)
     }
 }
 

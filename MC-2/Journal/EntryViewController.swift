@@ -3,6 +3,7 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseFirestore
 
 class EntryViewController: UIViewController {
     
@@ -13,6 +14,9 @@ class EntryViewController: UIViewController {
     public var completion: ((Entry) -> Void)?
     private var selectedMood = 0
 
+    @IBOutlet weak var imageView: UIView!
+    @IBOutlet weak var imageDismissButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -34,20 +38,42 @@ class EntryViewController: UIViewController {
         moodDropDown.didSelect{(selectedText , index ,id) in
             self.selectedMood = id
         }
+        
+        // Setup image dismiss button
+        imageDismissButton.layer.cornerRadius = 0.5 * imageDismissButton.bounds.size.width
+        imageDismissButton.clipsToBounds = true
+        
+        // Hide image
+        imageView.isHidden = true
+        imageView.alpha = 0
+        
+        // Remove back button text
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        navigationItem.backBarButtonItem?.tintColor = UIColor.black
     }
 
+    @IBAction func didTapAddImage(_ sender: Any) {
+        imageView.isHidden = false
+        imageView.fadeIn()
+    }
+    
+    @IBAction func didTapDismissImage(_ sender: Any) {
+        imageView.fadeOut()
+        // Wait for fadeout animation to finish
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
+            self.imageView.isHidden = true
+        })
+    }
+    
     @IBAction func didTapSave(_ sender: Any) {
         if titleField.text?.isEmpty == false && descField.text?.isEmpty == false && selectedMood != 0 {
             let newEntry = Entry(
-                id: "",
                 title: self.titleField.text!,
                 desc: self.descField.text!,
                 mood: selectedMood,
-                date: Date().timeIntervalSinceReferenceDate,
                 user_id: Auth.auth().currentUser!.uid
                 )
-            print(selectedMood)
-//            completion?(newEntry)
+            completion?(newEntry)
         }
     }
     
