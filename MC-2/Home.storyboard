@@ -69,7 +69,7 @@
                                     <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <segue destination="P2Z-HR-Yq2" kind="presentation" modalPresentationStyle="fullScreen" id="Yff-LS-opR"/>
+                                    <segue destination="UNe-Wr-hzo" kind="presentation" identifier="goToEdit" modalPresentationStyle="fullScreen" id="7ns-pt-lj9"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Profil" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tXq-nP-T4J">
@@ -143,13 +143,13 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Daftar">
+                                <buttonConfiguration key="configuration" style="filled" title="Edit profil">
                                     <fontDescription key="titleFontDescription" type="system" pointSize="16"/>
                                     <color key="baseBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="8a0-ni-LUf">
-                                <rect key="frame" x="20" y="120" width="350" height="293"/>
+                                <rect key="frame" x="20" y="121" width="350" height="293"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="USERNAME" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aG8-ss-0n9">
                                         <rect key="frame" x="0.0" y="0.0" width="350" height="14.333333333333334"/>
@@ -198,27 +198,59 @@
                                     </textField>
                                 </subviews>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Jy-FL-Mi0">
+                                <rect key="frame" x="20" y="54" width="37" height="28"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="chevron.left" catalog="system">
+                                    <color key="baseForegroundColor" red="0.2274509804" green="0.2274509804" blue="0.2274509804" alpha="1" colorSpace="calibratedRGB"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="backToProfile:" destination="UNe-Wr-hzo" eventType="touchUpInside" id="lOO-RU-dCn"/>
+                                    <segue destination="gqG-wW-vjd" kind="unwind" identifier="unwindProfile" unwindAction="unwindToProfile:" id="Yqs-Rk-HfL"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit Profil" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7el-Th-CeP">
+                                <rect key="frame" x="159" y="58.000000000000007" width="72" height="19.333333333333336"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                <color key="textColor" red="0.2274509804" green="0.2274509804" blue="0.2274509804" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6fK-K2-oaY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="6fK-K2-oaY" firstAttribute="trailing" secondItem="7el-Th-CeP" secondAttribute="trailing" constant="159" id="7nb-Ae-T7P"/>
+                            <constraint firstItem="6fK-K2-oaY" firstAttribute="trailing" secondItem="3Jy-FL-Mi0" secondAttribute="trailing" constant="333" id="FQ3-RK-LMX"/>
+                            <constraint firstItem="6fK-K2-oaY" firstAttribute="bottom" secondItem="3Jy-FL-Mi0" secondAttribute="bottom" constant="728" id="Hbw-gY-4Ad"/>
+                            <constraint firstItem="7el-Th-CeP" firstAttribute="leading" secondItem="6fK-K2-oaY" secondAttribute="leading" constant="159" id="TFy-3E-n1z"/>
                             <constraint firstItem="6fK-K2-oaY" firstAttribute="trailing" secondItem="8a0-ni-LUf" secondAttribute="trailing" constant="20" id="btv-Gl-Ih7"/>
-                            <constraint firstItem="8a0-ni-LUf" firstAttribute="top" secondItem="6fK-K2-oaY" secondAttribute="top" constant="32" id="d2g-nM-4kb"/>
+                            <constraint firstItem="6fK-K2-oaY" firstAttribute="bottom" secondItem="7el-Th-CeP" secondAttribute="bottom" constant="732.66666666666663" id="bwO-QC-GY2"/>
+                            <constraint firstItem="8a0-ni-LUf" firstAttribute="top" secondItem="6fK-K2-oaY" secondAttribute="top" constant="77" id="d2g-nM-4kb"/>
+                            <constraint firstItem="3Jy-FL-Mi0" firstAttribute="leading" secondItem="6fK-K2-oaY" secondAttribute="leading" constant="20" id="heY-bQ-WEv"/>
                             <constraint firstItem="8a0-ni-LUf" firstAttribute="leading" secondItem="6fK-K2-oaY" secondAttribute="leading" constant="20" id="n4A-My-iGP"/>
+                            <constraint firstItem="3Jy-FL-Mi0" firstAttribute="top" secondItem="6fK-K2-oaY" secondAttribute="top" constant="10" id="nqN-mx-n5y"/>
+                            <constraint firstItem="7el-Th-CeP" firstAttribute="top" secondItem="6fK-K2-oaY" secondAttribute="top" constant="14" id="zDa-0c-gDv"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Edit Profil" id="t2y-ts-RRi">
                         <barButtonItem key="leftBarButtonItem" image="chevron.left" catalog="system" id="fHe-FJ-rFN">
                             <color key="tintColor" red="0.22745098039215686" green="0.22745098039215686" blue="0.22745098039215686" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="unwind:" destination="UNe-Wr-hzo" id="4ed-4m-oww"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="descTxtField" destination="n5P-Vv-ddb" id="zkk-1D-07Z"/>
                         <outlet property="editProfilBtn" destination="5l0-ig-eKH" id="Dp4-NK-Cb8"/>
+                        <outlet property="nameTxtField" destination="Rsk-8s-JTJ" id="JBL-JV-u22"/>
+                        <outlet property="usernameTxtField" destination="1b4-3e-Aug" id="pGU-v9-Xle"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YpR-iO-6wZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="gqG-wW-vjd" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="486.15384615384613" y="802.60663507108995"/>
+            <point key="canvasLocation" x="-415" y="803"/>
         </scene>
         <!--Topik-->
         <scene sceneID="jXb-kG-e3z">
@@ -295,28 +327,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aq6-AI-C6g" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2164" y="-290"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="MLH-hW-WVm">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="P2Z-HR-Yq2" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="2OV-Ko-28k">
-                        <rect key="frame" x="0.0" y="44" width="390" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <textAttributes key="titleTextAttributes">
-                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
-                            <color key="textColor" red="0.2274509804" green="0.2274509804" blue="0.2274509804" alpha="1" colorSpace="calibratedRGB"/>
-                        </textAttributes>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="UNe-Wr-hzo" kind="relationship" relationship="rootViewController" id="Plc-Zg-Sgb"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="GJ9-pz-Bo2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-398" y="803"/>
         </scene>
     </scenes>
     <resources>
