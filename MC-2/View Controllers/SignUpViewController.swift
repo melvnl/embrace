@@ -132,6 +132,14 @@ class SignUpViewController: UIViewController {
         return nil
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+       if segue.identifier == "toVerif" {
+           guard let secondViewController = segue.destination as? VerificationController else { return }
+           // Pass Data to Second View Controller
+           secondViewController.userEmail = emailTextField.text ?? ""
+       }
+    }
+    
     override func shouldPerformSegue(withIdentifier identifier: String,
                                 sender: Any?) -> Bool{
         
