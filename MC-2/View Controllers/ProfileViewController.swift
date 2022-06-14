@@ -18,19 +18,17 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var profileSection: UISegmentedControl!
     @IBOutlet weak var editProfileBtn: UIButton!
     
-    let segmentindicator: UIView = {
-        let v = UIView()
-        v.translatesAutoresizingMaskIntoConstraints = false
-        v.backgroundColor = UIColor.TSPrimary
-        return v
-    }()
+    @IBOutlet weak var segmentBtn: UISegmentedControl!
     
-    let imgURL = URL(string: "https://firebasestorage.googleapis.com/v0/b/embrace-mini-challenge-2.appspot.com/o/avatar.png?alt=media&token=228d6d5e-53b2-461d-886f-90889981a393")!
+    let placeholderAvatar: String =  "https://firebasestorage.googleapis.com/v0/b/embrace-mini-challenge-2.appspot.com/o/avatar.png?alt=media&token=228d6d5e-53b2-461d-886f-90889981a393"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
 //        let btn = UIButton(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
+        
+        segmentBtn.layer.backgroundColor = UIColor.white.cgColor
+        segmentBtn.selectedSegmentTintColor = UIColor.white
         
         profileSection.backgroundColor = .clear
         profileSection.tintColor = .clear
@@ -39,13 +37,9 @@ class ProfileViewController: UIViewController {
 
         profileSection.setTitleTextAttributes([NSAttributedString.Key.font : UIFont(name: ".SFProText-Semibold", size: 16)!, NSAttributedString.Key.foregroundColor: UIColor.TSPrimary], for: .selected)
         
-        self.view.addSubview(segmentindicator)
-        
         profileImg.layer.masksToBounds = false
         profileImg.layer.cornerRadius = profileImg.frame.size.height / 2
         profileImg.clipsToBounds = true
-        
-        profileImg.load(url: imgURL)
         
         guard let uid = Auth.auth().currentUser?.uid else {
             return
@@ -55,10 +49,12 @@ class ProfileViewController: UIViewController {
             if let doc = docSnapshot {
                 let name = doc.get("nama") as? String ?? ""
                 let username = doc.get("username") as? String ?? ""
-                let description = "Masukkan deskripsi akun Anda..."
+                let imgURL_ = URL(string: doc.get("avatar") as? String ??  self.placeholderAvatar)!
+                let description =  doc.get("description") as? String ?? ""
                 
                 self.nameLbl.text = name
                 self.usernameLbl.text = "@\(username)"
+                self.profileImg.load(url: imgURL_)
                 self.profileDesc.text = description
             } else {
                 if let error = error {
