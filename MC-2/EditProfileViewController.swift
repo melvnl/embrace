@@ -9,21 +9,20 @@ import UIKit
 
 class EditProfileViewController: UIViewController {
 
+    @IBOutlet weak var editProfilBtn: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        editProfilBtn.layer.cornerRadius = 10
+        let gradient = CAGradientLayer()
+        gradient.colors = [CGColor(red: 255/255, green: 77/255, blue: 109/255, alpha: 1), CGColor(red: 208/255, green: 46/255, blue: 75/255, alpha: 1)]
+        gradient.frame = editProfilBtn.bounds
+        editProfilBtn.layer.insertSublayer(gradient, at: 0)
+        editProfilBtn.layer.masksToBounds = true;
+        
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
