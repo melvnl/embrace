@@ -15,6 +15,7 @@ struct Entry{
     var mood = 0
     var date = Date.now
     var user_id = ""
+    var image = EMPTY_IMAGE
 }
 
 func getEntryMoodImage(_ entry: Entry) -> UIImage{

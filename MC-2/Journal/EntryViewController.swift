@@ -4,24 +4,33 @@
 import UIKit
 import FirebaseAuth
 import FirebaseFirestore
+import FirebaseStorage
 
-class EntryViewController: UIViewController {
+class EntryViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @IBOutlet weak var moodDropDown: DropDown!
     @IBOutlet weak var titleField: UITextField!
     @IBOutlet weak var descField: UITextField!
     
     public var completion: ((Entry) -> Void)?
+    public var updateCompletion: ((Entry) -> Void)?
     private var selectedMood = 0
 
-    @IBOutlet weak var imageView: UIView!
+    @IBOutlet weak var addImageButton: UIButton!
+    @IBOutlet weak var imageContainer: UIView!
+    @IBOutlet weak var image: UIImageView!
     @IBOutlet weak var imageDismissButton: UIButton!
+
+    private var imgData: Data?
     
+    // Variables for editing
+    var currEntry: Entry!
+    var isEditingEntry: Bool = false
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         
         titleField.becomeFirstResponder()
-        title = "Buat jurnal"
         navigationItem.largeTitleDisplayMode = .never
         
         // Change text field broders
@@ -44,37 +53,164 @@ class EntryViewController: UIViewController {
         imageDismissButton.clipsToBounds = true
         
         // Hide image
-        imageView.isHidden = true
-        imageView.alpha = 0
+        imageContainer.isHidden = true
+        imageContainer.alpha = 0
+        
+        // Show add image button
+        addImageButton.isHidden = false
+        addImageButton.alpha = 1
         
         // Remove back button text
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         navigationItem.backBarButtonItem?.tintColor = UIColor.black
+        
+        // Check if editing entry
+        if(isEditingEntry){
+            loadEntryFields()
+        }
+    }
+    
+    func loadEntryFields(){
+        // fill title, desc, mood
+        titleField.text = currEntry.title
+        descField.text = currEntry.desc
+        moodDropDown.selectedIndex = currEntry.mood-1
+        moodDropDown.text = getEntryMoodText(currEntry)
+        selectedMood = currEntry.mood
+        
+        // load image
+        if(currEntry.image != EMPTY_IMAGE){
+            let url = URL(string: currEntry.image)
+            DispatchQueue.global().async {
+                let data = try? Data(contentsOf: url!)
+                DispatchQueue.main.async {
+                    //Hide add image button
+                    self.addImageButton.isHidden = true
+                    
+                    // Fade in image
+                    self.image.image = UIImage(data: data!)
+                    self.imageContainer.isHidden = false
+                    UIView.animate(withDuration: 0.2) {
+                        self.imageContainer.alpha = 1.0
+                    }
+                }
+            }
+        }
     }
 
     @IBAction func didTapAddImage(_ sender: Any) {
-        imageView.isHidden = false
-        imageView.fadeIn()
+        let picker = UIImagePickerController()
+        picker.allowsEditing = true
+        picker.delegate = self
+        present(picker, animated: true)
     }
     
     @IBAction func didTapDismissImage(_ sender: Any) {
-        imageView.fadeOut()
+        imageContainer.fadeOut()
+    
         // Wait for fadeout animation to finish
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
-            self.imageView.isHidden = true
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(200), execute: {
+            self.imageContainer.isHidden = true
+            self.addImageButton.isHidden = false
+            UIView.animate(withDuration: 0.2) {
+                self.addImageButton.alpha = 1.0
+            }
         })
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController,
+    didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+
+        // Show image
+        guard let im: UIImage = info[.editedImage] as? UIImage else { return }
+        imgData = im.jpegData(compressionQuality: 0.5)
+        
+        self.image.image = im
+        
+        // Fade in
+        self.imageContainer.isHidden = false
+        self.imageContainer.fadeIn()
+        
+        // Hide add image button
+        self.addImageButton.alpha = 0
+        self.addImageButton.isHidden = true
+        
+        dismiss(animated: true)
     }
     
     @IBAction func didTapSave(_ sender: Any) {
         if titleField.text?.isEmpty == false && descField.text?.isEmpty == false && selectedMood != 0 {
-            let newEntry = Entry(
-                title: self.titleField.text!,
-                desc: self.descField.text!,
-                mood: selectedMood,
-                user_id: Auth.auth().currentUser!.uid
-                )
-            completion?(newEntry)
+            
+            var newEntry = Entry(
+               title: self.titleField.text!,
+               desc: self.descField.text!,
+               mood: selectedMood,
+               user_id: Auth.auth().currentUser!.uid
+               )
+            
+            uploadImage{ [self] imgUrl in
+                newEntry.image = imgUrl!
+                
+                if(isEditingEntry == true){
+                    // delete old image if imageview is hidden && old image url not empty
+                    if(imageContainer.isHidden && currEntry.image != EMPTY_IMAGE){
+
+                        // Create a reference to the file to delete
+                        let date = generateDateForStorage(currEntry.date)
+                        let f = "journal/" + Auth.auth().currentUser!.uid + "_" + date + ".jpg"
+                        let ref = Storage.storage().reference().child(f)
+
+                        // Delete the file
+                        ref.delete { error in
+                            if let error = error {
+                                print(error)
+                            } else {
+                                print("Old image deleted successfully")
+                            }
+                        }
+                    }
+                    
+                    // update entry
+                    newEntry.id = currEntry.id
+                    updateCompletion?(newEntry)
+                }
+                else{
+                    completion?(newEntry)
+                }
+            }
         }
+    }
+    
+    func uploadImage(completion:@escaping((String?) -> () )){
+        if(imageContainer.isHidden == false){
+            let md = StorageMetadata()
+            md.contentType = "image/png"
+            
+            let date = isEditingEntry ? generateDateForStorage(currEntry.date) : generateDateForStorage(Date.now)
+            let f = "journal/" + Auth.auth().currentUser!.uid + "_" + date + ".jpg"
+            let ref = Storage.storage().reference().child(f)
+            
+            ref.putData(imgData!, metadata: md) { (metadata, error) in
+                if error == nil {
+                    ref.downloadURL(completion: { (url, error) in
+                        print("Done, url is \(String(describing: url))")
+                        completion(String(describing: url!))
+                    })
+                }else{
+                    print("error \(String(describing: error))")
+                }
+            }
+        }
+        else{
+            completion(EMPTY_IMAGE)
+        }
+        
+    }
+    
+    func generateDateForStorage(_ date: Date)->String{
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "ddMMyyHHmm"
+        return dateFormatter.string(from: date)
     }
     
     func styleTextField(_ textfield:UITextField) {

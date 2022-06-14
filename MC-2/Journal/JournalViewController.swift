@@ -59,12 +59,10 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
             return
         }
         
-        vc.completion = { newEntry in
-            self.navigationController?.popToRootViewController(animated: true)
-            journalRepo.createJournal(entry: newEntry)
-
-            self.table.isHidden = false
-        }
+        vc.currEntry = nil
+        vc.isEditingEntry = false
+        
+        vc.title = "Buat jurnal"
         
         setBackBarItem()
         navigationController?.pushViewController(vc, animated: true)
@@ -172,13 +170,7 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
         setBackBarItem()
         navigationController?.pushViewController(vc, animated: true)
     }
-    
-    func setBackBarItem(){
-        let backBarItem = UIBarButtonItem()
-        backBarItem.title = ""
-        backBarItem.tintColor = UIColor.black
-        navigationItem.backBarButtonItem = backBarItem
-    }
+
 }
 
 

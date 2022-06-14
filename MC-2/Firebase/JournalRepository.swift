@@ -15,7 +15,7 @@ let journalRepo = JournalRepository()
 class JournalRepository{
     
     
-    func fetchJournals(entries: @escaping (_ entries: [Entry]) -> Void){
+    func fetchJournals(completion: @escaping (_ entries: [Entry]) -> Void){
         
         fs.rootJournal.whereField("user_id", isEqualTo: Auth.auth().currentUser!.uid)
             .getDocuments() { (querySnapshot, err) in
@@ -27,7 +27,7 @@ class JournalRepository{
                 else {
                     if querySnapshot!.documents.isEmpty {
                         let emptyArray: [Entry] = []
-                        entries(emptyArray)
+                        completion(emptyArray)
                     }
                     else{
                         var entryList : [Entry] = []
@@ -39,11 +39,12 @@ class JournalRepository{
                                 desc: document.get("desc")! as! String,
                                 mood: document.get("mood") as! Int,
                                 date: ts.dateValue(),
-                                user_id: Auth.auth().currentUser!.uid
+                                user_id: Auth.auth().currentUser!.uid,
+                                image: document.get("image") as? String ?? EMPTY_IMAGE
                             )
                             entryList.append(currEntry)
                         }
-                        entries(entryList)
+                        completion(entryList)
                     }
                 }
             }
@@ -55,7 +56,8 @@ class JournalRepository{
             "desc": entry.desc,
             "mood": entry.mood,
             "date": FieldValue.serverTimestamp(),
-            "user_id": entry.user_id
+            "user_id": entry.user_id,
+            "image": entry.image
         ]) { err in
             if let err = err {
                 print("Error writing document: \(err)")
@@ -68,7 +70,9 @@ class JournalRepository{
     func updateJournal(id: String, entry: Entry){
         fs.rootJournal.document(id).updateData([
             "title": entry.title,
-            "desc": entry.desc
+            "desc": entry.desc,
+            "mood": entry.mood,
+            "image": entry.image
         ]) { err in
             if let err = err {
                 print("Error updating journal entry: \(err)")

@@ -12,6 +12,7 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 import FirebaseAuth
 import Firebase
+import FirebaseStorage
 
 let fs = FirestoreHelper()
 
@@ -31,4 +32,5 @@ class FirestoreHelper {
         rootUsers = db.collection("users")
         rootComments = db.collection("comments")
     }
+
 }

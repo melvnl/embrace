@@ -30,6 +30,10 @@ class EntryDetailViewController: UIViewController {
         entryMood.text = getEntryMoodText(currEntry!)
         entryMoodIcon.image = getEntryMoodImage(currEntry!)
         
+        entryImage.alpha = 0
+        
+        loadImage()
+        
         // Convert date to string
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMM d, hh.mm"
@@ -48,7 +52,7 @@ class EntryDetailViewController: UIViewController {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
             
         alert.addAction(UIAlertAction(title: "Ubah", style: .default , handler:{ (UIAlertAction)in
-            print("User click hari button")
+            self.goToEdit()
             }))
         
         alert.addAction(UIAlertAction(title: "Hapus", style: .destructive, handler:{ (UIAlertAction)in
@@ -77,6 +81,57 @@ class EntryDetailViewController: UIViewController {
         }))
        
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    func goToEdit(){
+        guard let vc = storyboard?.instantiateViewController(identifier: "EditJournal") as? EntryViewController else {
+            return
+        }
+        
+        vc.updateCompletion = { [self] newEntry in
+            // Refresh entry data except date
+            currEntry = newEntry
+            entryTitle.text = currEntry?.title
+            entryDesc.text = currEntry?.desc
+            entryMood.text = getEntryMoodText(currEntry!)
+            
+            if(currEntry!.image != EMPTY_IMAGE){
+                entryMoodIcon.image = getEntryMoodImage(currEntry!)
+                loadImage()
+            }
+            else{
+                // Hide previously loaded image
+                entryImage.alpha = 0
+            }
+            
+            // Update in firestore
+            journalRepo.updateJournal(id: currEntry!.id, entry: currEntry!)
+            navigationController?.popViewController(animated: true)
+        }
+        
+        vc.navigationItem.largeTitleDisplayMode = .never
+        vc.title = "Edit jurnal"
+        vc.currEntry = self.currEntry
+        vc.isEditingEntry = true
+        
+        setBackBarItem()
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func loadImage(){
+        if(currEntry!.image != EMPTY_IMAGE){
+            // load image
+            let url = URL(string: currEntry!.image)
+            DispatchQueue.global().async {
+                let data = try? Data(contentsOf: url!)
+                DispatchQueue.main.async {
+                    self.entryImage.image = UIImage(data: data!)
+                    UIView.animate(withDuration: 0.2) {
+                        self.entryImage.alpha = 1.0
+                    }
+                }
+            }
+        }
     }
 }
 
