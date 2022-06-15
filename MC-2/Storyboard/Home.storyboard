@@ -242,7 +242,7 @@
             </objects>
             <point key="canvasLocation" x="-1265" y="75"/>
         </scene>
-        <!--Forum-->
+        <!--Home View Controller-->
         <scene sceneID="M6S-lo-TQY">
             <objects>
                 <viewController id="eTP-Js-7DS" customClass="HomeViewController" customModule="MC_2" customModuleProvider="target" sceneMemberID="viewController">
@@ -251,52 +251,50 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XLi-ZF-hUp">
-                                <rect key="frame" x="16" y="44" width="60" height="29"/>
+                                <rect key="frame" x="16" y="88" width="60" height="29"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0ik-D7-goP">
-                                <rect key="frame" x="330.66666666666669" y="44" width="43.333333333333314" height="31"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="">
-                                    <imageReference key="image" image="plus" catalog="system" symbolScale="large"/>
-                                    <color key="baseForegroundColor" systemColor="labelColor"/>
-                                </buttonConfiguration>
-                            </button>
                             <searchBar contentMode="redraw" barStyle="blackTranslucent" searchBarStyle="minimal" text="Cari..." translatesAutoresizingMaskIntoConstraints="NO" id="kQR-jB-kbP">
-                                <rect key="frame" x="20" y="75" width="350" height="51"/>
+                                <rect key="frame" x="20" y="119" width="350" height="51"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="br9-jh-l3r">
-                                <rect key="frame" x="0.0" y="138" width="390" height="611"/>
+                                <rect key="frame" x="0.0" y="182" width="390" height="567"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="XWQ-CW-GMF"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="kQR-jB-kbP" firstAttribute="top" secondItem="XLi-ZF-hUp" secondAttribute="bottom" constant="2" id="1WC-gM-zNK"/>
                             <constraint firstItem="kQR-jB-kbP" firstAttribute="leading" secondItem="XWQ-CW-GMF" secondAttribute="leading" constant="20" id="6Ck-Vr-4LY"/>
                             <constraint firstItem="XWQ-CW-GMF" firstAttribute="trailing" secondItem="kQR-jB-kbP" secondAttribute="trailing" constant="20" id="78T-wL-vdJ"/>
                             <constraint firstItem="XLi-ZF-hUp" firstAttribute="leading" secondItem="XWQ-CW-GMF" secondAttribute="leading" constant="16" id="9Iv-x2-2kf"/>
                             <constraint firstItem="br9-jh-l3r" firstAttribute="top" secondItem="kQR-jB-kbP" secondAttribute="bottom" constant="12" id="G2R-p1-BAO"/>
                             <constraint firstItem="XWQ-CW-GMF" firstAttribute="trailing" secondItem="br9-jh-l3r" secondAttribute="trailing" id="S06-ee-sWv"/>
                             <constraint firstItem="br9-jh-l3r" firstAttribute="leading" secondItem="XWQ-CW-GMF" secondAttribute="leading" id="YwX-hC-CBq"/>
-                            <constraint firstItem="kQR-jB-kbP" firstAttribute="top" secondItem="0ik-D7-goP" secondAttribute="bottom" id="aEq-7X-LVn"/>
                             <constraint firstItem="XLi-ZF-hUp" firstAttribute="top" secondItem="XWQ-CW-GMF" secondAttribute="top" id="cck-A1-puw"/>
                             <constraint firstItem="XWQ-CW-GMF" firstAttribute="bottom" secondItem="br9-jh-l3r" secondAttribute="bottom" constant="12" id="gjH-cN-shK"/>
-                            <constraint firstItem="0ik-D7-goP" firstAttribute="top" secondItem="XWQ-CW-GMF" secondAttribute="top" id="sCW-rZ-exx"/>
-                            <constraint firstItem="XWQ-CW-GMF" firstAttribute="trailing" secondItem="0ik-D7-goP" secondAttribute="trailing" constant="16" id="t2E-aV-sCQ"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Forum" image="scroll" catalog="system" id="D7P-Qp-QSg">
-                        <color key="badgeColor" red="0.81568627449999997" green="0.18039215689999999" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
-                                <color key="value" red="1" green="0.30196078430000001" blue="0.42745098040000001" alpha="1" colorSpace="calibratedRGB"/>
-                            </userDefinedRuntimeAttribute>
-                        </userDefinedRuntimeAttributes>
-                    </tabBarItem>
+                    <navigationItem key="navigationItem" id="UkJ-3g-tiV">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="YLT-rp-rxA">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="0ik-D7-goP">
+                                <rect key="frame" x="327" y="5" width="47" height="34.333333333333336"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="">
+                                    <imageReference key="image" image="plus" catalog="system" symbolScale="large"/>
+                                    <color key="baseForegroundColor" systemColor="labelColor"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <segue destination="N8z-24-cMT" kind="show" id="TxP-Ai-77j"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="addNewForumButton" destination="0ik-D7-goP" id="BBj-oF-iww"/>
                         <outlet property="forumSearchBar" destination="kQR-jB-kbP" id="28A-QL-v3D"/>
@@ -305,7 +303,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iy8-y2-m8V" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1266.1538461538462" y="-636.25592417061614"/>
+            <point key="canvasLocation" x="-336.92307692307691" y="-636.25592417061614"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="tih-Ag-WiG">
@@ -319,7 +317,7 @@
                         <color key="selectedImageTintColor" red="0.81568627449999997" green="0.18039215689999999" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBar>
                     <connections>
-                        <segue destination="eTP-Js-7DS" kind="relationship" relationship="viewControllers" id="NuO-j0-Hgn"/>
+                        <segue destination="a6Y-td-pvm" kind="relationship" relationship="viewControllers" id="NuO-j0-Hgn"/>
                         <segue destination="3Ym-Iw-QEL" kind="relationship" relationship="viewControllers" id="1n5-gX-4Lp"/>
                         <segue destination="fOa-zu-RHa" kind="relationship" relationship="viewControllers" id="UJg-h9-waO"/>
                         <segue destination="YQ6-7y-VIv" kind="relationship" relationship="viewControllers" id="f8G-42-To5"/>
@@ -351,16 +349,16 @@
             </objects>
             <point key="canvasLocation" x="-398" y="803"/>
         </scene>
-        <!--Entry View Controller-->
+        <!--Add New Forum View Controller-->
         <scene sceneID="umu-ig-UUl">
             <objects>
-                <viewController storyboardIdentifier="NewJournal" id="N8z-24-cMT" customClass="EntryViewController" customModule="MC_2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NewJournal" id="N8z-24-cMT" customClass="AddNewForumViewController" customModule="MC_2" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="JFK-WW-udx">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MJX-Zt-Ng1">
-                                <rect key="frame" x="20" y="739" width="350" height="48"/>
+                                <rect key="frame" x="20" y="690" width="350" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="GjS-6r-xOU"/>
                                 </constraints>
@@ -377,7 +375,7 @@
                                 </buttonConfiguration>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="fmF-Qo-fkf">
-                                <rect key="frame" x="20" y="64" width="350" height="562"/>
+                                <rect key="frame" x="20" y="108" width="350" height="562"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="4RI-PL-pQo">
                                         <rect key="frame" x="0.0" y="0.0" width="350" height="70"/>
@@ -389,7 +387,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Buat judul postingan Anda" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="42g-V7-Dxo" customClass="JRDropDown">
-                                                <rect key="frame" x="0.0" y="26.333333333333325" width="350" height="43.666666666666657"/>
+                                                <rect key="frame" x="0.0" y="26.333333333333339" width="350" height="43.666666666666657"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <textInputTraits key="textInputTraits"/>
                                                 <userDefinedRuntimeAttributes>
@@ -528,7 +526,33 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qha-oF-TA1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-505" y="-636"/>
+            <point key="canvasLocation" x="423.07692307692304" y="-636.25592417061614"/>
+        </scene>
+        <!--Forum-->
+        <scene sceneID="0DR-wG-hw4">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="a6Y-td-pvm" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Forum" image="scroll" catalog="system" id="D7P-Qp-QSg">
+                        <color key="badgeColor" red="0.81568627449999997" green="0.18039215689999999" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                <color key="value" red="1" green="0.30196078430000001" blue="0.42745098040000001" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </tabBarItem>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="OaL-Qv-93D">
+                        <rect key="frame" x="0.0" y="44" width="390" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="eTP-Js-7DS" kind="relationship" relationship="rootViewController" id="wrz-3y-bzD"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iQv-j2-s49" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1266.1538461538462" y="-636.25592417061614"/>
         </scene>
     </scenes>
     <resources>
