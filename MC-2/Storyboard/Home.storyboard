@@ -259,7 +259,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0ik-D7-goP">
                                 <rect key="frame" x="330.66666666666669" y="44" width="43.333333333333314" height="31"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain">
+                                <buttonConfiguration key="configuration" style="plain" title="">
                                     <imageReference key="image" image="plus" catalog="system" symbolScale="large"/>
                                     <color key="baseForegroundColor" systemColor="labelColor"/>
                                 </buttonConfiguration>
@@ -351,15 +351,197 @@
             </objects>
             <point key="canvasLocation" x="-398" y="803"/>
         </scene>
+        <!--Entry View Controller-->
+        <scene sceneID="umu-ig-UUl">
+            <objects>
+                <viewController storyboardIdentifier="NewJournal" id="N8z-24-cMT" customClass="EntryViewController" customModule="MC_2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="JFK-WW-udx">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MJX-Zt-Ng1">
+                                <rect key="frame" x="20" y="739" width="350" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="GjS-6r-xOU"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="Simpan jurnal">
+                                            <attributes>
+                                                <font key="NSFont" size="16" name="SFPro-Semibold"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                    <color key="baseBackgroundColor" red="0.81568627449999997" green="0.18039215689999999" blue="0.29411764709999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </buttonConfiguration>
+                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="fmF-Qo-fkf">
+                                <rect key="frame" x="20" y="64" width="350" height="562"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="4RI-PL-pQo">
+                                        <rect key="frame" x="0.0" y="0.0" width="350" height="70"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="JUDUL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vew-5n-p2a">
+                                                <rect key="frame" x="0.0" y="0.0" width="350" height="14.333333333333334"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <color key="textColor" red="0.4549019608" green="0.4549019608" blue="0.4549019608" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Buat judul postingan Anda" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="42g-V7-Dxo" customClass="JRDropDown">
+                                                <rect key="frame" x="0.0" y="26.333333333333325" width="350" height="43.666666666666657"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="arrowColor">
+                                                        <color key="value" red="0.4549019608" green="0.4549019608" blue="0.4549019608" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSearchEnable" value="NO"/>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="checkMarkEnabled" value="NO"/>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="arrowSize">
+                                                        <real key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="selectedRowColor">
+                                                        <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </textField>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="70" id="CIG-2M-PaR"/>
+                                        </constraints>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="F70-Rz-KJs">
+                                        <rect key="frame" x="0.0" y="102" width="350" height="70"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DESKRIPSI" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rOM-gU-rH1">
+                                                <rect key="frame" x="0.0" y="0.0" width="350" height="14.333333333333334"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <color key="textColor" red="0.4549019608" green="0.4549019608" blue="0.4549019608" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Jelaskan lebih lanjut tentang postingan Anda" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="6fF-PB-cs7">
+                                                <rect key="frame" x="0.0" y="26.333333333333339" width="350" height="43.666666666666657"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="70" id="aGN-gR-sfk"/>
+                                        </constraints>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="LPB-bh-KoD">
+                                        <rect key="frame" x="0.0" y="204" width="350" height="70"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="KATEGORI" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D3a-Vi-Cor">
+                                                <rect key="frame" x="0.0" y="0.0" width="350" height="14.333333333333334"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <color key="textColor" red="0.4549019608" green="0.4549019608" blue="0.4549019608" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Pilih kategori forum" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="FX7-Jp-yHc">
+                                                <rect key="frame" x="0.0" y="26.333333333333311" width="350" height="43.666666666666657"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="70" id="9dp-1s-TnS"/>
+                                        </constraints>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="8lv-dg-pSw">
+                                        <rect key="frame" x="0.0" y="306" width="350" height="256"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rRT-Xe-mBL">
+                                                <rect key="frame" x="0.0" y="0.0" width="350" height="28"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="28" id="6Ic-pr-sPK"/>
+                                                </constraints>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" image="photo.tv" catalog="system" imagePadding="8">
+                                                    <attributedString key="attributedTitle">
+                                                        <fragment content="Tambahkan gambar">
+                                                            <attributes>
+                                                                <font key="NSFont" size="16" name="SFPro-Regular"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                    <color key="baseForegroundColor" red="0.4549019608" green="0.4549019608" blue="0.4549019608" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </buttonConfiguration>
+                                            </button>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8LM-8y-khp">
+                                                <rect key="frame" x="0.0" y="28" width="350" height="228"/>
+                                                <subviews>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SadSelectedIcon" translatesAutoresizingMaskIntoConstraints="NO" id="laD-VS-cGR">
+                                                        <rect key="frame" x="0.0" y="0.0" width="350" height="228"/>
+                                                    </imageView>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YrL-yK-qLB">
+                                                        <rect key="frame" x="306" y="8" width="36" height="36"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="36" id="MWm-d7-rQC"/>
+                                                            <constraint firstAttribute="width" secondItem="YrL-yK-qLB" secondAttribute="height" multiplier="1:1" id="y0b-AI-v7K"/>
+                                                        </constraints>
+                                                        <color key="tintColor" white="0.0" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="filled">
+                                                            <imageReference key="image" image="xmark" catalog="system" symbolScale="small"/>
+                                                            <color key="baseBackgroundColor" white="0.0" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </buttonConfiguration>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="228" id="4FA-Ob-4HU"/>
+                                                    <constraint firstAttribute="trailing" secondItem="YrL-yK-qLB" secondAttribute="trailing" constant="8" id="9Ib-k2-PVO"/>
+                                                    <constraint firstItem="YrL-yK-qLB" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="8LM-8y-khp" secondAttribute="leading" constant="20" symbolic="YES" id="MEZ-eX-Ugq"/>
+                                                    <constraint firstAttribute="trailing" secondItem="laD-VS-cGR" secondAttribute="trailing" id="SDm-iT-LfT"/>
+                                                    <constraint firstAttribute="bottom" secondItem="laD-VS-cGR" secondAttribute="bottom" id="UdP-YJ-EpH"/>
+                                                    <constraint firstItem="laD-VS-cGR" firstAttribute="leading" secondItem="8LM-8y-khp" secondAttribute="leading" id="WvL-ta-bFL"/>
+                                                    <constraint firstItem="laD-VS-cGR" firstAttribute="top" secondItem="8LM-8y-khp" secondAttribute="top" id="hEU-MQ-8lj"/>
+                                                    <constraint firstItem="YrL-yK-qLB" firstAttribute="top" secondItem="8LM-8y-khp" secondAttribute="top" constant="8" id="pKZ-Bc-mTW"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="8LM-8y-khp" firstAttribute="leading" secondItem="8lv-dg-pSw" secondAttribute="leading" id="rfI-sM-gjQ"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="4RI-PL-pQo" secondAttribute="trailing" id="FJw-s2-vAL"/>
+                                    <constraint firstItem="4RI-PL-pQo" firstAttribute="leading" secondItem="fmF-Qo-fkf" secondAttribute="leading" id="xPo-mO-bRD"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="4p4-yb-yX6"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="4p4-yb-yX6" firstAttribute="trailing" secondItem="MJX-Zt-Ng1" secondAttribute="trailing" constant="20" id="NeL-0J-6zd"/>
+                            <constraint firstItem="MJX-Zt-Ng1" firstAttribute="leading" secondItem="4p4-yb-yX6" secondAttribute="leading" constant="20" id="XbM-sG-KAg"/>
+                            <constraint firstItem="4p4-yb-yX6" firstAttribute="trailing" secondItem="fmF-Qo-fkf" secondAttribute="trailing" constant="20" id="YlZ-ne-sfa"/>
+                            <constraint firstItem="fmF-Qo-fkf" firstAttribute="leading" secondItem="4p4-yb-yX6" secondAttribute="leading" constant="20" id="nE7-yL-r2t"/>
+                            <constraint firstItem="fmF-Qo-fkf" firstAttribute="top" secondItem="4p4-yb-yX6" secondAttribute="top" constant="20" id="pEZ-rx-kvu"/>
+                            <constraint firstItem="4p4-yb-yX6" firstAttribute="bottom" secondItem="MJX-Zt-Ng1" secondAttribute="bottom" constant="23" id="vyq-g2-xUT"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="BaA-8D-Arp"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qha-oF-TA1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-505" y="-636"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="SadSelectedIcon" width="40" height="40"/>
         <image name="book.fill" catalog="system" width="128" height="95"/>
         <image name="chevron.left" catalog="system" width="96" height="128"/>
         <image name="newspaper" catalog="system" width="128" height="111"/>
         <image name="pencil" catalog="system" width="128" height="113"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
+        <image name="photo.tv" catalog="system" width="128" height="97"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="scroll" catalog="system" width="128" height="116"/>
+        <image name="xmark" catalog="system" width="128" height="113"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
