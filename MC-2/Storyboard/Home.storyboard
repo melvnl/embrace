@@ -250,16 +250,44 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="FORUM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IJ6-ut-w1I">
-                                <rect key="frame" x="165" y="412" width="60" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XLi-ZF-hUp">
+                                <rect key="frame" x="16" y="44" width="60" height="29"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0ik-D7-goP">
+                                <rect key="frame" x="330.66666666666669" y="44" width="43.333333333333314" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain">
+                                    <imageReference key="image" image="plus" catalog="system" symbolScale="large"/>
+                                    <color key="baseForegroundColor" systemColor="labelColor"/>
+                                </buttonConfiguration>
+                            </button>
+                            <searchBar contentMode="redraw" barStyle="blackTranslucent" searchBarStyle="minimal" text="Cari..." translatesAutoresizingMaskIntoConstraints="NO" id="kQR-jB-kbP">
+                                <rect key="frame" x="20" y="75" width="350" height="51"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="br9-jh-l3r">
+                                <rect key="frame" x="0.0" y="138" width="390" height="611"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="XWQ-CW-GMF"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="kQR-jB-kbP" firstAttribute="leading" secondItem="XWQ-CW-GMF" secondAttribute="leading" constant="20" id="6Ck-Vr-4LY"/>
+                            <constraint firstItem="XWQ-CW-GMF" firstAttribute="trailing" secondItem="kQR-jB-kbP" secondAttribute="trailing" constant="20" id="78T-wL-vdJ"/>
+                            <constraint firstItem="XLi-ZF-hUp" firstAttribute="leading" secondItem="XWQ-CW-GMF" secondAttribute="leading" constant="16" id="9Iv-x2-2kf"/>
+                            <constraint firstItem="br9-jh-l3r" firstAttribute="top" secondItem="kQR-jB-kbP" secondAttribute="bottom" constant="12" id="G2R-p1-BAO"/>
+                            <constraint firstItem="XWQ-CW-GMF" firstAttribute="trailing" secondItem="br9-jh-l3r" secondAttribute="trailing" id="S06-ee-sWv"/>
+                            <constraint firstItem="br9-jh-l3r" firstAttribute="leading" secondItem="XWQ-CW-GMF" secondAttribute="leading" id="YwX-hC-CBq"/>
+                            <constraint firstItem="kQR-jB-kbP" firstAttribute="top" secondItem="0ik-D7-goP" secondAttribute="bottom" id="aEq-7X-LVn"/>
+                            <constraint firstItem="XLi-ZF-hUp" firstAttribute="top" secondItem="XWQ-CW-GMF" secondAttribute="top" id="cck-A1-puw"/>
+                            <constraint firstItem="XWQ-CW-GMF" firstAttribute="bottom" secondItem="br9-jh-l3r" secondAttribute="bottom" constant="12" id="gjH-cN-shK"/>
+                            <constraint firstItem="0ik-D7-goP" firstAttribute="top" secondItem="XWQ-CW-GMF" secondAttribute="top" id="sCW-rZ-exx"/>
+                            <constraint firstItem="XWQ-CW-GMF" firstAttribute="trailing" secondItem="0ik-D7-goP" secondAttribute="trailing" constant="16" id="t2E-aV-sCQ"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Forum" image="scroll" catalog="system" id="D7P-Qp-QSg">
                         <color key="badgeColor" red="0.81568627449999997" green="0.18039215689999999" blue="0.29411764709999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -269,10 +297,15 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </tabBarItem>
+                    <connections>
+                        <outlet property="addNewForumButton" destination="0ik-D7-goP" id="BBj-oF-iww"/>
+                        <outlet property="forumSearchBar" destination="kQR-jB-kbP" id="28A-QL-v3D"/>
+                        <outlet property="forumTableView" destination="br9-jh-l3r" id="VWr-os-bKq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iy8-y2-m8V" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1265.217391304348" y="-636.16071428571422"/>
+            <point key="canvasLocation" x="-1266.1538461538462" y="-636.25592417061614"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="tih-Ag-WiG">
@@ -325,7 +358,11 @@
         <image name="newspaper" catalog="system" width="128" height="111"/>
         <image name="pencil" catalog="system" width="128" height="113"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
+        <image name="plus" catalog="system" width="128" height="113"/>
         <image name="scroll" catalog="system" width="128" height="116"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

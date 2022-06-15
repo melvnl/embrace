@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7267674928598A4A00906AD9 /* ForumTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7267674728598A4A00906AD9 /* ForumTableViewCell.swift */; };
+		7267674A28598A4A00906AD9 /* ForumTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7267674828598A4A00906AD9 /* ForumTableViewCell.xib */; };
 		72A92C8C284F6E2300B2F1F4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 72A92C8B284F6E2300B2F1F4 /* GoogleService-Info.plist */; };
 		72A92C8F284F740B00B2F1F4 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 72A92C8E284F740B00B2F1F4 /* FirebaseAnalytics */; };
 		72A92C91284F740B00B2F1F4 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 72A92C90284F740B00B2F1F4 /* FirebaseAnalyticsOnDeviceConversion */; };
@@ -51,6 +53,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7267674728598A4A00906AD9 /* ForumTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForumTableViewCell.swift; sourceTree = "<group>"; };
+		7267674828598A4A00906AD9 /* ForumTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ForumTableViewCell.xib; sourceTree = "<group>"; };
 		72A92C8B284F6E2300B2F1F4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		72A92CC5284F9CAC00B2F1F4 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		72C66AF9284F382800261C91 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -107,6 +111,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7267674B28598A5400906AD9 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				B0FEA0E42845117B00EF8DD9 /* Main.storyboard */,
+				B04CAC60285455E9004E25B9 /* Home.storyboard */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		7267674D28598AA300906AD9 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				7267674728598A4A00906AD9 /* ForumTableViewCell.swift */,
+				7267674828598A4A00906AD9 /* ForumTableViewCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		72A92CC4284F9C7300B2F1F4 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
@@ -151,8 +173,8 @@
 				B0FEA0E02845117B00EF8DD9 /* SceneDelegate.swift */,
 				72C66AFF284F385B00261C91 /* View Controllers */,
 				72A92CC4284F9C7300B2F1F4 /* Helper */,
-				B0FEA0E42845117B00EF8DD9 /* Main.storyboard */,
-				B04CAC60285455E9004E25B9 /* Home.storyboard */,
+				7267674B28598A5400906AD9 /* Storyboard */,
+				7267674D28598AA300906AD9 /* Cells */,
 				B0FEA0E72845117C00EF8DD9 /* Assets.xcassets */,
 				B0FEA0E92845117C00EF8DD9 /* LaunchScreen.storyboard */,
 				72A92C8B284F6E2300B2F1F4 /* GoogleService-Info.plist */,
@@ -254,6 +276,7 @@
 				B0FEA0EB2845117C00EF8DD9 /* LaunchScreen.storyboard in Resources */,
 				B04CAC61285455E9004E25B9 /* Home.storyboard in Resources */,
 				72A92C8C284F6E2300B2F1F4 /* GoogleService-Info.plist in Resources */,
+				7267674A28598A4A00906AD9 /* ForumTableViewCell.xib in Resources */,
 				B0FEA0E82845117C00EF8DD9 /* Assets.xcassets in Resources */,
 				B0FEA0E62845117B00EF8DD9 /* Main.storyboard in Resources */,
 			);
@@ -269,6 +292,7 @@
 				B0FEA0E32845117B00EF8DD9 /* ViewController.swift in Sources */,
 				B0FEA0DF2845117B00EF8DD9 /* AppDelegate.swift in Sources */,
 				72C66AFA284F382800261C91 /* SignUpViewController.swift in Sources */,
+				7267674928598A4A00906AD9 /* ForumTableViewCell.swift in Sources */,
 				72C66AFC284F383900261C91 /* LogInViewController.swift in Sources */,
 				72A92CC6284F9CAC00B2F1F4 /* Constants.swift in Sources */,
 				B0FEA0E12845117B00EF8DD9 /* SceneDelegate.swift in Sources */,

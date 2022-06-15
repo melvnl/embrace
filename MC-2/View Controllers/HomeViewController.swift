@@ -9,6 +9,12 @@ import UIKit
 
 class HomeViewController: UIViewController {
 
+    @IBOutlet weak var addNewForumButton: UIButton!
+    
+    @IBOutlet weak var forumSearchBar: UISearchBar!
+    
+    @IBOutlet weak var forumTableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
