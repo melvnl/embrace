@@ -27,9 +27,6 @@ class ProfileViewController: UIViewController {
         
 //        let btn = UIButton(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
         
-        segmentBtn.layer.backgroundColor = UIColor.white.cgColor
-        segmentBtn.selectedSegmentTintColor = UIColor.white
-        
         profileSection.backgroundColor = .clear
         profileSection.tintColor = .clear
 
