@@ -111,6 +111,8 @@ class EntryViewController: UIViewController, UIImagePickerControllerDelegate, UI
         // Wait for fadeout animation to finish
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(200), execute: {
             self.imageContainer.isHidden = true
+            
+            // Show add image button
             self.addImageButton.isHidden = false
             UIView.animate(withDuration: 0.2) {
                 self.addImageButton.alpha = 1.0
@@ -175,6 +177,7 @@ class EntryViewController: UIViewController, UIImagePickerControllerDelegate, UI
                     updateCompletion?(newEntry)
                 }
                 else{
+                    print("bitch")
                     completion?(newEntry)
                 }
             }

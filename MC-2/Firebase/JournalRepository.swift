@@ -44,6 +44,11 @@ class JournalRepository{
                             )
                             entryList.append(currEntry)
                         }
+                        
+                        entryList.sort { (lhs: Entry, rhs: Entry) -> Bool in
+                            return lhs.date > rhs.date
+                        }
+                        
                         completion(entryList)
                     }
                 }

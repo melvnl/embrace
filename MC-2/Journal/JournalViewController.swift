@@ -21,6 +21,7 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var emptyJournalView: UIView!
     
     let cellReuseIdentifier = "EntryCell"
+    let headerCellSpacingHeight: CGFloat = 30
     let cellSpacingHeight: CGFloat = 3
     
     var entries: [Entry] = []
@@ -32,7 +33,7 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
         table.isHidden = false
         table.delegate = self
         table.dataSource = self
-//        table.rowHeight = 240
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -57,6 +58,14 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         guard let vc = storyboard?.instantiateViewController(identifier: "NewJournal") as? EntryViewController else {
             return
+        }
+        
+        vc.completion = {
+            newEntry in
+            self.navigationController?.popToRootViewController(animated: true)
+            journalRepo.createJournal(entry: newEntry)
+                    
+            self.table.isHidden = false
         }
         
         vc.currEntry = nil
@@ -99,17 +108,7 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
             print("completion block")
         })
     }
-    
-    func popUpModal(_ sender: Any) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let viewController = storyboard.instantiateViewController(withIdentifier: "FilterPopup")
-            
-        if let presentationController = viewController.presentationController as? UISheetPresentationController {
-                presentationController.detents = [.medium()]
-            }
-                
-        self.present(viewController, animated: true)
-    }
+
     // MARK: - Table View delegate methods
         
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -123,13 +122,58 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     // Set the spacing between sections
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        // if section has header text, bigger spacing
+        if section == 0 || (section > 0 && !Calendar.current.isDate(entries[section].date, inSameDayAs:entries[section-1].date)){
+            return headerCellSpacingHeight
+        }
         return cellSpacingHeight
     }
     
     // Make the background color show through
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        // Check if the entry before is same day, else add section header
+        if section == 0 || (section > 0 && !Calendar.current.isDate(entries[section].date, inSameDayAs:entries[section-1].date)){
+            
+            // Disable sticky header
+            let headerHeight = CGFloat(80)
+            var headerView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: headerHeight))
+            self.table.contentInset = UIEdgeInsets(top:-7, left: 0, bottom: 0, right: 0)
+            
+            // Adjust header if first index
+            if(section == 0){
+                headerView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: headerHeight*2))
+            }
+            
+            // Insert date
+            let label = UILabel()
+    
+            let blackColor = [NSAttributedString.Key.foregroundColor: UIColor.black]
+            let greyColor = [NSAttributedString.Key.foregroundColor: UIColor(red: 171/255, green: 171/255, blue: 171/255, alpha: 1.0)]
+            
+            var todayText = NSMutableAttributedString(string: "")
+            let greyComma = NSMutableAttributedString(string: ", ", attributes: greyColor)
+            let dateText = NSMutableAttributedString(string: convertDateToString(date: entries[section].date, format: "d MMM"), attributes: greyColor)
+            
+            if (Calendar.current.isDateInToday(entries[section].date)){
+                todayText = NSMutableAttributedString(string: "Hari ini", attributes: blackColor)
+                todayText.append(greyComma)
+            }
+            
+            todayText.append(dateText)
+            label.attributedText = todayText
+            
+            // Label styling
+            label.frame = CGRect.init(x: 0, y: -40, width: headerView.frame.width-10, height: headerHeight)
+            label.font = .systemFont(ofSize: 20, weight: .semibold)
+            headerView.backgroundColor = UIColor.clear
+            
+            headerView.addSubview(label)
+            
+            return headerView
+        }
+        
         let headerView = UIView()
-        headerView.backgroundColor = UIColor.clear
+        
         return headerView
     }
     
@@ -146,9 +190,7 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
         cell.moodImage.image = getEntryMoodImage(currEntry)
         
         // Convert date to string
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMM d, hh:mm"
-        cell.date.text = dateFormatter.string(from: currEntry.date)
+        cell.date.text = convertDateToString(date: currEntry.date, format: "hh.mm")
         
         return cell
     }
@@ -169,6 +211,12 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         setBackBarItem()
         navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func convertDateToString(date: Date, format: String) -> String{
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = format
+        return dateFormatter.string(from: date)
     }
 
 }
