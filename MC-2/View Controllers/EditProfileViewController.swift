@@ -6,17 +6,33 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseFirestore
+import FirebaseStorage
 
-class EditProfileViewController: UIViewController {
+class EditProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
+    @IBOutlet weak var imgContainer: UIView!
     @IBOutlet weak var editProfilBtn: UIButton!
+    @IBOutlet weak var addImgBtn: UIButton!
+    @IBOutlet weak var editImg: UIImageView!
+    @IBOutlet weak var dismissBtn: UIButton!
     @IBOutlet weak var usernameTxtField: UITextField!
     @IBOutlet weak var nameTxtField: UITextField!
     @IBOutlet weak var descTxtField: UITextField!
     
+    private var imgData: Data?
+    var usernamePlaceholder: String? = ""
+    var namePlaceholder: String? = ""
+    var descPlaceholder: String? = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        usernameTxtField.placeholder = usernamePlaceholder
+        nameTxtField.placeholder = namePlaceholder
+        descTxtField.placeholder = descPlaceholder
+        
         editProfilBtn.layer.cornerRadius = 10
         let gradient = CAGradientLayer()
         gradient.colors = [CGColor(red: 255/255, green: 77/255, blue: 109/255, alpha: 1), CGColor(red: 208/255, green: 46/255, blue: 75/255, alpha: 1)]
@@ -27,10 +43,63 @@ class EditProfileViewController: UIViewController {
         styleTextField(usernameTxtField)
         styleTextField(nameTxtField)
         styleTextField(descTxtField)
+        
+//        rounded dismiss button
+        dismissBtn.layer.cornerRadius = 0.5 * dismissBtn.bounds.size.width
+        dismissBtn.clipsToBounds = true
+        
+//        hide image
+        imgContainer.isHidden = true
+        imgContainer.alpha = 0
+        
+//        show add image button
+        addImgBtn.isHidden = false
+        addImgBtn.alpha = 1
+    }
+    
+    @IBAction func didTapImgBtn(_ sender: Any) {
+        let imgPicker = UIImagePickerController()
+        imgPicker.allowsEditing = true
+        imgPicker.delegate = self
+        present(imgPicker, animated: true)
+    }
+    
+    @IBAction func didTapDismissBtn(_ sender: Any) {
+        imgContainer.fadeOut()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(200), execute: {
+            self.imgContainer.isHidden = true
+            self.addImgBtn.isHidden = false
+            UIView.animate(withDuration: 0.2) {
+                self.addImgBtn.alpha = 1.0
+            }
+        })
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+//        show image
+        guard let img: UIImage = info[.editedImage] as? UIImage else { return }
+        imgData = img.jpegData(compressionQuality: 0.5)
+        
+        self.editImg.image = img
+        
+//        fade in
+        self.imgContainer.isHidden = false
+        self.imgContainer.fadeIn()
+        
+//        hide add image button
+        self.addImgBtn.alpha = 0
+        self.addImgBtn.isHidden = true
+        
+        dismiss(animated: true)
     }
     
     @IBAction func backToProfile(_ sender: Any) {
         performSegue(withIdentifier: "unwindProfile", sender: self)
+    }
+    
+    @IBAction func didTapEdit(_ sender: Any) {
+        
     }
     
     func styleTextField(_ textfield:UITextField) {

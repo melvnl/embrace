@@ -71,6 +71,16 @@ class ProfileViewController: UIViewController {
         
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+       if segue.identifier == "goToEdit" {
+           guard let editProfileVC = segue.destination as? EditProfileViewController else { return }
+           // Pass Data to Second View Controller
+           editProfileVC.usernamePlaceholder = usernameLbl.text ?? ""
+           editProfileVC.namePlaceholder = nameLbl.text ?? ""
+           editProfileVC.descPlaceholder = profileDesc.text ?? ""
+       }
+    }
+    
 }
 
 extension UIImageView {
