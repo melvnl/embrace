@@ -26,6 +26,10 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     var namePlaceholder: String? = ""
     var descPlaceholder: String? = ""
     
+    var currProfileEntry: ProfileEntry!
+    var isEditingEntry: Bool = false
+    public var updateProfileCompletion: ((ProfileEntry) -> Void)?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -99,7 +103,75 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     }
     
     @IBAction func didTapEdit(_ sender: Any) {
-        
+        if nameTxtField.text?.isEmpty == false && descTxtField.text?.isEmpty == false {
+            var newProfileEntry = ProfileEntry(
+                username: self.usernameTxtField.text!,
+                name: self.nameTxtField.text!,
+                description: self.descTxtField.text!
+            )
+            
+            uploadImage { [self] imgUrl in
+                newProfileEntry.avatar = imgUrl!
+
+                if imgContainer.isHidden && currProfileEntry.avatar != EMPTY_AVATAR {
+
+                    let f = "profile/" + Auth.auth().currentUser!.uid + ".jpg"
+                    let ref = Storage.storage().reference().child(f)
+
+                    ref.delete { error in
+                        if let error = error {
+                            print(error)
+                        } else {
+                            print("Old image has been removed!")
+                        }
+                    }
+
+                }
+
+                updateProfileCompletion?(newProfileEntry)
+
+            }
+            
+        }
+    }
+    
+    func uploadImage(completion: @escaping((String?) -> () )) {
+        if imgContainer.isHidden == false {
+            let md = StorageMetadata()
+            md.contentType = "image/png"
+
+            let f = "profile/" + Auth.auth().currentUser!.uid + ".jpg"
+            let ref = Storage.storage().reference().child(f)
+            
+            ref.putData(imgData!, metadata: md) { (metadata, error) in
+                if error == nil {
+                    ref.downloadURL(completion: { (url, error) in
+                        completion(String(describing: url!))
+                    })
+                } else {
+                    print("error \(String(describing: error))")
+                }
+            }
+            
+        } else {
+            completion(EMPTY_AVATAR)
+        }
+    }
+    
+    func updateProfile(uid: String, entry: ProfileEntry) {
+        Firestore.firestore().collection("users").document(uid).updateData([
+            "username": entry.username,
+            "name": entry.name,
+            "description": entry.description,
+            "avatar": entry.avatar
+        ]) { err in
+            if let err = err {
+                print("Error updating your profile: \(err) ")
+            }
+            else {
+                print("Your profile has been updated successfully!")
+            }
+        }
     }
     
     func styleTextField(_ textfield:UITextField) {
