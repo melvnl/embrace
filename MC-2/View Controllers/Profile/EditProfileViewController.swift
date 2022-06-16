@@ -22,20 +22,23 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     @IBOutlet weak var descTxtField: UITextField!
     
     private var imgData: Data?
-    var usernamePlaceholder: String? = ""
-    var namePlaceholder: String? = ""
-    var descPlaceholder: String? = ""
     
     var currProfileEntry: ProfileEntry!
     var isEditingEntry: Bool = false
+    
     public var updateProfileCompletion: ((ProfileEntry) -> Void)?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        usernameTxtField.placeholder = usernamePlaceholder
-        nameTxtField.placeholder = namePlaceholder
-        descTxtField.placeholder = descPlaceholder
+        // load user profile
+        
+        usernameTxtField.text = currProfileEntry.username
+        nameTxtField.text = currProfileEntry.name
+        descTxtField.text = currProfileEntry.description
+        editImg.load(url: URL(string: currProfileEntry.avatar)!)
+        
+        // load image
         
         editProfilBtn.layer.cornerRadius = 10
         let gradient = CAGradientLayer()
@@ -98,12 +101,9 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         dismiss(animated: true)
     }
     
-    @IBAction func backToProfile(_ sender: Any) {
-        performSegue(withIdentifier: "unwindProfile", sender: self)
-    }
-    
     @IBAction func didTapEdit(_ sender: Any) {
-        if nameTxtField.text?.isEmpty == false && descTxtField.text?.isEmpty == false {
+        if nameTxtField.text!.isEmpty == false && descTxtField.text!.isEmpty == false {
+            
             var newProfileEntry = ProfileEntry(
                 username: self.usernameTxtField.text!,
                 name: self.nameTxtField.text!,
@@ -112,9 +112,9 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
             
             uploadImage { [self] imgUrl in
                 newProfileEntry.avatar = imgUrl!
-
-                if imgContainer.isHidden && currProfileEntry.avatar != EMPTY_AVATAR {
-
+                
+                if imgContainer.isHidden && currProfileEntry.avatar != DEFAULT_AVATAR {
+                    
                     let f = "profile/" + Auth.auth().currentUser!.uid + ".jpg"
                     let ref = Storage.storage().reference().child(f)
 
@@ -128,8 +128,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
 
                 }
 
-                updateProfileCompletion?(newProfileEntry)
-
+                updateProfileCompletion!(newProfileEntry)
             }
             
         }
@@ -154,23 +153,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
             }
             
         } else {
-            completion(EMPTY_AVATAR)
-        }
-    }
-    
-    func updateProfile(uid: String, entry: ProfileEntry) {
-        Firestore.firestore().collection("users").document(uid).updateData([
-            "username": entry.username,
-            "name": entry.name,
-            "description": entry.description,
-            "avatar": entry.avatar
-        ]) { err in
-            if let err = err {
-                print("Error updating your profile: \(err) ")
-            }
-            else {
-                print("Your profile has been updated successfully!")
-            }
+            completion(DEFAULT_AVATAR)
         }
     }
     

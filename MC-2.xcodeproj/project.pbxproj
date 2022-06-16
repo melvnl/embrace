@@ -39,6 +39,7 @@
 		72C66AFA284F382800261C91 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C66AF9284F382800261C91 /* SignUpViewController.swift */; };
 		72C66AFC284F383900261C91 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C66AFB284F383900261C91 /* LogInViewController.swift */; };
 		72C66AFE284F384F00261C91 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C66AFD284F384F00261C91 /* HomeViewController.swift */; };
+		956F4CC3285AF93400405F3F /* ProfileRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956F4CC2285AF93400405F3F /* ProfileRepository.swift */; };
 		A01B202A2856E40100DA011A /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01B20292856E40100DA011A /* ProfileViewController.swift */; };
 		A08D9A952858C97F00B4ECFC /* UIView+Fade.swift in Sources */ = {isa = PBXBuildFile; fileRef = A08D9A942858C97F00B4ECFC /* UIView+Fade.swift */; };
 		A0D209CF28578B86001127ED /* ProfilePostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D209CD28578B86001127ED /* ProfilePostCell.swift */; };
@@ -61,6 +62,7 @@
 		72C66AF9284F382800261C91 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		72C66AFB284F383900261C91 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		72C66AFD284F384F00261C91 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		956F4CC2285AF93400405F3F /* ProfileRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRepository.swift; sourceTree = "<group>"; };
 		A01B20292856E40100DA011A /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		A08D9A942858C97F00B4ECFC /* UIView+Fade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Fade.swift"; sourceTree = "<group>"; };
 		A0D209CD28578B86001127ED /* ProfilePostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePostCell.swift; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 				A01B20292856E40100DA011A /* ProfileViewController.swift */,
 				A0E3DA2528584117001D57B5 /* EditProfileViewController.swift */,
 				A0DEA119285ACF5800678CB0 /* ProfileEntry.swift */,
+				956F4CC2285AF93400405F3F /* ProfileRepository.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -307,6 +310,7 @@
 				72A92CC6284F9CAC00B2F1F4 /* Constants.swift in Sources */,
 				B0FEA0E12845117B00EF8DD9 /* SceneDelegate.swift in Sources */,
 				A01B202A2856E40100DA011A /* ProfileViewController.swift in Sources */,
+				956F4CC3285AF93400405F3F /* ProfileRepository.swift in Sources */,
 				A0D209CF28578B86001127ED /* ProfilePostCell.swift in Sources */,
 				A0DEA11A285ACF5800678CB0 /* ProfileEntry.swift in Sources */,
 				B0A7C4E828531F5600144E6D /* VerificationController.swift in Sources */,

@@ -8,13 +8,17 @@
 import UIKit
 import Firebase
 import FirebaseAuth
+import simd
 
 class ProfileViewController: UIViewController {
 
+    var profileUrl : String!
+    
     @IBOutlet weak var profileImg: UIImageView!
     @IBOutlet weak var nameLbl: UILabel!
     @IBOutlet weak var usernameLbl: UILabel!
     @IBOutlet weak var profileDesc: UITextView!
+    
     @IBOutlet weak var profileSection: UISegmentedControl!
     @IBOutlet weak var editProfileBtn: UIButton!
     
@@ -43,44 +47,46 @@ class ProfileViewController: UIViewController {
         profileImg.layer.cornerRadius = profileImg.frame.size.height / 2
         profileImg.clipsToBounds = true
         
-        profileImg.load(url: imgURL)
         
-        guard let uid = Auth.auth().currentUser?.uid else {
-            return
-        }
-        
-        Firestore.firestore().collection("users").document(uid).getDocument { (docSnapshot, error) in
-            if let doc = docSnapshot {
-                let name = doc.get("nama") as? String ?? ""
-                let username = doc.get("username") as? String ?? ""
-                let description = "Masukkan deskripsi akun Anda..."
-                
-                self.nameLbl.text = name
-                self.usernameLbl.text = "@\(username)"
-                self.profileDesc.text = description
-            } else {
-                if let error = error {
-                    print(error)
-                }
+        loadProfile()
+    }
+    
+    @IBAction func didTapEdit(_ sender: Any) {
+        profileRepo.fetchCurrentUser { [self] (currUser) -> Void in
+            let user = ProfileEntry(
+                username: currUser.username,
+                name: currUser.name,
+                description: currUser.description,
+                avatar: currUser.avatar)
+            
+            guard let vc = (storyboard?.instantiateViewController(withIdentifier: "EditProfile") as? EditProfileViewController) else{
+                return
             }
+            
+            vc.updateProfileCompletion = { newProfileEntry in
+                profileRepo.updateProfile(uid: Auth.auth().currentUser!.uid, entry: newProfileEntry)
+                self.navigationController?.popViewController(animated: true)
+            }
+            
+            vc.currProfileEntry = user
+            navigationController?.pushViewController(vc, animated: true)
+            
         }
-        
     }
     
-    @IBAction func unwindToProfile(_ sender: UIStoryboardSegue) {
-        
+    override func viewDidAppear(_ animated: Bool) {
+        loadProfile()
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-       if segue.identifier == "goToEdit" {
-           guard let editProfileVC = segue.destination as? EditProfileViewController else { return }
-           // Pass Data to Second View Controller
-           editProfileVC.usernamePlaceholder = usernameLbl.text ?? ""
-           editProfileVC.namePlaceholder = nameLbl.text ?? ""
-           editProfileVC.descPlaceholder = profileDesc.text ?? ""
-       }
+    func loadProfile(){
+        profileRepo.fetchCurrentUser { [self] (currUser) -> Void in
+            nameLbl.text = currUser.name
+            usernameLbl.text = currUser.username
+            profileDesc.text = currUser.description
+            profileImg.load(url: URL(string:currUser.avatar)!)
+        }
     }
-    
+
 }
 
 extension UIImageView {
