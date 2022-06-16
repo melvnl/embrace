@@ -42,7 +42,7 @@ class EntryViewController: UIViewController, UIImagePickerControllerDelegate, UI
         // The list of array to display. Can be changed dynamically
         moodDropDown.optionArray = ["Sangat senang", "Senang", "Biasa saja", "Sedih", "Sangat Sedih"]
         // Its Id Values and its optional
-        moodDropDown.optionIds = [MOOD_VHAPPY, MOOD_HAPPY, MOOD_NORMAL, MOOD_SAD, MOOD_VSAD]
+        moodDropDown.optionIds = [Mood.veryHappy.rawValue, Mood.happy.rawValue, Mood.neutral.rawValue, Mood.sad.rawValue, Mood.verySad.rawValue]
         
         moodDropDown.didSelect{(selectedText , index ,id) in
             self.selectedMood = id
@@ -177,7 +177,6 @@ class EntryViewController: UIViewController, UIImagePickerControllerDelegate, UI
                     updateCompletion?(newEntry)
                 }
                 else{
-                    print("bitch")
                     completion?(newEntry)
                 }
             }

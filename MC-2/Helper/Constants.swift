@@ -11,11 +11,23 @@ struct Constants {
     struct Storyboard {
         static let homeViewController = "HomeVC"
     }
+    
 }
 
-let MOOD_VHAPPY = 1
-let MOOD_HAPPY = 2
-let MOOD_NORMAL = 3
-let MOOD_SAD = 4
-let MOOD_VSAD = 5
 let EMPTY_IMAGE = "EMPTY_IMAGE_KEY"
+
+enum Mood: Int {
+    case veryHappy = 1
+    case happy = 2
+    case neutral = 3
+    case sad = 4
+    case verySad = 5
+}
+
+enum JournalFilterType: String{
+    case week = "WEEK_FILTER_KEY"
+    case month = "MONTH_FILTER_KEY"
+    case year = "YEAR_FILTER_KEY"
+}
+
+

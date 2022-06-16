@@ -1,12 +1,19 @@
+//
+//  FilterGroupCell.swift
+//  MC-2
+//
+//  Created by Tb. Daffa Amadeo Zhafrana on 16/06/22.
+//
+
+import Foundation
 import Foundation
 import UIKit
 
-class EntryCell: UITableViewCell {
+class FilterGroupCell: UITableViewCell{
     
-    @IBOutlet weak var title: UILabel!
-    @IBOutlet weak var desc: UITextView!
-    @IBOutlet weak var date: UILabel!
-    @IBOutlet weak var moodImage: UIImageView!
+    @IBOutlet weak var topLabel: UILabel!
+    @IBOutlet weak var mainLabel: UILabel!
+    @IBOutlet weak var journalNumberLabel: UILabel!
     
     override func layoutSubviews() {
         super.layoutSubviews()

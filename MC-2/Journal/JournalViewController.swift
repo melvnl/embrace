@@ -15,16 +15,12 @@ import FirebaseAuth
 import Firebase
 
 @available(iOS 15.0, *)
-class JournalViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class JournalViewController: JournalParentVC, UITableViewDelegate, UITableViewDataSource {
 
-    @IBOutlet var table: UITableView!
     @IBOutlet weak var emptyJournalView: UIView!
     
     let cellReuseIdentifier = "EntryCell"
     let headerCellSpacingHeight: CGFloat = 30
-    let cellSpacingHeight: CGFloat = 3
-    
-    var entries: [Entry] = []
     
     override func viewDidLoad() {
         
@@ -54,60 +50,6 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
 
-    @IBAction func didTapNewNote() {
-        
-        guard let vc = storyboard?.instantiateViewController(identifier: "NewJournal") as? EntryViewController else {
-            return
-        }
-        
-        vc.completion = {
-            newEntry in
-            self.navigationController?.popToRootViewController(animated: true)
-            journalRepo.createJournal(entry: newEntry)
-                    
-            self.table.isHidden = false
-        }
-        
-        vc.currEntry = nil
-        vc.isEditingEntry = false
-        
-        vc.title = "Buat jurnal"
-        
-        setBackBarItem()
-        navigationController?.pushViewController(vc, animated: true)
-    }
-    
-    @IBAction func didTapFilter(_ sender: Any) {
-        let alert = UIAlertController(title: nil, message: "Saring berdasarkan", preferredStyle: .actionSheet)
-            
-        alert.addAction(UIAlertAction(title: "Hari", style: .default , handler:{ (UIAlertAction)in
-            print("User click hari button")
-            }))
-
-        alert.addAction(UIAlertAction(title: "Minggu", style: .default , handler:{ (UIAlertAction)in
-            print("User click minggu button")
-            }))
-        
-        alert.addAction(UIAlertAction(title: "Bulan", style: .default , handler:{ (UIAlertAction)in
-            print("User click bulan button")
-            }))
-            
-        alert.addAction(UIAlertAction(title: "Tahun", style: .default, handler:{ (UIAlertAction)in
-            print("User click tahun button")
-            }))
-        
-        alert.addAction(UIAlertAction(title: "Batal", style: .cancel, handler:{ (UIAlertAction)in
-            print("User click cancel button")
-            }))
-
-            
-        //uncomment for iPad Support
-        //alert.popoverPresentationController?.sourceView = self.view
-
-        self.present(alert, animated: true, completion: {
-            print("completion block")
-        })
-    }
 
     // MARK: - Table View delegate methods
         
@@ -173,6 +115,7 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
         
         let headerView = UIView()
+        headerView.backgroundColor = UIColor.clear
         
         return headerView
     }
@@ -212,13 +155,6 @@ class JournalViewController: UIViewController, UITableViewDelegate, UITableViewD
         setBackBarItem()
         navigationController?.pushViewController(vc, animated: true)
     }
-    
-    func convertDateToString(date: Date, format: String) -> String{
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = format
-        return dateFormatter.string(from: date)
-    }
-
 }
 
 

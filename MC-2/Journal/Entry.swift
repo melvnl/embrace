@@ -20,15 +20,15 @@ struct Entry{
 
 func getEntryMoodImage(_ entry: Entry) -> UIImage{
     switch (entry.mood){
-    case MOOD_VHAPPY:
+    case Mood.veryHappy.rawValue:
         return UIImage(named: "VHappySelectedIcon")!
-    case MOOD_HAPPY:
+    case Mood.happy.rawValue:
         return UIImage(named: "HappySelectedIcon")!
-    case MOOD_NORMAL:
+    case Mood.neutral.rawValue:
         return UIImage(named: "NeutralSelectedIcon")!
-    case MOOD_SAD:
+    case Mood.sad.rawValue:
         return UIImage(named: "SadSelectedIcon")!
-    case MOOD_VSAD:
+    case Mood.verySad.rawValue:
         return UIImage(named: "VSadSelectedIcon")!
     default: return UIImage(named: "VHappySelectedIcon")!;
     }
@@ -36,15 +36,15 @@ func getEntryMoodImage(_ entry: Entry) -> UIImage{
 
 func getEntryMoodText(_ entry: Entry) -> String{
     switch (entry.mood){
-    case MOOD_VHAPPY:
+    case Mood.veryHappy.rawValue:
         return "Sangat senang"
-    case MOOD_HAPPY:
+    case Mood.happy.rawValue:
         return "Senang"
-    case MOOD_NORMAL:
+    case Mood.neutral.rawValue:
         return "Biasa saja"
-    case MOOD_SAD:
+    case Mood.sad.rawValue:
         return "Sedih"
-    case MOOD_VSAD:
+    case Mood.verySad.rawValue:
         return "Sangat sedih"
     default: return "";
     }

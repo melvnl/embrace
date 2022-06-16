@@ -498,25 +498,25 @@
                             <constraint firstItem="Cer-TX-whm" firstAttribute="bottom" secondItem="R2J-Bl-4xO" secondAttribute="bottom" constant="20" id="y5O-Vx-4xH"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Jurnal" id="pQp-DN-3v1">
+                    <navigationItem key="navigationItem" title="Jurnal" largeTitleDisplayMode="never" id="pQp-DN-3v1">
                         <rightBarButtonItems>
                             <barButtonItem image="line.3.horizontal.decrease" catalog="system" id="8jZ-wX-U2R">
                                 <color key="tintColor" systemColor="labelColor"/>
                                 <connections>
-                                    <action selector="didTapFilter:" destination="Tkn-J0-urq" id="JqC-DX-lft"/>
+                                    <action selector="didTapFilter:" destination="Tkn-J0-urq" id="uPw-vl-RKr"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem systemItem="add" id="TB6-7l-3DW">
                                 <color key="tintColor" systemColor="labelColor"/>
                                 <connections>
-                                    <action selector="didTapNewNote" destination="Tkn-J0-urq" id="sDt-Oq-HMD"/>
+                                    <action selector="didTapNewNote:" destination="Tkn-J0-urq" id="YP8-sX-IJg"/>
                                 </connections>
                             </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="emptyJournalView" destination="BRF-FS-1U4" id="AAE-Dy-jcK"/>
-                        <outlet property="table" destination="Cer-TX-whm" id="r6W-Q0-yDJ"/>
+                        <outlet property="table" destination="Cer-TX-whm" id="3OY-d4-yyu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4YR-R3-ew9" sceneMemberID="firstResponder"/>
@@ -1038,6 +1038,93 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3wq-iF-Owr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4732" y="-589"/>
+        </scene>
+        <!--Filter View Controller-->
+        <scene sceneID="FyD-eX-8Ch">
+            <objects>
+                <viewController storyboardIdentifier="FilteredJournals" id="L7M-Ys-XM4" customClass="FilterViewController" customModule="MC_2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8xs-rG-O3e">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="TZ7-Zi-g5R">
+                                <rect key="frame" x="20" y="64" width="374" height="729"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FilterGroupCell" id="aBe-1E-UPe" customClass="FilterGroupCell" customModule="MC_2" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="44.5" width="374" height="126.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aBe-1E-UPe" id="0Xf-Vo-FJn">
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="126.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="4dv-U5-4tG">
+                                                    <rect key="frame" x="20" y="20" width="334" height="86.5"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="15-21 AGUSTUS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I1s-MW-lmL">
+                                                            <rect key="frame" x="0.0" y="0.0" width="334" height="18"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="18" id="lEM-Ud-BwK"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                            <color key="textColor" red="0.45490196078431372" green="0.45490196078431372" blue="0.45490196078431372" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Minggu ke-3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zPN-aC-KXQ">
+                                                            <rect key="frame" x="0.0" y="28" width="334" height="28.5"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="28" id="0xB-BR-fgA"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                                            <color key="textColor" red="0.027450980392156862" green="0.027450980392156862" blue="0.027450980392156862" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5 Jurnal" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="22h-9Q-pKN">
+                                                            <rect key="frame" x="0.0" y="66.5" width="334" height="20"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="20" id="KEh-c4-SPm"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <color key="textColor" red="0.45490196078431372" green="0.45490196078431372" blue="0.45490196078431372" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="4dv-U5-4tG" firstAttribute="leading" secondItem="0Xf-Vo-FJn" secondAttribute="leading" constant="20" id="CUZ-Uk-nlk"/>
+                                                <constraint firstAttribute="bottom" secondItem="4dv-U5-4tG" secondAttribute="bottom" constant="20" id="RCT-Y3-Mjj"/>
+                                                <constraint firstAttribute="trailing" secondItem="4dv-U5-4tG" secondAttribute="trailing" constant="20" id="W99-ef-vSj"/>
+                                                <constraint firstItem="4dv-U5-4tG" firstAttribute="top" secondItem="0Xf-Vo-FJn" secondAttribute="top" constant="20" id="yJg-db-f4N"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="journalNumberLabel" destination="22h-9Q-pKN" id="oq0-Nq-aaw"/>
+                                            <outlet property="mainLabel" destination="zPN-aC-KXQ" id="WrW-pu-r9R"/>
+                                            <outlet property="topLabel" destination="I1s-MW-lmL" id="jwA-4E-Y06"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="slV-TD-YoM"/>
+                        <color key="backgroundColor" red="0.96470588235294119" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="TZ7-Zi-g5R" firstAttribute="top" secondItem="slV-TD-YoM" secondAttribute="top" constant="20" id="NEf-TH-PNP"/>
+                            <constraint firstItem="TZ7-Zi-g5R" firstAttribute="leading" secondItem="slV-TD-YoM" secondAttribute="leading" constant="20" id="Six-YQ-BNx"/>
+                            <constraint firstItem="slV-TD-YoM" firstAttribute="bottom" secondItem="TZ7-Zi-g5R" secondAttribute="bottom" constant="20" id="dOm-jG-Ivn"/>
+                            <constraint firstItem="slV-TD-YoM" firstAttribute="trailing" secondItem="TZ7-Zi-g5R" secondAttribute="trailing" constant="20" id="qfr-Vn-GNv"/>
+                        </constraints>
+                    </view>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="table" destination="TZ7-Zi-g5R" id="qB6-a3-oMu"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AqB-rB-Jkx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3953.6231884057975" y="801.5625"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
