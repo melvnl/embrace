@@ -11,5 +11,5 @@ class TableViewCell: UITableViewCell {
 
     @IBOutlet weak var thumbnail: UIImageView!
     @IBOutlet weak var title: UILabel!
-
+    @IBOutlet weak var desc: UILabel!
 }

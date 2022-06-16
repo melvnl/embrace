@@ -9,19 +9,25 @@ import UIKit
 import Firebase
 import FirebaseAuth
 
-class TopicViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class TopicViewController: UIViewController {
     
     let db = Firestore.firestore()
-    
-    // array of array
-//    var categories: [Categories] = [];
     var categories : [Categories] = []
     
     @IBOutlet weak var table: UITableView!
+
+    @IBOutlet weak var contentView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        table.delegate = self
+        table.dataSource = self
+        
+        table.separatorColor = UIColor.clear
     
+        self.table.tableFooterView = UIView.init(frame: .zero)
+        
         let docRef = db.collection("forum")
 
         docRef.getDocuments() { (querySnapshot, err) in
@@ -37,33 +43,52 @@ class TopicViewController: UIViewController, UITableViewDataSource, UITableViewD
                         )
                         self.categories.append(currEntry)
                     }
-                
-                
-                print(self.categories);
+                self.table.delegate = self
+                self.table.dataSource = self
+                self.table.reloadData()
+            
+                    print(self.categories);
             }
             }
-        
-        table.dataSource = self
-        table.delegate = self
         }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    }
+
+extension TopicViewController: UITableViewDelegate, UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return categories.count
     }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let category = categories[indexPath.row]
-        let cell = table.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TableViewCell
-        cell.title.text = category.category
-        
-        let imgUrl = URL(string: category.thumbnail )!
-        cell.thumbnail.load(url: imgUrl)
-        
-        return cell
-
-    }
-
-        // Do any additional setup after loading the view.
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
     }
     
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        let height: CGFloat = 1
+        
+        return height
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView()
+        headerView.backgroundColor = .clear
+        
+        return headerView
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let category = categories[indexPath.section]
+        let cell = table.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TableViewCell
+        
+        table.layer.cornerRadius = 10
+        cell.title.text = category.category
+        cell.desc.text = category.desc
+        cell.layer.masksToBounds = true
+        cell.layer.cornerRadius = 10
+
+        let imgUrl = URL(string: category.thumbnail )!
+        cell.thumbnail.load(url: imgUrl)
+    
+        return cell
+    }
+}
 
