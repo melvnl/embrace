@@ -28,7 +28,7 @@ class FirestoreHelper {
     init(){
         Firestore.firestore().settings = settings
         rootJournal = db.collection("journals")
-        rootThread = db.collection("threads")
+        rootThread = db.collection("forum")
         rootUsers = db.collection("users")
         rootComments = db.collection("comments")
     }
