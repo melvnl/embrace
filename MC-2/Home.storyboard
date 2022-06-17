@@ -103,56 +103,12 @@
                         <outlet property="profileImg" destination="y8N-rU-1ae" id="lH9-RC-Mis"/>
                         <outlet property="profileSection" destination="yee-MW-KPJ" id="8IY-Re-Vwg"/>
                         <outlet property="usernameLbl" destination="CUE-GU-6cV" id="EDW-vx-2wh"/>
+                        <outlet property="view" destination="4Ln-aA-FWl" id="Amx-yd-Fda"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Pc-NZ-bgf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-223.07692307692307" y="802.60663507108995"/>
-        </scene>
-        <!--Root View Controller-->
-        <scene sceneID="dgS-eL-5ds">
-            <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="nCY-61-6J2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <tableViewController id="e15-lv-uag" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="psy-Hq-MS5">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="WNL-Qd-QBM">
-                                <rect key="frame" x="0.0" y="44.666666030883789" width="390" height="43.666667938232422"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="WNL-Qd-QBM" id="cWa-Re-Ywx">
-                                    <rect key="frame" x="0.0" y="0.0" width="390" height="43.666667938232422"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="e15-lv-uag" id="b9L-si-vUP"/>
-                            <outlet property="delegate" destination="e15-lv-uag" id="cGq-Md-B9Q"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="lTw-GY-Pr9"/>
-                </tableViewController>
-            </objects>
-            <point key="canvasLocation" x="-357" y="1522"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="gdz-kJ-okT">
-            <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="8X0-5A-rrd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <navigationController id="xbc-Lq-6Hn" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="H9K-cl-ZZy">
-                        <rect key="frame" x="0.0" y="44" width="390" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="e15-lv-uag" kind="relationship" relationship="rootViewController" id="BXf-LT-wfk"/>
-                    </connections>
-                </navigationController>
-            </objects>
-            <point key="canvasLocation" x="-1266" y="1522"/>
+            <point key="canvasLocation" x="-302" y="803"/>
         </scene>
         <!--Edit Profil-->
         <scene sceneID="6TF-xb-0Cz">
@@ -162,22 +118,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Edit Profil" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7el-Th-CeP">
-                                <rect key="frame" x="159" y="58.000000000000007" width="72" height="19.333333333333336"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
-                                <color key="textColor" red="0.2274509804" green="0.2274509804" blue="0.2274509804" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5l0-ig-eKH">
-                                <rect key="frame" x="20" y="757" width="350" height="48"/>
+                                <rect key="frame" x="20" y="730" width="350" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="Ng4-x4-RWB"/>
                                 </constraints>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Edit profil">
-                                    <fontDescription key="titleFontDescription" type="system" pointSize="16"/>
+                                    <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="16"/>
                                     <color key="baseBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
                                 <connections>
@@ -185,7 +134,7 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="RIb-N5-NX1">
-                                <rect key="frame" x="20" y="121" width="350" height="562"/>
+                                <rect key="frame" x="20" y="80" width="350" height="562"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="LZZ-Xx-dBK">
                                         <rect key="frame" x="0.0" y="0.0" width="350" height="70"/>
@@ -197,7 +146,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MNc-Ak-0mt" customClass="JRDropDown">
-                                                <rect key="frame" x="0.0" y="26.333333333333339" width="350" height="43.666666666666657"/>
+                                                <rect key="frame" x="0.0" y="26.333333333333325" width="350" height="43.666666666666657"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <textInputTraits key="textInputTraits"/>
                                                 <userDefinedRuntimeAttributes>
@@ -296,7 +245,7 @@
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="filled">
                                                             <imageReference key="image" image="xmark" catalog="system" symbolScale="small"/>
-                                                            <color key="baseBackgroundColor" white="0.0" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="baseBackgroundColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </buttonConfiguration>
                                                         <connections>
                                                             <action selector="didTapDismissBtn:" destination="UNe-Wr-hzo" eventType="touchUpInside" id="4CZ-o1-lES"/>
@@ -327,9 +276,9 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="6fK-K2-oaY" firstAttribute="trailing" secondItem="RIb-N5-NX1" secondAttribute="trailing" constant="20" id="1VH-Zp-ZJ2"/>
-                            <constraint firstItem="RIb-N5-NX1" firstAttribute="top" secondItem="6fK-K2-oaY" secondAttribute="top" constant="77" id="BZT-I4-7XB"/>
+                            <constraint firstItem="RIb-N5-NX1" firstAttribute="top" secondItem="6fK-K2-oaY" secondAttribute="top" constant="36" id="BZT-I4-7XB"/>
                             <constraint firstItem="5l0-ig-eKH" firstAttribute="leading" secondItem="6fK-K2-oaY" secondAttribute="leading" constant="20" id="FWw-lk-Gos"/>
-                            <constraint firstItem="6fK-K2-oaY" firstAttribute="bottom" secondItem="5l0-ig-eKH" secondAttribute="bottom" constant="5" id="X4Y-Oh-NrC"/>
+                            <constraint firstItem="6fK-K2-oaY" firstAttribute="bottom" secondItem="5l0-ig-eKH" secondAttribute="bottom" constant="32" id="X4Y-Oh-NrC"/>
                             <constraint firstItem="6fK-K2-oaY" firstAttribute="trailing" secondItem="5l0-ig-eKH" secondAttribute="trailing" constant="20" id="bFY-c4-fKL"/>
                             <constraint firstItem="RIb-N5-NX1" firstAttribute="leading" secondItem="6fK-K2-oaY" secondAttribute="leading" constant="20" id="eRp-yb-sV1"/>
                         </constraints>
@@ -337,10 +286,14 @@
                     <navigationItem key="navigationItem" title="Edit Profil" id="t2y-ts-RRi">
                         <barButtonItem key="leftBarButtonItem" image="chevron.left" catalog="system" id="fHe-FJ-rFN">
                             <color key="tintColor" red="0.22745098039215686" green="0.22745098039215686" blue="0.22745098039215686" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="goToProfile:" destination="UNe-Wr-hzo" id="Rfk-z7-F8z"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="addImgBtn" destination="4aR-0Q-8kb" id="0w3-iS-U4w"/>
+                        <outlet property="backtoProfileBtn" destination="fHe-FJ-rFN" id="eRj-6k-fOb"/>
                         <outlet property="descTxtField" destination="zTa-w7-rWc" id="ose-6y-zTZ"/>
                         <outlet property="dismissBtn" destination="VuA-5g-meH" id="ekH-XI-I4n"/>
                         <outlet property="editImg" destination="7tO-gC-YkR" id="Rjv-FH-KoZ"/>

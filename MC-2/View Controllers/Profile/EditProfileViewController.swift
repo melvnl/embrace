@@ -20,6 +20,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     @IBOutlet weak var usernameTxtField: UITextField!
     @IBOutlet weak var nameTxtField: UITextField!
     @IBOutlet weak var descTxtField: UITextField!
+    @IBOutlet weak var backtoProfileBtn: UIBarButtonItem!
     
     private var imgData: Data?
     
@@ -33,12 +34,16 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
 
         // load user profile
         
-        usernameTxtField.text = currProfileEntry.username
-        nameTxtField.text = currProfileEntry.name
-        descTxtField.text = currProfileEntry.description
+        nameTxtField.placeholder = currProfileEntry.name
+        descTxtField.placeholder = "Masukkan deskripsi akun anda"
+        
+        usernameTxtField.text = "@" + currProfileEntry.username
         editImg.load(url: URL(string: currProfileEntry.avatar)!)
         
-        // load image
+        editProfilBtn.layer.shadowColor = CGColor(red: 208/255, green: 46/255, blue: 75/255, alpha: 1)
+        editProfilBtn.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+        editProfilBtn.layer.shadowOpacity = 1.0
+        editProfilBtn.layer.shadowRadius = 1.0
         
         editProfilBtn.layer.cornerRadius = 10
         let gradient = CAGradientLayer()
@@ -46,7 +51,10 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         gradient.frame = editProfilBtn.bounds
         editProfilBtn.layer.insertSublayer(gradient, at: 0)
         editProfilBtn.layer.masksToBounds = true;
-     
+        
+//        editImg.layer.cornerRadius = 10
+//        editImg.clipsToBounds = true
+        
         styleTextField(usernameTxtField)
         styleTextField(nameTxtField)
         styleTextField(descTxtField)
@@ -82,6 +90,11 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
             }
         })
     }
+    
+    @IBAction func goToProfile(_ sender: UIBarButtonItem) {
+        
+    }
+    
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
 //        show image

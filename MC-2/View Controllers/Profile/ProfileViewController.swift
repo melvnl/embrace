@@ -18,9 +18,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var nameLbl: UILabel!
     @IBOutlet weak var usernameLbl: UILabel!
     @IBOutlet weak var profileDesc: UITextView!
-    
     @IBOutlet weak var profileSection: UISegmentedControl!
-    @IBOutlet weak var editProfileBtn: UIButton!
     
     let segmentindicator: UIView = {
         let v = UIView()
@@ -81,7 +79,7 @@ class ProfileViewController: UIViewController {
     func loadProfile(){
         profileRepo.fetchCurrentUser { [self] (currUser) -> Void in
             nameLbl.text = currUser.name
-            usernameLbl.text = currUser.username
+            usernameLbl.text = "@" + currUser.username
             profileDesc.text = currUser.description
             profileImg.load(url: URL(string:currUser.avatar)!)
         }
