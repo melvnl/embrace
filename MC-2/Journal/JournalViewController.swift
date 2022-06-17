@@ -20,7 +20,8 @@ class JournalViewController: JournalParentVC, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var emptyJournalView: UIView!
     
     let cellReuseIdentifier = "EntryCell"
-    let headerCellSpacingHeight: CGFloat = 30
+    var isFiltered = false
+    var filterInterval : DateInterval?
     
     override func viewDidLoad() {
         
@@ -38,14 +39,26 @@ class JournalViewController: JournalParentVC, UITableViewDelegate, UITableViewDa
     
     func fillTable(){
         journalRepo.fetchJournals { (entries) -> Void in
-            DispatchQueue.main.async {
+            DispatchQueue.main.async { [self] in
                 self.entries = entries
-                self.table.dataSource = self
-                self.table.delegate = self
-                self.table.isHidden = false
-                self.table.reloadData()
                 
-                self.emptyJournalView.isHidden = entries.count > 0 ? true : false
+                if(isFiltered){
+                    var filteredEntries : [Entry] = []
+                    emptyJournalView.isHidden = true
+                    for entry in entries {
+                        if entry.date >= filterInterval!.start && entry.date <= filterInterval!.end {
+                            filteredEntries.append(entry)
+                        }
+                    }
+                    self.entries = filteredEntries
+                }
+                
+                table.dataSource = self
+                table.delegate = self
+                table.isHidden = false
+                table.reloadData()
+                
+                emptyJournalView.isHidden = entries.count > 0 ? true : false
             }
         }
     }
@@ -65,7 +78,7 @@ class JournalViewController: JournalParentVC, UITableViewDelegate, UITableViewDa
     // Set the spacing between sections
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         // if section has header text, bigger spacing
-        if section == 0 || (section > 0 && !Calendar.current.isDate(entries[section].date, inSameDayAs:entries[section-1].date)){
+        if section == 0 || !Calendar.current.isDate(entries[section].date, inSameDayAs:entries[section-1].date){
             return headerCellSpacingHeight
         }
         return cellSpacingHeight
@@ -78,8 +91,8 @@ class JournalViewController: JournalParentVC, UITableViewDelegate, UITableViewDa
             
             // Disable sticky header
             let headerHeight = CGFloat(80)
-            var headerView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: headerHeight))
-            self.table.contentInset = UIEdgeInsets(top:-7, left: 0, bottom: 0, right: 0)
+            var headerView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: headerHeight*2))
+            self.table.contentInset = UIEdgeInsets(top:-12, left: 0, bottom: 0, right: 0)
             
             // Adjust header if first index
             if(section == 0){
@@ -88,13 +101,16 @@ class JournalViewController: JournalParentVC, UITableViewDelegate, UITableViewDa
             
             // Insert date
             let label = UILabel()
+            label.frame = CGRect.init(x: 0, y: -40, width: headerView.frame.width-10, height: headerHeight)
+            label.font = .systemFont(ofSize: 20, weight: .semibold)
+            headerView.backgroundColor = UIColor.clear
     
             let blackColor = [NSAttributedString.Key.foregroundColor: UIColor.black]
             let greyColor = [NSAttributedString.Key.foregroundColor: UIColor(red: 171/255, green: 171/255, blue: 171/255, alpha: 1.0)]
             
             var todayText = NSMutableAttributedString(string: "")
             let greyComma = NSMutableAttributedString(string: ", ", attributes: greyColor)
-            let dateText = NSMutableAttributedString(string: convertDateToString(date: entries[section].date, format: "d MMM"), attributes: greyColor)
+            let dateText = NSMutableAttributedString(string: entries[section].date.toString("d MMM"), attributes: greyColor)
             
             if (Calendar.current.isDateInToday(entries[section].date)){
                 todayText = NSMutableAttributedString(string: "Hari ini", attributes: blackColor)
@@ -103,11 +119,6 @@ class JournalViewController: JournalParentVC, UITableViewDelegate, UITableViewDa
             
             todayText.append(dateText)
             label.attributedText = todayText
-            
-            // Label styling
-            label.frame = CGRect.init(x: 0, y: -40, width: headerView.frame.width-10, height: headerHeight)
-            label.font = .systemFont(ofSize: 20, weight: .semibold)
-            headerView.backgroundColor = UIColor.clear
             
             headerView.addSubview(label)
             
@@ -118,6 +129,18 @@ class JournalViewController: JournalParentVC, UITableViewDelegate, UITableViewDa
         headerView.backgroundColor = UIColor.clear
         
         return headerView
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: footerCellSpacingHeight))
+        return footerView
+    }
+
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        if section < entries.count-1 && !Calendar.current.isDate(entries[section].date, inSameDayAs:entries[section+1].date){
+            return footerCellSpacingHeight
+        }
+        return 0
     }
     
     // create a cell for each table view row
@@ -133,7 +156,7 @@ class JournalViewController: JournalParentVC, UITableViewDelegate, UITableViewDa
         cell.moodImage.image = getEntryMoodImage(currEntry)
         
         // Convert date to string
-        cell.date.text = convertDateToString(date: currEntry.date, format: "hh.mm")
+        cell.date.text = currEntry.date.toString("hh.mm")
         
         return cell
     }

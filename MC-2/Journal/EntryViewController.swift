@@ -158,7 +158,7 @@ class EntryViewController: UIViewController, UIImagePickerControllerDelegate, UI
                     if(imageContainer.isHidden && currEntry.image != EMPTY_IMAGE){
 
                         // Create a reference to the file to delete
-                        let date = generateDateForStorage(currEntry.date)
+                        let date = currEntry.date.toString("ddMMyyHHmm")
                         let f = "journal/" + Auth.auth().currentUser!.uid + "_" + date + ".jpg"
                         let ref = Storage.storage().reference().child(f)
 
@@ -188,7 +188,7 @@ class EntryViewController: UIViewController, UIImagePickerControllerDelegate, UI
             let md = StorageMetadata()
             md.contentType = "image/png"
             
-            let date = isEditingEntry ? generateDateForStorage(currEntry.date) : generateDateForStorage(Date.now)
+            let date = isEditingEntry ? currEntry.date.toString("ddMMyyHHmm") : Date.now.toString("ddMMyyHHmm")
             let f = "journal/" + Auth.auth().currentUser!.uid + "_" + date + ".jpg"
             let ref = Storage.storage().reference().child(f)
             
@@ -207,12 +207,6 @@ class EntryViewController: UIViewController, UIImagePickerControllerDelegate, UI
             completion(EMPTY_IMAGE)
         }
         
-    }
-    
-    func generateDateForStorage(_ date: Date)->String{
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "ddMMyyHHmm"
-        return dateFormatter.string(from: date)
     }
     
     func styleTextField(_ textfield:UITextField) {

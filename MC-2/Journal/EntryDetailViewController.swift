@@ -35,9 +35,7 @@ class EntryDetailViewController: UIViewController {
         loadImage()
         
         // Convert date to string
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMM d, hh.mm"
-        entryDate.text = dateFormatter.string(from: currEntry!.date)
+        entryDate.text = currEntry!.date.toString("MMM d, hh.mm")
         
         title = "Lihat jurnal"
     

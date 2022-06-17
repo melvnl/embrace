@@ -7,12 +7,15 @@
 
 import Foundation
 import UIKit
+import SwiftUI
 
 class JournalParentVC : UIViewController{
     
     @IBOutlet weak var table: UITableView!
     var entries: [Entry] = []
     let cellSpacingHeight: CGFloat = 3
+    let headerCellSpacingHeight: CGFloat = 30
+    let footerCellSpacingHeight: CGFloat = 30
     
     @IBAction func didTapNewNote(_ sender: Any) {
         guard let vc = storyboard?.instantiateViewController(identifier: "NewJournal") as? EntryViewController else {
@@ -21,6 +24,7 @@ class JournalParentVC : UIViewController{
         
         vc.completion = {
             newEntry in
+            
             self.navigationController?.popToRootViewController(animated: true)
             journalRepo.createJournal(entry: newEntry)
                     
@@ -77,13 +81,6 @@ class JournalParentVC : UIViewController{
         
         vc.title = "Jurnal"
         
-        setBackBarItem()
         navigationController?.pushViewController(vc, animated: true)
-    }
-    
-    func convertDateToString(date: Date, format: String) -> String{
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = format
-        return dateFormatter.string(from: date)
     }
 }

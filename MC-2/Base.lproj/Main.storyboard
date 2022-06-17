@@ -1047,19 +1047,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="TZ7-Zi-g5R">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="TZ7-Zi-g5R">
                                 <rect key="frame" x="20" y="64" width="374" height="729"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" red="0.96470588235294119" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FilterGroupCell" id="aBe-1E-UPe" customClass="FilterGroupCell" customModule="MC_2" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.5" width="374" height="126.5"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="374" height="126"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aBe-1E-UPe" id="0Xf-Vo-FJn">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="126.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="126"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="4dv-U5-4tG">
-                                                    <rect key="frame" x="20" y="20" width="334" height="86.5"/>
+                                                    <rect key="frame" x="20" y="20" width="334" height="86"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="15-21 AGUSTUS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I1s-MW-lmL">
                                                             <rect key="frame" x="0.0" y="0.0" width="334" height="18"/>
@@ -1071,7 +1071,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Minggu ke-3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zPN-aC-KXQ">
-                                                            <rect key="frame" x="0.0" y="28" width="334" height="28.5"/>
+                                                            <rect key="frame" x="0.0" y="28" width="334" height="28"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="28" id="0xB-BR-fgA"/>
                                                             </constraints>
@@ -1080,7 +1080,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5 Jurnal" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="22h-9Q-pKN">
-                                                            <rect key="frame" x="0.0" y="66.5" width="334" height="20"/>
+                                                            <rect key="frame" x="0.0" y="66" width="334" height="20"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="20" id="KEh-c4-SPm"/>
                                                             </constraints>
