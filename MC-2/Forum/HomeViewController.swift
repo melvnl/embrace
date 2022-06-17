@@ -38,7 +38,7 @@ class HomeViewController: UIViewController {
         vc.currEntry = nil
         vc.isEditingEntry = false
         
-        vc.title = "Buat jurnal"
+        vc.title = "Buat Forum"
         
         setBackBarItem()
         navigationController?.pushViewController(vc, animated: true)
