@@ -21,14 +21,26 @@ class FirestoreHelper {
     let settings = FirestoreSettings()
     let db = Firestore.firestore()
     var rootJournal : CollectionReference
-    var rootThread : CollectionReference
+    var rootThreadKehamilan : CollectionReference
+    var rootThreadPerawatanBayi : CollectionReference
+    var rootThreadKesehatanMental : CollectionReference
+    var rootThreadPascaMelahirkan : CollectionReference
+    var rootThreadPengasuhanAnak : CollectionReference
+    var rootThreadLainnya : CollectionReference
     var rootUsers: CollectionReference
     var rootComments: CollectionReference
     
     init(){
         Firestore.firestore().settings = settings
         rootJournal = db.collection("journals")
-        rootThread = db.collection("forum")
+        
+        rootThreadKehamilan = db.collection("forum").document("kehamilan").collection("list-kehamilan")
+        rootThreadPerawatanBayi = db.collection("forum").document("perawatan-bayi").collection("list-perawatan-bayi")
+        rootThreadKesehatanMental = db.collection("forum").document("kesehatan-mental").collection("list-kesehatan-mental")
+        rootThreadPascaMelahirkan = db.collection("forum").document("pasca-melahirkan").collection("list-pasca-melahirkan")
+        rootThreadPengasuhanAnak = db.collection("forum").document("pengasuhan-anak").collection("list-pengasuhan-anak")
+        rootThreadLainnya = db.collection("forum").document("lainnya").collection("list-lainnya")
+        
         rootUsers = db.collection("users")
         rootComments = db.collection("comments")
     }

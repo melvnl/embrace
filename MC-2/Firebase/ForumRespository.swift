@@ -22,7 +22,9 @@ class ForumRepository {
             "date": FieldValue.serverTimestamp(),
             "user_id": entry.user_id,
             "image": entry.image
-        ]) { err in
+        ])
+        
+        { err in
             if let err = err {
                 print("Error writing document: \(err)")
             } else {
