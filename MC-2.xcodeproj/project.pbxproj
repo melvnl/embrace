@@ -46,6 +46,10 @@
 		A0D209D028578B86001127ED /* ProfilePostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0D209CE28578B86001127ED /* ProfilePostCell.xib */; };
 		A0DEA11A285ACF5800678CB0 /* ProfileEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0DEA119285ACF5800678CB0 /* ProfileEntry.swift */; };
 		A0E3DA2628584117001D57B5 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E3DA2528584117001D57B5 /* EditProfileViewController.swift */; };
+		A0FE3D662860BF0100616F8D /* MyPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0FE3D642860BF0100616F8D /* MyPostViewController.swift */; };
+		A0FE3D672860BF0100616F8D /* MyPostViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0FE3D652860BF0100616F8D /* MyPostViewController.xib */; };
+		A0FE3D6B2860BF7B00616F8D /* SavedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0FE3D692860BF7B00616F8D /* SavedViewController.swift */; };
+		A0FE3D6C2860BF7B00616F8D /* SavedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0FE3D6A2860BF7B00616F8D /* SavedViewController.xib */; };
 		B04CAC61285455E9004E25B9 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B04CAC60285455E9004E25B9 /* Home.storyboard */; };
 		B0A7C4E828531F5600144E6D /* VerificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A7C4E728531F5600144E6D /* VerificationController.swift */; };
 		B0FEA0DF2845117B00EF8DD9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FEA0DE2845117B00EF8DD9 /* AppDelegate.swift */; };
@@ -69,6 +73,10 @@
 		A0D209CE28578B86001127ED /* ProfilePostCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfilePostCell.xib; sourceTree = "<group>"; };
 		A0DEA119285ACF5800678CB0 /* ProfileEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEntry.swift; sourceTree = "<group>"; };
 		A0E3DA2528584117001D57B5 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
+		A0FE3D642860BF0100616F8D /* MyPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPostViewController.swift; sourceTree = "<group>"; };
+		A0FE3D652860BF0100616F8D /* MyPostViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyPostViewController.xib; sourceTree = "<group>"; };
+		A0FE3D692860BF7B00616F8D /* SavedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedViewController.swift; sourceTree = "<group>"; };
+		A0FE3D6A2860BF7B00616F8D /* SavedViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SavedViewController.xib; sourceTree = "<group>"; };
 		B04CAC60285455E9004E25B9 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		B0A7C4E728531F5600144E6D /* VerificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationController.swift; sourceTree = "<group>"; };
 		B0FEA0DB2845117B00EF8DD9 /* MC-2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MC-2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -137,6 +145,7 @@
 				72C66AFD284F384F00261C91 /* HomeViewController.swift */,
 				B0A7C4E728531F5600144E6D /* VerificationController.swift */,
 				A0DEA118285ACF1700678CB0 /* Profile */,
+				A0FE3D682860BF1300616F8D /* Profile Section */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -159,6 +168,17 @@
 				956F4CC2285AF93400405F3F /* ProfileRepository.swift */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		A0FE3D682860BF1300616F8D /* Profile Section */ = {
+			isa = PBXGroup;
+			children = (
+				A0FE3D642860BF0100616F8D /* MyPostViewController.swift */,
+				A0FE3D652860BF0100616F8D /* MyPostViewController.xib */,
+				A0FE3D692860BF7B00616F8D /* SavedViewController.swift */,
+				A0FE3D6A2860BF7B00616F8D /* SavedViewController.xib */,
+			);
+			path = "Profile Section";
 			sourceTree = "<group>";
 		};
 		B0FEA0D22845117B00EF8DD9 = {
@@ -287,10 +307,12 @@
 			files = (
 				B0FEA0EB2845117C00EF8DD9 /* LaunchScreen.storyboard in Resources */,
 				B04CAC61285455E9004E25B9 /* Home.storyboard in Resources */,
+				A0FE3D6C2860BF7B00616F8D /* SavedViewController.xib in Resources */,
 				72A92C8C284F6E2300B2F1F4 /* GoogleService-Info.plist in Resources */,
 				B0FEA0E82845117C00EF8DD9 /* Assets.xcassets in Resources */,
 				B0FEA0E62845117B00EF8DD9 /* Main.storyboard in Resources */,
 				A0D209D028578B86001127ED /* ProfilePostCell.xib in Resources */,
+				A0FE3D672860BF0100616F8D /* MyPostViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -302,10 +324,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				A08D9A952858C97F00B4ECFC /* UIView+Fade.swift in Sources */,
+				A0FE3D662860BF0100616F8D /* MyPostViewController.swift in Sources */,
 				A0E3DA2628584117001D57B5 /* EditProfileViewController.swift in Sources */,
 				B0FEA0E32845117B00EF8DD9 /* ViewController.swift in Sources */,
 				B0FEA0DF2845117B00EF8DD9 /* AppDelegate.swift in Sources */,
 				72C66AFA284F382800261C91 /* SignUpViewController.swift in Sources */,
+				A0FE3D6B2860BF7B00616F8D /* SavedViewController.swift in Sources */,
 				72C66AFC284F383900261C91 /* LogInViewController.swift in Sources */,
 				72A92CC6284F9CAC00B2F1F4 /* Constants.swift in Sources */,
 				B0FEA0E12845117B00EF8DD9 /* SceneDelegate.swift in Sources */,

@@ -19,6 +19,8 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var usernameLbl: UILabel!
     @IBOutlet weak var profileDesc: UITextView!
     @IBOutlet weak var profileSection: UISegmentedControl!
+    @IBOutlet weak var segmentMyPost: UIView!
+    @IBOutlet weak var segmentSavedProfile: UIView!
     
     let segmentindicator: UIView = {
         let v = UIView()
@@ -47,6 +49,22 @@ class ProfileViewController: UIViewController {
         
         
         loadProfile()
+    }
+    
+    @IBAction func sectionDidChange(_ sender: UISegmentedControl) {
+        
+        switch sender.selectedSegmentIndex {
+            case 0:
+                segmentMyPost.alpha = 0
+                segmentSavedProfile.alpha = 1
+            case 1:
+                segmentMyPost.alpha = 1
+                segmentSavedProfile.alpha = 0
+            default:
+                segmentMyPost.alpha = 0
+                segmentSavedProfile.alpha = 0
+        }
+        
     }
     
     @IBAction func didTapEdit(_ sender: Any) {
