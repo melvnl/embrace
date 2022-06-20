@@ -223,7 +223,7 @@
         <!--Topik-->
         <scene sceneID="jXb-kG-e3z">
             <objects>
-                <viewController id="3Ym-Iw-QEL" customClass="TopicViewController" customModule="MC_2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TopicVC" modalPresentationStyle="fullScreen" id="3Ym-Iw-QEL" customClass="TopicViewController" customModule="MC_2" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RlM-KJ-WOK">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -332,11 +332,59 @@
                     </tabBarItem>
                     <connections>
                         <outlet property="table" destination="6iY-fZ-MNJ" id="bY1-LZ-gzA"/>
+                        <segue destination="1ta-Vc-0M2" kind="show" identifier="toTopicDetail" id="Qsi-Nk-IJ6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="25V-cl-5n9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-838.46153846153845" y="72.511848341232223"/>
+        </scene>
+        <!--Topic Detail Controller-->
+        <scene sceneID="Zv3-RN-cVL">
+            <objects>
+                <viewController modalPresentationStyle="fullScreen" id="1ta-Vc-0M2" customClass="TopicDetailController" customModule="MC_2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Gim-Un-T3N">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Topic Detail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ab9-Kr-VB1">
+                                <rect key="frame" x="151" y="412" width="89" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zIm-B1-pck">
+                                <rect key="frame" x="174" y="56" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aZg-we-B2E">
+                                <rect key="frame" x="20" y="51" width="46" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="arrow.left" catalog="system"/>
+                                <connections>
+                                    <action selector="backBtnTapped:" destination="1ta-Vc-0M2" eventType="touchUpInside" id="VwY-hI-hMY"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="p16-Rg-Gcd"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="zIm-B1-pck" firstAttribute="centerX" secondItem="Gim-Un-T3N" secondAttribute="centerX" id="oee-Ny-uau"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="66j-Xb-cKx"/>
+                    <connections>
+                        <outlet property="backBtn" destination="aZg-we-B2E" id="0l6-9z-ZMR"/>
+                        <outlet property="topicTitle" destination="zIm-B1-pck" id="jY0-rN-LIV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tX5-lr-CAm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-22" y="73"/>
         </scene>
         <!--Forum-->
         <scene sceneID="M6S-lo-TQY">
@@ -416,6 +464,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="arrow.left" catalog="system" width="128" height="98"/>
         <image name="book.fill" catalog="system" width="128" height="95"/>
         <image name="chevron.left" catalog="system" width="96" height="128"/>
         <image name="newspaper" catalog="system" width="128" height="111"/>
