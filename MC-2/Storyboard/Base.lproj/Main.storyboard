@@ -11,7 +11,7 @@
         <!--First-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController title="First" id="BYZ-38-t0r" customClass="ViewController" customModule="MC_2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="First" id="BYZ-38-t0r" customClass="OnboardViewController" customModule="MC_2" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -466,7 +466,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="DcI-MD-D2B"/>
+        <segue reference="gT0-GT-zaA"/>
         <segue reference="zJf-Mk-rEa"/>
     </inferredMetricsTieBreakers>
     <resources>

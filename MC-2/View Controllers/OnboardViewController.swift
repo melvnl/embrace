@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class OnboardViewController: UIViewController {
     
     @IBOutlet weak var signUpButton: UIButton!
     

@@ -16,8 +16,6 @@ struct Constants {
     
 }
 
-let EMPTY_IMAGE = "EMPTY_IMAGE_KEY"
-
 enum Mood: Int {
     case veryHappy = 1
     case happy = 2
