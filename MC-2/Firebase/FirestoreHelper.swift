@@ -34,12 +34,12 @@ class FirestoreHelper {
         Firestore.firestore().settings = settings
         rootJournal = db.collection("journals")
         
-        rootThreadKehamilan = db.collection("forum").document("kehamilan").collection("list-kehamilan")
-        rootThreadPerawatanBayi = db.collection("forum").document("perawatan-bayi").collection("list-perawatan-bayi")
-        rootThreadKesehatanMental = db.collection("forum").document("kesehatan-mental").collection("list-kesehatan-mental")
-        rootThreadPascaMelahirkan = db.collection("forum").document("pasca-melahirkan").collection("list-pasca-melahirkan")
-        rootThreadPengasuhanAnak = db.collection("forum").document("pengasuhan-anak").collection("list-pengasuhan-anak")
-        rootThreadLainnya = db.collection("forum").document("lainnya").collection("list-lainnya")
+        rootThreadKehamilan = db.collection("forum").document("9nc6jyqsNkEiYWALSaFB").collection("kehamilan")
+        rootThreadPerawatanBayi = db.collection("forum").document("MhfVjWwVwh2A71UbwmGm").collection("perawatanBayi")
+        rootThreadKesehatanMental = db.collection("forum").document("dVUrYrYtKv84rfsJKK4X").collection("kesehatanMental")
+        rootThreadPascaMelahirkan = db.collection("forum").document("xiVO0oAAe4DeIAw1HVnr").collection("pascaMelahirkan")
+        rootThreadPengasuhanAnak = db.collection("forum").document("dQIvuouAiXBvNw6r1xli").collection("pengasuhanAnak")
+        rootThreadLainnya = db.collection("forum").document("ZipnEyNDulyNeXvlzXCw").collection("lainnya")
         
         rootUsers = db.collection("users")
         rootComments = db.collection("comments")
