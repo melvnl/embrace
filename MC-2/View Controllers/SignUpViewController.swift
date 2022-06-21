@@ -29,9 +29,18 @@ class SignUpViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        signUpButton.layer.cornerRadius = 10
+        let gradient = CAGradientLayer()
+        gradient.colors = [CGColor(red: 255/255, green: 77/255, blue: 109/255, alpha: 1), CGColor(red: 208/255, green: 46/255, blue: 75/255, alpha: 1)]
+        gradient.frame = signUpButton.bounds
+        signUpButton.layer.insertSublayer(gradient, at: 0)
+        signUpButton.layer.masksToBounds = true;
 
         // Do any additional setup after loading the view.
-        navigationController?.navigationBar.tintColor = UIColor(red: 255/255, green: 77/255, blue: 109/255, alpha: 1)
+        navigationController?.navigationBar.tintColor = UIColor(red: 58/255, green: 58/255, blue: 58/255, alpha: 1)
+        let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor(red: 58/255, green: 58/255, blue: 58/255, alpha: 1)]
+        navigationController?.navigationBar.titleTextAttributes = textAttributes
         
         navigationController?.navigationBar.topItem!.title = " "
         
@@ -85,7 +94,7 @@ class SignUpViewController: UIViewController {
         // Create the bottom line
         let bottomLine = CALayer()
         
-        bottomLine.frame = CGRect(x: 0, y: textfield.frame.height - 2, width: textfield.frame.width - 25, height: 1)
+        bottomLine.frame = CGRect(x: 0, y: textfield.frame.height - 2, width: textfield.frame.width, height: 1)
         
         bottomLine.backgroundColor = UIColor.init(red: 197/255, green: 199/255, blue: 196/255, alpha: 1).cgColor
         
@@ -123,6 +132,29 @@ class SignUpViewController: UIViewController {
         return nil
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+       if segue.identifier == "toVerif" {
+           guard let secondViewController = segue.destination as? VerificationController else { return }
+           // Pass Data to Second View Controller
+           secondViewController.userEmail = emailTextField.text ?? ""
+       }
+    }
+    
+    override func shouldPerformSegue(withIdentifier identifier: String,
+                                sender: Any?) -> Bool{
+        
+
+        if(identifier == "toVerif"){
+            if((validationFields()) != nil) {
+                return false
+            }
+                return true
+            }
+        else{
+            return true
+        }
+        }
+    
     
     @IBAction func signUpTapped(_ sender: Any) {
 //        Validate the fields
@@ -147,15 +179,31 @@ class SignUpViewController: UIViewController {
                     self.showError("Error dalam membuat akun")
                 }else {
                     // User was created successfully, now store name & username
+                    
+                    let user = result?.user
+                    let userUid = result?.user.uid
+                    
+                    user?.sendEmailVerification()
+                    
                     let db = Firestore.firestore()
-                    db.collection("users").addDocument(data: ["nama":nama, "username":username, "uid":result!.user.uid]) { error in
-                        if error != nil {
-                            //show error message
-                            self.showError("Error dalam menyimpan data akun")
-                        }
-                    }
+                    //firebaseUid and firestoreUid is diff
+//                    db.collection("users").addDocument(data: ["nama":nama, "username":username, "uid":result!.user.uid]) { error in
+//                        if error != nil {
+//                            //show error message
+//                            self.showError("Error dalam menyimpan data akun")
+//                        }
+//                    }
+                    
+                    //firebaseUid and firestoreUid is equal
+                    db.collection("users").document(userUid ?? "").setData(["nama":nama, "username":username, "uid":result!.user.uid]) { error in
+                                                if error != nil {
+                                                    //show error message
+                                                    self.showError("Error dalam menyimpan data akun")
+                                                }
+                                            }
+                    
                     // Transition to the home screen
-                    self.transitionToHome()
+                    self.transitionToVerification()
                 }
             }
                     
@@ -169,11 +217,19 @@ class SignUpViewController: UIViewController {
         errorLabel.alpha = 1
     }
 
-    func transitionToHome() {
+    func transitionToLogin() {
         
-        let homeViewController = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.homeViewController) as? HomeViewController
+        let loginViewController = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.loginViewController) as? LogInViewController
         
-        view.window?.rootViewController = homeViewController
+        view.window?.rootViewController = loginViewController
+        view.window?.makeKeyAndVisible()
+    }
+    
+    func transitionToVerification() {
+        
+        let verificationController = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.verificationViewController) as? VerificationController
+        
+        view.window?.rootViewController = verificationController
         view.window?.makeKeyAndVisible()
     }
 }

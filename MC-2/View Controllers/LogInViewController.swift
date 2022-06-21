@@ -23,12 +23,25 @@ class LogInViewController: UIViewController {
     var iconClick = true
     
     let imageIcon = UIImageView()
+    
+    
+        
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        logInButton.layer.cornerRadius = 10
+        
+        let gradient = CAGradientLayer()
+        gradient.colors = [CGColor(red: 255/255, green: 77/255, blue: 109/255, alpha: 1), CGColor(red: 208/255, green: 46/255, blue: 75/255, alpha: 1)]
+        gradient.frame = logInButton.bounds
+        logInButton.layer.insertSublayer(gradient, at: 0)
+        logInButton.layer.masksToBounds = true;
 
         // Do any additional setup after loading the view.
-        navigationController?.navigationBar.tintColor = UIColor(red: 255/255, green: 77/255, blue: 109/255, alpha: 1)
+        navigationController?.navigationBar.tintColor = UIColor(red: 58/255, green: 58/255, blue: 58/255, alpha: 1)
+        let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor(red: 58/255, green: 58/255, blue: 58/255, alpha: 1)]
+        navigationController?.navigationBar.titleTextAttributes = textAttributes
         
         navigationController?.navigationBar.topItem!.title = " "
         
@@ -78,7 +91,7 @@ class LogInViewController: UIViewController {
         // Create the bottom line
         let bottomLine = CALayer()
         
-        bottomLine.frame = CGRect(x: 0, y: textfield.frame.height - 2, width: textfield.frame.width - 25, height: 1)
+        bottomLine.frame = CGRect(x: 0, y: textfield.frame.height - 2, width: textfield.frame.width, height: 1)
         
         bottomLine.backgroundColor = UIColor.init(red: 197/255, green: 199/255, blue: 196/255, alpha: 1).cgColor
         
@@ -101,14 +114,22 @@ class LogInViewController: UIViewController {
         Auth.auth().signIn(withEmail: email, password: password) { result, error in
             if error != nil {
                 //Could not signin
-                
+
                 self.errorLabel.text = error!.localizedDescription
                 self.errorLabel.alpha = 1
             }else{
-                let homeViewController = self.storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.homeViewController) as? HomeViewController
-                
-                self.view.window?.rootViewController = homeViewController
-                self.view.window?.makeKeyAndVisible()
+                let user = result?.user
+
+                if(user?.isEmailVerified == true) {
+                    let homeViewController = self.storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.homeViewController) as? UITabBarController
+                    
+                    self.view.window?.rootViewController = homeViewController
+                    self.view.window?.makeKeyAndVisible()
+                }
+                else{
+                    self.errorLabel.text = "email belum terverifikasi"
+                    self.errorLabel.alpha = 1
+                }
             }
         }
     }
