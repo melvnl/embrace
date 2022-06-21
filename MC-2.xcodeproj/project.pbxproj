@@ -76,8 +76,6 @@
 
 /* Begin PBXFileReference section */
 		72602920285AD11C00644A82 /* iOSDropDown.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOSDropDown.swift; sourceTree = "<group>"; };
-		72602924285AD21100644A82 /* ProfilePostCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ProfilePostCell.xib; path = ../../../../../../../../../Downloads/Cell/ProfilePostCell.xib; sourceTree = "<group>"; };
-		72602925285AD21100644A82 /* ProfilePostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProfilePostCell.swift; path = ../../../../../../../../../Downloads/Cell/ProfilePostCell.swift; sourceTree = "<group>"; };
 		72602929285AD55700644A82 /* FirestoreHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirestoreHelper.swift; sourceTree = "<group>"; };
 		7260292D285ADD3D00644A82 /* ForumRespository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForumRespository.swift; sourceTree = "<group>"; };
 		72602931285AE87200644A82 /* UIView+Fade.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Fade.swift"; sourceTree = "<group>"; };
@@ -161,21 +159,11 @@
 		72602922285AD1FE00644A82 /* Forum */ = {
 			isa = PBXGroup;
 			children = (
-				72602923285AD21100644A82 /* Cell */,
 				72BD0404285A194800041943 /* AddNewForumViewController.swift */,
 				72C66AFD284F384F00261C91 /* HomeViewController.swift */,
 				72602933285AEDE800644A82 /* EntryForum.swift */,
 			);
 			path = Forum;
-			sourceTree = "<group>";
-		};
-		72602923285AD21100644A82 /* Cell */ = {
-			isa = PBXGroup;
-			children = (
-				72602924285AD21100644A82 /* ProfilePostCell.xib */,
-				72602925285AD21100644A82 /* ProfilePostCell.swift */,
-			);
-			path = Cell;
 			sourceTree = "<group>";
 		};
 		72602928285AD55700644A82 /* Firebase */ = {

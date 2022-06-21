@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Cer-TX-whm">
-                                <rect key="frame" x="20" y="108" width="374" height="774"/>
+                                <rect key="frame" x="20" y="108" width="374" height="725"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="0.0" reuseIdentifier="EntryCell" rowHeight="211" id="O70-yN-ZSb" customClass="EntryCell" customModule="MC_2" customModuleProvider="target">
@@ -159,12 +159,14 @@
             </objects>
             <point key="canvasLocation" x="3953.6231884057975" y="109.82142857142857"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Jurnal-->
         <scene sceneID="hcq-4I-3oO">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="sBn-aM-2o6" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Jurnal" image="book" id="Vpr-5R-VPb"/>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="Mxo-SO-I9R"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="lRL-Qb-Q9O">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -767,6 +769,7 @@
         <image name="EmptyJournal" width="1208" height="900"/>
         <image name="SadSelectedIcon" width="40" height="40"/>
         <image name="VHappySelectedIcon" width="40" height="40"/>
+        <image name="book" width="28.5" height="28"/>
         <image name="face.smiling" catalog="system" width="128" height="121"/>
         <image name="line.3.horizontal.decrease" catalog="system" width="128" height="73"/>
         <image name="photo.tv" catalog="system" width="128" height="97"/>

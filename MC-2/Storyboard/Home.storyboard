@@ -254,7 +254,6 @@
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstItem="Wtj-pR-gVE" firstAttribute="leading" secondItem="LPk-y0-BmQ" secondAttribute="trailing" constant="18" id="8K7-QT-nhR"/>
-                                                        <constraint firstAttribute="bottom" secondItem="LPk-y0-BmQ" secondAttribute="bottom" id="NfC-oW-IVV"/>
                                                         <constraint firstItem="LPk-y0-BmQ" firstAttribute="top" secondItem="XLC-tN-OqQ" secondAttribute="top" id="VeE-qx-rEN"/>
                                                         <constraint firstItem="LPk-y0-BmQ" firstAttribute="leading" secondItem="XLC-tN-OqQ" secondAttribute="leading" id="Zg0-uT-bpi"/>
                                                         <constraint firstAttribute="bottom" secondItem="LPk-y0-BmQ" secondAttribute="bottom" constant="20" id="ngW-JK-bax"/>
@@ -392,8 +391,8 @@
                     <connections>
                         <segue destination="a6Y-td-pvm" kind="relationship" relationship="viewControllers" id="NuO-j0-Hgn"/>
                         <segue destination="3Ym-Iw-QEL" kind="relationship" relationship="viewControllers" id="1n5-gX-4Lp"/>
-                        <segue destination="YQ6-7y-VIv" kind="relationship" relationship="viewControllers" id="f8G-42-To5"/>
                         <segue destination="YgY-bG-KtP" kind="relationship" relationship="viewControllers" id="zFC-Hr-Uec"/>
+                        <segue destination="YQ6-7y-VIv" kind="relationship" relationship="viewControllers" id="f8G-42-To5"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aq6-AI-C6g" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -404,7 +403,7 @@
         <scene sceneID="lHP-s0-ItF">
             <objects>
                 <viewControllerPlaceholder storyboardName="JournalStoryboard" id="YgY-bG-KtP" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Journal" image="book" id="few-Bm-WEY"/>
+                    <tabBarItem key="tabBarItem" title="Journal" image="book.fill" catalog="system" id="few-Bm-WEY"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EfL-cb-Yk4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -659,7 +658,7 @@
     </scenes>
     <resources>
         <image name="SadSelectedIcon" width="40" height="40"/>
-        <image name="book" width="28.333333969116211" height="28"/>
+        <image name="book.fill" catalog="system" width="128" height="95"/>
         <image name="chevron.left" catalog="system" width="96" height="128"/>
         <image name="newspaper" catalog="system" width="128" height="111"/>
         <image name="pencil" catalog="system" width="128" height="113"/>
