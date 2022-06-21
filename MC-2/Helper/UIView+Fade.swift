@@ -2,7 +2,7 @@
 //  UIView+Fade.swift
 //  MC-2
 //
-//  Created by Vendly on 14/06/22.
+//  Created by Tb. Daffa Amadeo Zhafrana on 13/06/22.
 //
 
 import Foundation
