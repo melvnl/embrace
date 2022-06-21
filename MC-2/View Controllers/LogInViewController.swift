@@ -114,12 +114,12 @@ class LogInViewController: UIViewController {
         Auth.auth().signIn(withEmail: email, password: password) { result, error in
             if error != nil {
                 //Could not signin
-                
+
                 self.errorLabel.text = error!.localizedDescription
                 self.errorLabel.alpha = 1
             }else{
                 let user = result?.user
-                
+
                 if(user?.isEmailVerified == true) {
                     let homeViewController = self.storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.homeViewController) as? UITabBarController
                     
