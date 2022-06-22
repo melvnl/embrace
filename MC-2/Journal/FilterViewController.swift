@@ -14,9 +14,11 @@ class FilterViewController : JournalParentVC, UITableViewDelegate, UITableViewDa
     public var filterType: JournalFilterType?
     let cellReuseIdentifier = "FilterGroupCell"
     
+    @IBOutlet weak var emptyJournalView: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        emptyJournalView.isHidden = false
         // Remove current vc stack
         if let rootVC = navigationController?.viewControllers.first {
                 navigationController?.viewControllers = [rootVC, self]
@@ -143,9 +145,10 @@ class FilterViewController : JournalParentVC, UITableViewDelegate, UITableViewDa
     
     func numberOfSections(in tableView: UITableView) -> Int {
         if (filteredEntries.count > 0){
+            emptyJournalView.isHidden = true
             return filteredEntries.count
         }
-            
+        
         return 0
     }
     

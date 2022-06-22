@@ -154,6 +154,12 @@ class JournalViewController: JournalParentVC, UITableViewDelegate, UITableViewDa
         cell.title.text = currEntry.title
         cell.desc.text = currEntry.desc
         cell.moodImage.image = getEntryMoodImage(currEntry)
+        cell.journalImage.isHidden = true
+        
+        if(currEntry.image != EMPTY_IMAGE){
+            cell.journalImage.load(url: URL(string: currEntry.image)!)
+            cell.journalImage.isHidden = false
+        }     
         
         // Convert date to string
         cell.date.text = currEntry.date.toString("hh.mm")

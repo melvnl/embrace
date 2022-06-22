@@ -105,20 +105,6 @@ class ProfileViewController: UIViewController {
 
 }
 
-extension UIImageView {
-    func load(url: URL) {
-        DispatchQueue.global().async { [weak self] in
-            if let data = try? Data(contentsOf: url) {
-                if let image = UIImage(data: data) {
-                    DispatchQueue.main.async {
-                        self?.image = image
-                    }
-                }
-            }
-        }
-    }
-}
-
 extension UIColor {
     @nonobjc class var TSPrimary: UIColor {
         return UIColor(red:0.85, green:0.11, blue:0.38, alpha:1.0)
