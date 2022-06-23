@@ -48,6 +48,7 @@
 		72C66AFA284F382800261C91 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C66AF9284F382800261C91 /* SignUpViewController.swift */; };
 		72C66AFC284F383900261C91 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C66AFB284F383900261C91 /* LogInViewController.swift */; };
 		72C66AFE284F384F00261C91 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C66AFD284F384F00261C91 /* HomeViewController.swift */; };
+		95460F122862CFC600B73353 /* UIImageView+LoadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95460F112862CFC600B73353 /* UIImageView+LoadImage.swift */; };
 		956733DA2861CECA00A2B20F /* ProfileStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 956733D92861CECA00A2B20F /* ProfileStoryboard.storyboard */; };
 		956733E52861CFD700A2B20F /* MyPostViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 956733DC2861CFD700A2B20F /* MyPostViewController.xib */; };
 		956733E62861CFD700A2B20F /* MyPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956733DD2861CFD700A2B20F /* MyPostViewController.swift */; };
@@ -99,6 +100,7 @@
 		72C66AF9284F382800261C91 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		72C66AFB284F383900261C91 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		72C66AFD284F384F00261C91 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		95460F112862CFC600B73353 /* UIImageView+LoadImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+LoadImage.swift"; sourceTree = "<group>"; };
 		956733D92861CECA00A2B20F /* ProfileStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ProfileStoryboard.storyboard; sourceTree = "<group>"; };
 		956733DC2861CFD700A2B20F /* MyPostViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyPostViewController.xib; sourceTree = "<group>"; };
 		956733DD2861CFD700A2B20F /* MyPostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPostViewController.swift; sourceTree = "<group>"; };
@@ -225,6 +227,7 @@
 				95A1421A28617C7F00567AE9 /* Date+DateComparison.swift */,
 				72602935285AF1FA00644A82 /* UIViewController+BackButton.swift */,
 				72A92CC5284F9CAC00B2F1F4 /* Constants.swift */,
+				95460F112862CFC600B73353 /* UIImageView+LoadImage.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -464,6 +467,7 @@
 				956733EB2861CFD700A2B20F /* ProfileEntry.swift in Sources */,
 				72602932285AE87200644A82 /* UIView+Fade.swift in Sources */,
 				95A142142861788600567AE9 /* JournalViewController.swift in Sources */,
+				95460F122862CFC600B73353 /* UIImageView+LoadImage.swift in Sources */,
 				72602936285AF1FA00644A82 /* UIViewController+BackButton.swift in Sources */,
 				B0FEA0E32845117B00EF8DD9 /* OnboardViewController.swift in Sources */,
 				95A142122861788600567AE9 /* JournalParentVC.swift in Sources */,
