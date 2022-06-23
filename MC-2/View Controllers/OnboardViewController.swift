@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class OnboardViewController: UIViewController {
     
     @IBOutlet weak var signUpButton: UIButton!
     
@@ -29,7 +29,5 @@ class ViewController: UIViewController {
         signUpButton.layer.insertSublayer(gradient, at: 0)
         signUpButton.layer.masksToBounds = true;
     }
-
-
 }
 
