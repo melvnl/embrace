@@ -14,6 +14,9 @@ class TopicViewController: UIViewController {
     let db = Firestore.firestore()
     var categories : [Categories] = []
     
+    var categoryType: String = ""
+    var categorySub: String = ""
+    
     @IBOutlet weak var table: UITableView!
 
     @IBOutlet weak var contentView: UIView!
@@ -51,7 +54,19 @@ class TopicViewController: UIViewController {
             }
             }
         }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+       if segue.identifier == "toTopicDetail" {
+           guard let secondViewController = segue.destination as? TopicDetailController else { return }
+        
+           secondViewController.categoryTitle = "Kehamilan"
+           secondViewController.categoryDocId = categoryType
+           secondViewController.categorySub = categorySub
+       }
     }
+    }
+
 
 extension TopicViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -73,6 +88,34 @@ extension TopicViewController: UITableViewDelegate, UITableViewDataSource {
         headerView.backgroundColor = .clear
         
         return headerView
+    }
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+           print("section: \(indexPath.section)")
+        
+            switch indexPath.section {
+                case 0:
+                    categoryType = Constants.ForumCollections.kehamilan
+                    categorySub = "kehamilan"
+                case 1:
+                    categoryType = Constants.ForumCollections.perawatanBayi
+                    categorySub = "perawatanBayi"
+                case 2:
+                    categoryType = Constants.ForumCollections.pengasuhanAnak
+                    categorySub = "pengasuhanAnak"
+                case 3:
+                    categoryType = Constants.ForumCollections.kesehatanMental
+                    categorySub = "kesehatanMental"
+                case 4:
+                    categoryType = Constants.ForumCollections.pascaMelahirkan
+                    categorySub = "pascaMelahirkan"
+                default:
+                    print("unkown button was tapped")
+                    break;
+        }
+        performSegue(withIdentifier: "toTopicDetail", sender: indexPath.section)
+          
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
