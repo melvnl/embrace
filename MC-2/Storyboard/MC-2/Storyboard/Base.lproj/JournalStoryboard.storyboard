@@ -451,7 +451,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="200" id="8ED-yL-eg7"/>
                                         </constraints>
-                                        <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                         <color key="textColor" red="0.45490196078431372" green="0.45490196078431372" blue="0.45490196078431372" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -754,6 +754,44 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <view contentMode="scaleToFill" id="vIy-Ag-yPK">
+                                <rect key="frame" x="20" y="308" width="374" height="280"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="EmptyJournal" translatesAutoresizingMaskIntoConstraints="NO" id="0T2-fZ-fND">
+                                        <rect key="frame" x="59.5" y="0.0" width="255" height="190"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="255" id="TfH-Vj-RPY"/>
+                                            <constraint firstAttribute="height" constant="190" id="ntO-ed-PVg"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Kamu belum mengisi jurnal" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1CH-Y2-Raf">
+                                        <rect key="frame" x="64" y="208" width="246.5" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Silahkan buat jurnal melalui simbol &quot;tambah&quot; di atas" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dys-MQ-2Fb">
+                                        <rect key="frame" x="60.5" y="240" width="253" height="41.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="dys-MQ-2Fb" secondAttribute="height" multiplier="85:14" id="INh-4G-v9I"/>
+                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="255" id="Rg9-jv-CuA"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <color key="textColor" red="0.4549019608" green="0.4549019608" blue="0.4549019608" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="dys-MQ-2Fb" firstAttribute="top" secondItem="1CH-Y2-Raf" secondAttribute="bottom" constant="8" id="1QY-GY-X2c"/>
+                                    <constraint firstItem="dys-MQ-2Fb" firstAttribute="centerX" secondItem="vIy-Ag-yPK" secondAttribute="centerX" id="8Rh-x3-rxG"/>
+                                    <constraint firstItem="0T2-fZ-fND" firstAttribute="centerX" secondItem="vIy-Ag-yPK" secondAttribute="centerX" id="9u7-Lh-3cg"/>
+                                    <constraint firstItem="0T2-fZ-fND" firstAttribute="top" secondItem="vIy-Ag-yPK" secondAttribute="top" id="RLy-Az-VJJ"/>
+                                    <constraint firstItem="1CH-Y2-Raf" firstAttribute="centerX" secondItem="vIy-Ag-yPK" secondAttribute="centerX" id="piN-e2-wlI"/>
+                                    <constraint firstItem="1CH-Y2-Raf" firstAttribute="top" secondItem="0T2-fZ-fND" secondAttribute="bottom" constant="18" id="wNW-tg-YcY"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="slV-TD-YoM"/>
                         <color key="backgroundColor" red="0.96470588235294119" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>
@@ -767,6 +805,7 @@
                     <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="emptyJournalView" destination="vIy-Ag-yPK" id="WS4-sw-hC2"/>
                         <outlet property="table" destination="TZ7-Zi-g5R" id="qB6-a3-oMu"/>
                     </connections>
                 </viewController>
