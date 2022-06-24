@@ -144,7 +144,7 @@
                             <constraint firstItem="Cer-TX-whm" firstAttribute="bottom" secondItem="R2J-Bl-4xO" secondAttribute="bottom" constant="20" id="y5O-Vx-4xH"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Jurnal" largeTitleDisplayMode="never" id="pQp-DN-3v1">
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="pQp-DN-3v1">
                         <rightBarButtonItems>
                             <barButtonItem image="line.3.horizontal.decrease" catalog="system" id="8jZ-wX-U2R">
                                 <color key="tintColor" systemColor="labelColor"/>

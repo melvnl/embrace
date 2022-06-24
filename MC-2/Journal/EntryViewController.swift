@@ -78,6 +78,7 @@ class EntryViewController: UIViewController, UIImagePickerControllerDelegate, UI
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         navigationItem.backBarButtonItem?.tintColor = UIColor.black
         
+        
         // Check if editing entry
         if(isEditingEntry){
             loadEntryFields()
