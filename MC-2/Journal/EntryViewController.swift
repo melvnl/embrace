@@ -21,6 +21,8 @@ class EntryViewController: UIViewController, UIImagePickerControllerDelegate, UI
     @IBOutlet weak var image: UIImageView!
     @IBOutlet weak var imageDismissButton: UIButton!
 
+    @IBOutlet weak var saveButton: UIButton!
+    
     private var imgData: Data?
     
     // Variables for editing
@@ -32,6 +34,18 @@ class EntryViewController: UIViewController, UIImagePickerControllerDelegate, UI
         
         titleField.becomeFirstResponder()
         navigationItem.largeTitleDisplayMode = .never
+        
+        saveButton.layer.shadowColor = CGColor(red: 208/255, green: 46/255, blue: 75/255, alpha: 1)
+        saveButton.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+        saveButton.layer.shadowOpacity = 1.0
+        saveButton.layer.shadowRadius = 1.0
+        
+        saveButton.layer.cornerRadius = 10
+        let gradient = CAGradientLayer()
+        gradient.colors = [CGColor(red: 255/255, green: 77/255, blue: 109/255, alpha: 1), CGColor(red: 208/255, green: 46/255, blue: 75/255, alpha: 1)]
+        gradient.frame = saveButton.bounds
+        saveButton.layer.insertSublayer(gradient, at: 0)
+        saveButton.layer.masksToBounds = true;
         
         // Change text field broders
         styleTextField(moodDropDown)

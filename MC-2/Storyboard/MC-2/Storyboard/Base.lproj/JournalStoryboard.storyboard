@@ -198,21 +198,27 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e7h-aC-Kvp">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e7h-aC-Kvp">
                                 <rect key="frame" x="20" y="791" width="374" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="rke-JD-mT2"/>
                                 </constraints>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled">
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Button">
                                     <attributedString key="attributedTitle">
                                         <fragment content="Simpan jurnal">
                                             <attributes>
+                                                <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <font key="NSFont" size="16" name="SFPro-Semibold"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                             </attributes>
                                         </fragment>
                                     </attributedString>
-                                    <color key="baseBackgroundColor" red="0.81568627450980391" green="0.1803921568627451" blue="0.29411764705882354" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleColor" red="0.96470588239999999" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <buttonConfiguration key="configuration" style="filled" title="Simpan jurnal">
+                                    <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="16"/>
+                                    <color key="baseBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="didTapSave:" destination="pph-ZJ-wAc" eventType="touchUpInside" id="eZs-h4-Hj6"/>
@@ -380,6 +386,7 @@
                         <outlet property="imageContainer" destination="bSD-nv-NIn" id="eFk-Tl-oeR"/>
                         <outlet property="imageDismissButton" destination="tjt-dw-zBH" id="upa-9k-n3f"/>
                         <outlet property="moodDropDown" destination="8ZX-5K-1jL" id="k6e-9S-KvZ"/>
+                        <outlet property="saveButton" destination="e7h-aC-Kvp" id="DOD-B9-SDK"/>
                         <outlet property="titleField" destination="TXs-hQ-nKw" id="I1g-ph-UV7"/>
                     </connections>
                 </viewController>
@@ -498,21 +505,27 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="puW-NL-FLp">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="puW-NL-FLp">
                                 <rect key="frame" x="20" y="791" width="374" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="dSK-ok-SjH"/>
                                 </constraints>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled">
+                                <color key="tintColor" red="0.96470588239999999" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal">
                                     <attributedString key="attributedTitle">
                                         <fragment content="Simpan jurnal">
                                             <attributes>
+                                                <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                 <font key="NSFont" size="16" name="SFPro-Semibold"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                             </attributes>
                                         </fragment>
                                     </attributedString>
-                                    <color key="baseBackgroundColor" red="0.81568627449999997" green="0.18039215689999999" blue="0.29411764709999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <buttonConfiguration key="configuration" style="filled" title="Simpan jurnal">
+                                    <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="16"/>
+                                    <color key="baseBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="didTapSave:" destination="jka-uu-cEJ" eventType="touchUpInside" id="FAm-TB-WP5"/>
@@ -680,6 +693,7 @@
                         <outlet property="imageContainer" destination="0Yc-Ai-LhZ" id="ly5-zn-hyO"/>
                         <outlet property="imageDismissButton" destination="nFH-rv-4ea" id="qk8-lu-YTM"/>
                         <outlet property="moodDropDown" destination="xGJ-45-7Ph" id="fCF-hs-pk0"/>
+                        <outlet property="saveButton" destination="puW-NL-FLp" id="fPg-DL-wNA"/>
                         <outlet property="titleField" destination="1k1-io-vhN" id="ipL-xa-XkS"/>
                     </connections>
                 </viewController>
