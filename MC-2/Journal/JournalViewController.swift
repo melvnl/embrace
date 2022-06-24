@@ -34,6 +34,7 @@ class JournalViewController: JournalParentVC, UITableViewDelegate, UITableViewDa
         table.dataSource = self
         
         setBarTitle("Jurnal")
+        navigationController?.navigationBar.barTintColor = .white
         
     }
     
