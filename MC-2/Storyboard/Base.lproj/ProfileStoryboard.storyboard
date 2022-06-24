@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Profile View Controller-->
+        <!--Profil-->
         <scene sceneID="nqo-9t-Rhg">
             <objects>
-                <viewController id="YQ6-7y-VIv" customClass="ProfileViewController" customModule="MC_2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Profil" id="YQ6-7y-VIv" customClass="ProfileViewController" customModule="MC_2" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4Ln-aA-FWl">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -128,7 +128,7 @@
         <!--Edit Profil-->
         <scene sceneID="6TF-xb-0Cz">
             <objects>
-                <viewController storyboardIdentifier="EditProfile" id="UNe-Wr-hzo" customClass="EditProfileViewController" customModule="MC_2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EditProfile" title="Edit Profil" id="UNe-Wr-hzo" customClass="EditProfileViewController" customModule="MC_2" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="iav-ju-50V">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -298,17 +298,8 @@
                             <constraint firstItem="RIb-N5-NX1" firstAttribute="leading" secondItem="6fK-K2-oaY" secondAttribute="leading" constant="20" id="eRp-yb-sV1"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Edit Profil" id="t2y-ts-RRi">
-                        <barButtonItem key="leftBarButtonItem" image="chevron.left" catalog="system" id="fHe-FJ-rFN">
-                            <color key="tintColor" red="0.22745098039215686" green="0.22745098039215686" blue="0.22745098039215686" alpha="1" colorSpace="calibratedRGB"/>
-                            <connections>
-                                <action selector="goToProfile:" destination="UNe-Wr-hzo" id="Rfk-z7-F8z"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
                     <connections>
                         <outlet property="addImgBtn" destination="4aR-0Q-8kb" id="0w3-iS-U4w"/>
-                        <outlet property="backtoProfileBtn" destination="fHe-FJ-rFN" id="eRj-6k-fOb"/>
                         <outlet property="descTxtField" destination="zTa-w7-rWc" id="ose-6y-zTZ"/>
                         <outlet property="dismissBtn" destination="VuA-5g-meH" id="ekH-XI-I4n"/>
                         <outlet property="editImg" destination="7tO-gC-YkR" id="Rjv-FH-KoZ"/>
@@ -396,7 +387,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="chevron.left" catalog="system" width="96" height="128"/>
         <image name="forumEmpty" width="256" height="322"/>
         <image name="onboardImage" width="390" height="418"/>
         <image name="pencil" catalog="system" width="128" height="113"/>
