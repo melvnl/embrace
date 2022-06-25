@@ -78,6 +78,8 @@
 		95A142152861788600567AE9 /* FilterGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A1420C2861788600567AE9 /* FilterGroupCell.swift */; };
 		95A142162861788600567AE9 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A1420D2861788600567AE9 /* FilterViewController.swift */; };
 		95A1421B28617C7F00567AE9 /* Date+DateComparison.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A1421A28617C7F00567AE9 /* Date+DateComparison.swift */; };
+		B05D1C7E28655CDA00CB3465 /* TableDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05D1C7C28655CDA00CB3465 /* TableDetailCell.swift */; };
+		B05D1C7F28655CDA00CB3465 /* TableDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B05D1C7D28655CDA00CB3465 /* TableDetailCell.xib */; };
 		B0A5C39428590ADA00865632 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A5C39328590ADA00865632 /* TableViewCell.swift */; };
 		B0A7C4E828531F5600144E6D /* VerificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A7C4E728531F5600144E6D /* VerificationController.swift */; };
 		B0FEA0DF2845117B00EF8DD9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FEA0DE2845117B00EF8DD9 /* AppDelegate.swift */; };
@@ -133,6 +135,8 @@
 		95A1420D2861788600567AE9 /* FilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		95A1421A28617C7F00567AE9 /* Date+DateComparison.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+DateComparison.swift"; sourceTree = "<group>"; };
 		B02330F228597F230037A81B /* TopicRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicRepository.swift; sourceTree = "<group>"; };
+		B05D1C7C28655CDA00CB3465 /* TableDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableDetailCell.swift; sourceTree = "<group>"; };
+		B05D1C7D28655CDA00CB3465 /* TableDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableDetailCell.xib; sourceTree = "<group>"; };
 		B0A5C39328590ADA00865632 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		B0A7C4E728531F5600144E6D /* VerificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationController.swift; sourceTree = "<group>"; };
 		B0FEA0DB2845117B00EF8DD9 /* MC-2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MC-2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -257,6 +261,7 @@
 		950D37EE28640E3800F598E1 /* Topic */ = {
 			isa = PBXGroup;
 			children = (
+				B05D1C7B28655CB300CB3465 /* TopicCell */,
 				950D37EF28640E3800F598E1 /* TopicViewController.swift */,
 				950D37F028640E3800F598E1 /* CategoriesDetail.swift */,
 				950D37F128640E3800F598E1 /* Categories.swift */,
@@ -320,6 +325,15 @@
 			name = Journal;
 			path = "MC-2/Journal";
 			sourceTree = SOURCE_ROOT;
+		};
+		B05D1C7B28655CB300CB3465 /* TopicCell */ = {
+			isa = PBXGroup;
+			children = (
+				B05D1C7C28655CDA00CB3465 /* TableDetailCell.swift */,
+				B05D1C7D28655CDA00CB3465 /* TableDetailCell.xib */,
+			);
+			path = TopicCell;
+			sourceTree = "<group>";
 		};
 		B0FEA0D22845117B00EF8DD9 = {
 			isa = PBXGroup;
@@ -454,6 +468,7 @@
 				72A6D3E42862CB9900150CB0 /* ForumTableViewCell.xib in Resources */,
 				956733E52861CFD700A2B20F /* MyPostViewController.xib in Resources */,
 				956733E82861CFD700A2B20F /* SavedViewController.xib in Resources */,
+				B05D1C7F28655CDA00CB3465 /* TableDetailCell.xib in Resources */,
 				B0FEA0E82845117C00EF8DD9 /* Assets.xcassets in Resources */,
 				B0FEA0E62845117B00EF8DD9 /* Main.storyboard in Resources */,
 				950D37EC28640C3700F598E1 /* TopicDetailStoryboard.storyboard in Resources */,
@@ -479,6 +494,7 @@
 				72602936285AF1FA00644A82 /* UIViewController+BackButton.swift in Sources */,
 				B0FEA0E32845117B00EF8DD9 /* OnboardViewController.swift in Sources */,
 				95A142122861788600567AE9 /* JournalParentVC.swift in Sources */,
+				B05D1C7E28655CDA00CB3465 /* TableDetailCell.swift in Sources */,
 				95A141F5286177CD00567AE9 /* JournalRepository.swift in Sources */,
 				95A142112861788600567AE9 /* EntryDetailViewController.swift in Sources */,
 				B0FEA0DF2845117B00EF8DD9 /* AppDelegate.swift in Sources */,

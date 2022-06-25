@@ -111,27 +111,27 @@ class LogInViewController: UIViewController {
         let password = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         
         //Signing in the user
-        Auth.auth().signIn(withEmail: email, password: password) { result, error in
-            if error != nil {
-                //Could not signin
-
-                self.errorLabel.text = error!.localizedDescription
-                self.errorLabel.alpha = 1
-            }else{
-                let user = result?.user
-
-                if(user?.isEmailVerified == true) {
+//        Auth.auth().signIn(withEmail: email, password: password) { result, error in
+//            if error != nil {
+//                //Could not signin
+//
+//                self.errorLabel.text = error!.localizedDescription
+//                self.errorLabel.alpha = 1
+//            }else{
+//                let user = result?.user
+//
+//                if(user?.isEmailVerified == true) {
                     let homeViewController = self.storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.homeViewController) as? UITabBarController
                     
                     self.view.window?.rootViewController = homeViewController
                     self.view.window?.makeKeyAndVisible()
-                }
-                else{
-                    self.errorLabel.text = "email belum terverifikasi"
-                    self.errorLabel.alpha = 1
-                }
-            }
-        }
+//                }
+//                else{
+//                    self.errorLabel.text = "email belum terverifikasi"
+//                    self.errorLabel.alpha = 1
+//                }
+//            }
+//        }
     }
     
     @IBAction func buatAkunTapped(_ sender: Any){

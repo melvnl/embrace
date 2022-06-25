@@ -6,13 +6,17 @@
 //
 
 import Foundation
-
-import Foundation
 import UIKit
 
 struct CategoriesDetail{
-    var title = ""
+    var categoryTitle = ""
+    var forumTitle = ""
     var thumbnail = ""
     var desc = ""
-    var date = ""
+    var date = Date.now
+    
+    var accName = ""
+    var accUsername = ""
+    var accComments = ""
+    var accAvatar = ""
 }
