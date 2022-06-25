@@ -65,6 +65,7 @@
 		956733EA2861CFD700A2B20F /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956733E22861CFD700A2B20F /* EditProfileViewController.swift */; };
 		956733EB2861CFD700A2B20F /* ProfileEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956733E32861CFD700A2B20F /* ProfileEntry.swift */; };
 		956733EC2861CFD700A2B20F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956733E42861CFD700A2B20F /* ProfileViewController.swift */; };
+		958CCEAC2866BD9C00C3F565 /* UIViewController+LoadingSpinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958CCEAB2866BD9C00C3F565 /* UIViewController+LoadingSpinner.swift */; };
 		9595296228656B0B00D59D4B /* UIViewController+SetBarTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9595296128656B0B00D59D4B /* UIViewController+SetBarTitle.swift */; };
 		95A141F5286177CD00567AE9 /* JournalRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A141F4286177CD00567AE9 /* JournalRepository.swift */; };
 		95A142022861786B00567AE9 /* ProfilePostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95A142002861786B00567AE9 /* ProfilePostCell.xib */; };
@@ -120,6 +121,7 @@
 		956733E22861CFD700A2B20F /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		956733E32861CFD700A2B20F /* ProfileEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileEntry.swift; sourceTree = "<group>"; };
 		956733E42861CFD700A2B20F /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		958CCEAB2866BD9C00C3F565 /* UIViewController+LoadingSpinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+LoadingSpinner.swift"; sourceTree = "<group>"; };
 		9595296128656B0B00D59D4B /* UIViewController+SetBarTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+SetBarTitle.swift"; sourceTree = "<group>"; };
 		95A141F4286177CD00567AE9 /* JournalRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JournalRepository.swift; sourceTree = "<group>"; };
 		95A142002861786B00567AE9 /* ProfilePostCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfilePostCell.xib; sourceTree = "<group>"; };
@@ -238,6 +240,7 @@
 				72A92CC5284F9CAC00B2F1F4 /* Constants.swift */,
 				95460F112862CFC600B73353 /* UIImageView+LoadImage.swift */,
 				9595296128656B0B00D59D4B /* UIViewController+SetBarTitle.swift */,
+				958CCEAB2866BD9C00C3F565 /* UIViewController+LoadingSpinner.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -485,6 +488,7 @@
 				95A141F5286177CD00567AE9 /* JournalRepository.swift in Sources */,
 				95A142112861788600567AE9 /* EntryDetailViewController.swift in Sources */,
 				B0FEA0DF2845117B00EF8DD9 /* AppDelegate.swift in Sources */,
+				958CCEAC2866BD9C00C3F565 /* UIViewController+LoadingSpinner.swift in Sources */,
 				9595296228656B0B00D59D4B /* UIViewController+SetBarTitle.swift in Sources */,
 				72602934285AEDE800644A82 /* EntryForum.swift in Sources */,
 				956733EA2861CFD700A2B20F /* EditProfileViewController.swift in Sources */,

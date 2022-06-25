@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-struct Entry{
+struct Entry : Equatable{
     var id = ""
     var title = ""
     var desc = ""

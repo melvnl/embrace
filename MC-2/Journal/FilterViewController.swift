@@ -11,26 +11,21 @@ import UIKit
 class FilterViewController : JournalParentVC, UITableViewDelegate, UITableViewDataSource{
     
     public var filteredEntries : [FilterGroup] = []
-    public var filterType: JournalFilterType?
     let cellReuseIdentifier = "FilterGroupCell"
     
     @IBOutlet weak var emptyJournalView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        emptyJournalView.isHidden = false
         // Remove current vc stack
         if let rootVC = navigationController?.viewControllers.first {
                 navigationController?.viewControllers = [rootVC, self]
             }
         
         setBarTitle("Jurnal")
+        emptyJournalView.isHidden = true
         title=""
         navigationController?.navigationBar.barTintColor = .white
-        
-        table.isHidden = false
-        table.delegate = self
-        table.dataSource = self
         
         // create bar item buttons
         let addBarButton = UIBarButtonItem(title: "", style: .plain, target: self, action: #selector(self.didTapNewNote(_:)))
@@ -49,6 +44,8 @@ class FilterViewController : JournalParentVC, UITableViewDelegate, UITableViewDa
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        emptyJournalView.isHidden = true
+        showSpinner(onView: self.view)
         journalRepo.fetchJournals { (entries) -> Void in
             self.filteredEntries = []
             self.entries = entries
@@ -92,6 +89,7 @@ class FilterViewController : JournalParentVC, UITableViewDelegate, UITableViewDa
             previousEntry = currEntry
         }
         
+        removeSpinner()
         table.delegate = self
         table.dataSource = self
         table.reloadData()
@@ -149,10 +147,10 @@ class FilterViewController : JournalParentVC, UITableViewDelegate, UITableViewDa
     
     func numberOfSections(in tableView: UITableView) -> Int {
         if (filteredEntries.count > 0){
-            emptyJournalView.isHidden = true
             return filteredEntries.count
         }
         
+        emptyJournalView.isHidden = false
         return 0
     }
     
