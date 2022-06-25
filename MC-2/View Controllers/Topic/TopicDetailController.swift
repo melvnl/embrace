@@ -133,6 +133,10 @@ extension TopicDetailController: UITableViewDelegate, UITableViewDataSource {
         return headerView
     }
     
+//    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+//
+//    }
+    
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
            print("section: \(indexPath.section)")
@@ -143,7 +147,6 @@ extension TopicDetailController: UITableViewDelegate, UITableViewDataSource {
         
         let detail = categoriesDetail[indexPath.section]
         let cell = tableView.dequeueReusableCell(withIdentifier: "topicDetailCellId", for: indexPath) as! TableDetailCell
-//        cell.desc.text = detail.desc
         
         //forum
         cell.forumTitle.text = detail.forumTitle
@@ -154,8 +157,8 @@ extension TopicDetailController: UITableViewDelegate, UITableViewDataSource {
         cell.categoryTitle.setTitle(detail.categoryTitle, for: .normal)
 
         //avatar
-//        cell.accName.text = detail.accName
-//        cell.accUsername.text = detail.accUsername
+        cell.accName.text = detail.accName
+        cell.accUsername.text = detail.accUsername
         let imgUrl = URL(string: detail.accAvatar )!
         cell.accAvatar.load(url: imgUrl)
         
