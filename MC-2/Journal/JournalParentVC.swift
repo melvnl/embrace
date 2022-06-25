@@ -13,6 +13,7 @@ class JournalParentVC : UIViewController{
     
     @IBOutlet weak var table: UITableView!
     var entries: [Entry] = []
+    public var filterType: JournalFilterType?
     let cellSpacingHeight: CGFloat = 3
     let headerCellSpacingHeight: CGFloat = 30
     let footerCellSpacingHeight: CGFloat = 30
@@ -48,15 +49,21 @@ class JournalParentVC : UIViewController{
             }))
 
         alert.addAction(UIAlertAction(title: "Minggu", style: .default , handler:{ (UIAlertAction)in
-            self.goToFilteredJournals(.week)
+            if(self.filterType != .week){
+                self.goToFilteredJournals(.week)
+            }
             }))
         
         alert.addAction(UIAlertAction(title: "Bulan", style: .default , handler:{ (UIAlertAction)in
-            self.goToFilteredJournals(.month)
+            if(self.filterType != .month){
+                self.goToFilteredJournals(.month)
+            }
             }))
             
         alert.addAction(UIAlertAction(title: "Tahun", style: .default, handler:{ (UIAlertAction)in
-            self.goToFilteredJournals(.year)
+            if(self.filterType != .year){
+                self.goToFilteredJournals(.year)
+            }
             }))
         
         alert.addAction(UIAlertAction(title: "Batal", style: .cancel, handler:{ (UIAlertAction)in

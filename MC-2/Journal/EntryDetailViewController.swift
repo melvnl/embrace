@@ -104,6 +104,7 @@ class EntryDetailViewController: UIViewController {
             
             // Update in firestore
             journalRepo.updateJournal(id: currEntry!.id, entry: currEntry!)
+            
             navigationController?.popViewController(animated: true)
         }
         

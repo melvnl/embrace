@@ -13,6 +13,7 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 import FirebaseAuth
 import Firebase
+import simd
 
 @available(iOS 15.0, *)
 class JournalViewController: JournalParentVC, UITableViewDelegate, UITableViewDataSource {
@@ -29,6 +30,7 @@ class JournalViewController: JournalParentVC, UITableViewDelegate, UITableViewDa
         
         super.viewDidLoad()
         
+        emptyJournalView.isHidden = true
         table.isHidden = false
         table.delegate = self
         table.dataSource = self
@@ -43,28 +45,43 @@ class JournalViewController: JournalParentVC, UITableViewDelegate, UITableViewDa
     }
     
     func fillTable(){
-        journalRepo.fetchJournals { (entries) -> Void in
-            DispatchQueue.main.async { [self] in
-                self.entries = entries
-                
-                if(isFiltered){
-                    var filteredEntries : [Entry] = []
-                    emptyJournalView.isHidden = true
-                    for entry in entries {
-                        if entry.date >= filterInterval!.start && entry.date <= filterInterval!.end {
-                            filteredEntries.append(entry)
-                        }
-                    }
-                    self.entries = filteredEntries
-                }
-                
-                table.dataSource = self
-                table.delegate = self
-                table.isHidden = false
-                table.reloadData()
-                
-                emptyJournalView.isHidden = entries.count > 0 ? true : false
+        
+        var newEntries : [Entry] = []
+        let group = DispatchGroup()
+        group.enter()
+        
+        DispatchQueue.main.async{
+            self.showSpinner(onView: self.view)
+            journalRepo.fetchJournals { (entries) -> Void in
+                newEntries = entries
+                group.leave()
             }
+        }
+        
+        group.notify(queue: .main){ [self] in
+            if(newEntries == entries){
+                removeSpinner()
+                return
+            }
+            entries = newEntries
+            removeSpinner()
+            if(isFiltered){
+                var filteredEntries : [Entry] = []
+                emptyJournalView.isHidden = true
+                for entry in entries {
+                    if entry.date >= filterInterval!.start && entry.date <= filterInterval!.end {
+                        filteredEntries.append(entry)
+                    }
+                }
+                self.entries = filteredEntries
+            }
+            
+            table.dataSource = self
+            table.delegate = self
+            table.isHidden = false
+            table.reloadData()
+            
+            emptyJournalView.isHidden = entries.count > 0 ? true : false
         }
     }
 
