@@ -24,6 +24,10 @@ class FilterViewController : JournalParentVC, UITableViewDelegate, UITableViewDa
                 navigationController?.viewControllers = [rootVC, self]
             }
         
+        setBarTitle("Jurnal")
+        title=""
+        navigationController?.navigationBar.barTintColor = .white
+        
         table.isHidden = false
         table.delegate = self
         table.dataSource = self

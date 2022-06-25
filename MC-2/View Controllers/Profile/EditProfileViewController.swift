@@ -52,9 +52,6 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         editProfilBtn.layer.insertSublayer(gradient, at: 0)
         editProfilBtn.layer.masksToBounds = true;
         
-//        editImg.layer.cornerRadius = 10
-//        editImg.clipsToBounds = true
-        
         styleTextField(usernameTxtField)
         styleTextField(nameTxtField)
         styleTextField(descTxtField)
@@ -90,11 +87,6 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
             }
         })
     }
-    
-    @IBAction func goToProfile(_ sender: UIBarButtonItem) {
-        
-    }
-    
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
 //        show image

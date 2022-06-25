@@ -34,6 +34,7 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        title = "Profil"
         profileSection.backgroundColor = .clear
         profileSection.tintColor = .clear
 
@@ -68,14 +69,24 @@ class ProfileViewController: UIViewController {
     }
     
     @IBAction func didTapEdit(_ sender: Any) {
-        profileRepo.fetchCurrentUser { [self] (currUser) -> Void in
-            let user = ProfileEntry(
-                username: currUser.username,
-                name: currUser.name,
-                description: currUser.description,
-                avatar: currUser.avatar)
-            
-            guard let vc = (storyboard?.instantiateViewController(withIdentifier: "EditProfile") as? EditProfileViewController) else{
+        let group = DispatchGroup()
+        group.enter()
+
+        var user : ProfileEntry?
+        
+        DispatchQueue.main.async {
+            profileRepo.fetchCurrentUser { (currUser) -> Void in
+                user = ProfileEntry(
+                    username: currUser.username,
+                    name: currUser.name,
+                    description: currUser.description,
+                    avatar: currUser.avatar)
+                group.leave()
+            }
+        }
+
+        group.notify(queue: .main) {
+            guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "EditProfile") as? EditProfileViewController else{
                 return
             }
             
@@ -85,11 +96,12 @@ class ProfileViewController: UIViewController {
             }
             
             vc.currProfileEntry = user
-            navigationController?.pushViewController(vc, animated: true)
-            
+            self.setBackBarItem()
+            self.navigationController?.pushViewController(vc, animated: true)
         }
+        
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         loadProfile()
     }

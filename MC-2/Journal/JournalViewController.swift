@@ -23,6 +23,8 @@ class JournalViewController: JournalParentVC, UITableViewDelegate, UITableViewDa
     var isFiltered = false
     var filterInterval : DateInterval?
     
+    @IBOutlet weak var titleLabel: UIBarButtonItem!
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -30,6 +32,9 @@ class JournalViewController: JournalParentVC, UITableViewDelegate, UITableViewDa
         table.isHidden = false
         table.delegate = self
         table.dataSource = self
+        
+        setBarTitle("Jurnal")
+        navigationController?.navigationBar.barTintColor = .white
         
     }
     
