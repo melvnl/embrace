@@ -135,14 +135,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Dl-Z5-S6N">
-                                <rect key="frame" x="20" y="51" width="46" height="31"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="arrow.left" catalog="system"/>
-                                <connections>
-                                    <action selector="backBtnTapped:" destination="yNo-r4-LuU" eventType="touchUpInside" id="bO9-dk-v6O"/>
-                                </connections>
-                            </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="62J-PL-z3W">
                                 <rect key="frame" x="0.0" y="90" width="414" height="772"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -151,6 +143,15 @@
                                     <outlet property="delegate" destination="yNo-r4-LuU" id="lbK-Ov-Mgl"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Dl-Z5-S6N">
+                                <rect key="frame" x="20" y="51" width="37" height="31"/>
+                                <color key="tintColor" red="0.22745098039215686" green="0.22745098039215686" blue="0.22745098039215686" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="chevron.left" catalog="system"/>
+                                <connections>
+                                    <action selector="backBtnTapped:" destination="yNo-r4-LuU" eventType="touchUpInside" id="bO9-dk-v6O"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="x9E-FE-yLk"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -178,7 +179,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="arrow.left" catalog="system" width="128" height="98"/>
+        <image name="chevron.left" catalog="system" width="96" height="128"/>
         <image name="newspaper" width="28.5" height="28"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

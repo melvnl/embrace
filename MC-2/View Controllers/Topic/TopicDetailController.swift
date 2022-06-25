@@ -43,9 +43,13 @@ class TopicDetailController: UIViewController {
         
         tableView.separatorColor = UIColor.clear
     
-        tableView.tableFooterView = UIView.init(frame: .zero)
+//        tableView.tableFooterView = UIView.init(frame: .zero)
         
+//        tableView.contentInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: -20);
+
         tableView.register(UINib(nibName: "TableDetailCell", bundle: nil), forCellReuseIdentifier: "topicDetailCellId")
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 497
         
         topicTitle.text = categoryTitle;
         
@@ -114,12 +118,12 @@ extension TopicDetailController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         let height: CGFloat = 1
-        
+
         return height
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 437;
+        return 497;
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -139,9 +143,6 @@ extension TopicDetailController: UITableViewDelegate, UITableViewDataSource {
         
         let detail = categoriesDetail[indexPath.section]
         let cell = tableView.dequeueReusableCell(withIdentifier: "topicDetailCellId", for: indexPath) as! TableDetailCell
-        
-//        table.layer.cornerRadius = 10
-//        cell.title.text = detail.title
 //        cell.desc.text = detail.desc
         
         //forum
@@ -153,13 +154,13 @@ extension TopicDetailController: UITableViewDelegate, UITableViewDataSource {
         cell.categoryTitle.setTitle(detail.categoryTitle, for: .normal)
 
         //avatar
-        cell.accName.text = detail.accName
-        cell.accUsername.text = detail.accUsername
+//        cell.accName.text = detail.accName
+//        cell.accUsername.text = detail.accUsername
         let imgUrl = URL(string: detail.accAvatar )!
         cell.accAvatar.load(url: imgUrl)
         
-        cell.layer.masksToBounds = true
-        cell.layer.cornerRadius = 10
+//        cell.layer.masksToBounds = true
+//        cell.layer.cornerRadius = 10
         
         return cell
     }
