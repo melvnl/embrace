@@ -310,7 +310,7 @@
                                                     <attributedString key="attributedTitle">
                                                         <fragment content="Tambahkan gambar">
                                                             <attributes>
-                                                                <font key="NSFont" size="16" name="SFPro-Regular"/>
+                                                                <font key="NSFont" metaFont="system" size="16"/>
                                                             </attributes>
                                                         </fragment>
                                                     </attributedString>
@@ -617,7 +617,7 @@
                                                     <attributedString key="attributedTitle">
                                                         <fragment content="Tambahkan gambar">
                                                             <attributes>
-                                                                <font key="NSFont" size="16" name="SFPro-Regular"/>
+                                                                <font key="NSFont" metaFont="system" size="16"/>
                                                             </attributes>
                                                         </fragment>
                                                     </attributedString>
