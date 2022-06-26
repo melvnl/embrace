@@ -40,12 +40,7 @@ class TopicDetailController: UIViewController {
         
         tableView.delegate = self
         tableView.dataSource = self
-        
         tableView.separatorColor = UIColor.clear
-    
-//        tableView.tableFooterView = UIView.init(frame: .zero)
-        
-//        tableView.contentInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: -20);
 
         tableView.register(UINib(nibName: "TableDetailCell", bundle: nil), forCellReuseIdentifier: "topicDetailCellId")
         tableView.rowHeight = UITableView.automaticDimension
@@ -54,6 +49,7 @@ class TopicDetailController: UIViewController {
         topicTitle.text = categoryTitle;
         
         // header
+        // ini jangan di apus dl yak
 //        let docHeader = db.collection("forum").document(categoryDocId).getDocument { (docSnapshot, error) in
 //            if let doc = docSnapshot {
 //                let title = doc.get("category") as? String ?? ""
@@ -73,20 +69,18 @@ class TopicDetailController: UIViewController {
 //        }
         
         //detail
-        let docRef = db.collection("forum").document(categoryDocId).collection(categorySub)
-        docRef.getDocuments() { (querySnapshot, err) in
+        let docRef = db.collection("forums")
+        docRef.whereField("category", isEqualTo: categoryDocId).getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
             } else {
                     for document in querySnapshot!.documents {
-                        
-                        print(document.documentID)
 
                         let currEntry = CategoriesDetail(
-                            categoryTitle: document.get("categoryTitle")! as! String,
-                            forumTitle: document.get("title")! as! String,
-                            thumbnail: document.get("thumbnail") as? String ?? "",
-                            desc: document.get("desc")! as! String,
+                            categoryTitle: document.get("category")! as! String,
+                            forumTitle: document.get("forumTitle")! as! String,
+                            thumbnail: document.get("forumThumbnail") as? String ?? "",
+                            desc: document.get("forumDesc")! as! String,
                             date: (document.get("date")! as! Timestamp).dateValue(),
                             accName: document.get("authorName")! as! String,
                             accUsername: document.get("authorUsername")! as! String,
@@ -102,8 +96,6 @@ class TopicDetailController: UIViewController {
             }
             }
     }
-
-
 }
 
 extension TopicDetailController: UITableViewDelegate, UITableViewDataSource {
@@ -133,10 +125,6 @@ extension TopicDetailController: UITableViewDelegate, UITableViewDataSource {
         return headerView
     }
     
-//    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-//
-//    }
-    
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
            print("section: \(indexPath.section)")
@@ -161,9 +149,6 @@ extension TopicDetailController: UITableViewDelegate, UITableViewDataSource {
         cell.accUsername.text = detail.accUsername
         let imgUrl = URL(string: detail.accAvatar )!
         cell.accAvatar.load(url: imgUrl)
-        
-//        cell.layer.masksToBounds = true
-//        cell.layer.cornerRadius = 10
         
         return cell
     }
