@@ -17,11 +17,12 @@ struct Constants {
     }
     
     struct ForumCollections {
-        static let kehamilan = "kehamilan"
+        static let kehamilan = "Kehamilan"
         static let perawatanBayi = "Perawatan Bayi"
         static let pengasuhanAnak = "Pengasuhan Anak"
         static let kesehatanMental = "Kesehatan Mental"
         static let pascaMelahirkan = "Pasca Melahirkan"
+        static let lainnya = "Lainnya"
     }
     
 }

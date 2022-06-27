@@ -31,7 +31,7 @@ class TopicViewController: UIViewController {
     
         self.table.tableFooterView = UIView.init(frame: .zero)
         
-        let docRef = db.collection("forum")
+        let docRef = db.collection("forumCategory")
 
         docRef.getDocuments() { (querySnapshot, err) in
             if let err = err {
@@ -60,7 +60,7 @@ class TopicViewController: UIViewController {
        if segue.identifier == "toTopicDetail" {
            guard let secondViewController = segue.destination as? TopicDetailController else { return }
         
-           secondViewController.categoryTitle = "Kehamilan"
+//           secondViewController.categoryTitle = "Kehamilan"
            secondViewController.categoryDocId = categoryType
            secondViewController.categorySub = categorySub
        }
@@ -97,19 +97,22 @@ extension TopicViewController: UITableViewDelegate, UITableViewDataSource {
             switch indexPath.section {
                 case 0:
                     categoryType = Constants.ForumCollections.kehamilan
-                    categorySub = "kehamilan"
+                    categorySub = "Kehamilan"
                 case 1:
                     categoryType = Constants.ForumCollections.perawatanBayi
-                    categorySub = "perawatanBayi"
+                    categorySub = "Perawatan Bayi"
                 case 2:
-                    categoryType = Constants.ForumCollections.pengasuhanAnak
-                    categorySub = "pengasuhanAnak"
-                case 3:
                     categoryType = Constants.ForumCollections.kesehatanMental
-                    categorySub = "kesehatanMental"
-                case 4:
+                    categorySub = "Kesehatan Mental"
+                case 3:
                     categoryType = Constants.ForumCollections.pascaMelahirkan
-                    categorySub = "pascaMelahirkan"
+                    categorySub = "Pasca Melahirkan"
+                case 4:
+                    categoryType = Constants.ForumCollections.pengasuhanAnak
+                    categorySub = "Pengasuhan Anak"
+                case 5:
+                    categoryType = Constants.ForumCollections.lainnya
+                    categorySub = "Lainnya"
                 default:
                     print("unkown button was tapped")
                     break;

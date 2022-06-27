@@ -46,7 +46,7 @@ class TopicDetailController: UIViewController {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 497
         
-        topicTitle.text = categoryTitle;
+        topicTitle.text = categorySub;
         
         // header
         // ini jangan di apus dl yak
@@ -69,6 +69,8 @@ class TopicDetailController: UIViewController {
 //        }
         
         //detail
+        print("test")
+        print(categoryDocId)
         let docRef = db.collection("forums")
         docRef.whereField("category", isEqualTo: categoryDocId).getDocuments() { (querySnapshot, err) in
             if let err = err {
@@ -143,6 +145,7 @@ extension TopicDetailController: UITableViewDelegate, UITableViewDataSource {
         let forumImgUrl = URL(string: detail.thumbnail )!
         cell.forumThumbnail.load(url: forumImgUrl)
         cell.categoryTitle.setTitle(detail.categoryTitle, for: .normal)
+//        cell.categoryTitle.titleLabel?.font = UIFont(name:"SF Pro", size: 10.0)
 
         //avatar
         cell.accName.text = detail.accName
