@@ -144,6 +144,8 @@ extension TopicDetailController: UITableViewDelegate, UITableViewDataSource {
         cell.date.text = detail.date.toString("MMM d, yyyy")
         let forumImgUrl = URL(string: detail.thumbnail )!
         cell.forumThumbnail.load(url: forumImgUrl)
+        cell.forumThumbnail.layer.cornerRadius = 10
+        cell.forumThumbnail.layer.masksToBounds = true
         cell.categoryTitle.setTitle(detail.categoryTitle, for: .normal)
 //        cell.categoryTitle.titleLabel?.font = UIFont(name:"SF Pro", size: 10.0)
 
@@ -152,6 +154,8 @@ extension TopicDetailController: UITableViewDelegate, UITableViewDataSource {
         cell.accUsername.text = detail.accUsername
         let imgUrl = URL(string: detail.accAvatar )!
         cell.accAvatar.load(url: imgUrl)
+        cell.accAvatar.layer.cornerRadius = cell.accAvatar.frame.height / 2
+        cell.accAvatar.clipsToBounds = true
         
         return cell
     }
