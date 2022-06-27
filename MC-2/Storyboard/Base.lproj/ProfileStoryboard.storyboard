@@ -341,19 +341,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="470"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="onboardImage" translatesAutoresizingMaskIntoConstraints="NO" id="pzn-dd-qd9">
-                                <rect key="frame" x="0.0" y="0.0" width="390" height="470"/>
-                            </imageView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Ayt-Zi-Sg2">
+                                <rect key="frame" x="0.0" y="44" width="390" height="426"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="xz7-0B-Obx"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="pzn-dd-qd9" firstAttribute="centerX" secondItem="NZP-nM-pyo" secondAttribute="centerX" id="TPQ-G2-h2e"/>
-                            <constraint firstItem="pzn-dd-qd9" firstAttribute="centerY" secondItem="NZP-nM-pyo" secondAttribute="centerY" id="Vp6-jW-VBS"/>
-                            <constraint firstItem="pzn-dd-qd9" firstAttribute="leading" secondItem="NZP-nM-pyo" secondAttribute="leadingMargin" constant="-16" id="gE7-zq-ach"/>
-                            <constraint firstItem="pzn-dd-qd9" firstAttribute="bottom" secondItem="NZP-nM-pyo" secondAttribute="bottomMargin" id="w7M-xk-48y"/>
+                            <constraint firstItem="Ayt-Zi-Sg2" firstAttribute="top" secondItem="xz7-0B-Obx" secondAttribute="top" id="Nhy-yq-Huh"/>
+                            <constraint firstItem="xz7-0B-Obx" firstAttribute="bottom" secondItem="Ayt-Zi-Sg2" secondAttribute="bottom" id="RDf-4L-qjs"/>
+                            <constraint firstItem="Ayt-Zi-Sg2" firstAttribute="leading" secondItem="xz7-0B-Obx" secondAttribute="leading" id="SpW-MR-i2s"/>
+                            <constraint firstItem="xz7-0B-Obx" firstAttribute="trailing" secondItem="Ayt-Zi-Sg2" secondAttribute="trailing" id="dPW-8G-Q4E"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="savedTableView" destination="Ayt-Zi-Sg2" id="J3M-X3-m30"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tPo-d4-AJb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -362,33 +366,35 @@
         <!--My Post View Controller-->
         <scene sceneID="Ior-tR-pBI">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ycA-Uj-uyK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController id="3N8-pA-eoS" customClass="MyPostViewController" customModule="MC_2" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="XWD-gQ-562">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="470"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="forumEmpty" translatesAutoresizingMaskIntoConstraints="NO" id="sAE-Cl-gV8">
-                                <rect key="frame" x="0.0" y="0.0" width="390" height="470"/>
-                            </imageView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="tpV-Lg-u1K">
+                                <rect key="frame" x="0.0" y="44" width="390" height="426"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="dBD-Xs-Mfb"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="sAE-Cl-gV8" firstAttribute="centerY" secondItem="XWD-gQ-562" secondAttribute="centerY" id="K1m-b0-nau"/>
-                            <constraint firstItem="sAE-Cl-gV8" firstAttribute="centerX" secondItem="XWD-gQ-562" secondAttribute="centerX" id="NOM-FJ-STy"/>
-                            <constraint firstItem="sAE-Cl-gV8" firstAttribute="leading" secondItem="XWD-gQ-562" secondAttribute="leadingMargin" constant="-16" id="Rwo-qK-goe"/>
-                            <constraint firstItem="sAE-Cl-gV8" firstAttribute="bottom" secondItem="XWD-gQ-562" secondAttribute="bottomMargin" id="ox0-B0-0QA"/>
+                            <constraint firstItem="dBD-Xs-Mfb" firstAttribute="bottom" secondItem="tpV-Lg-u1K" secondAttribute="bottom" id="5m9-Hg-7OQ"/>
+                            <constraint firstItem="tpV-Lg-u1K" firstAttribute="leading" secondItem="dBD-Xs-Mfb" secondAttribute="leading" id="Igx-u8-gGj"/>
+                            <constraint firstItem="dBD-Xs-Mfb" firstAttribute="trailing" secondItem="tpV-Lg-u1K" secondAttribute="trailing" id="Pa5-A0-KLe"/>
+                            <constraint firstItem="tpV-Lg-u1K" firstAttribute="top" secondItem="dBD-Xs-Mfb" secondAttribute="top" id="cSZ-Zr-hXq"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="myPostTableView" destination="tpV-Lg-u1K" id="yJa-Yw-rTZ"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ycA-Uj-uyK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-663.07692307692309" y="1404.739336492891"/>
         </scene>
     </scenes>
     <resources>
-        <image name="forumEmpty" width="256" height="322"/>
-        <image name="onboardImage" width="390" height="418"/>
         <image name="pencil" catalog="system" width="128" height="113"/>
         <image name="person" width="28.333333969116211" height="28"/>
         <image name="photo.tv" catalog="system" width="128" height="97"/>
