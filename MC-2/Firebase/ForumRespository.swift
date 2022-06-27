@@ -16,13 +16,15 @@ class ForumRepository {
     
     func createForum(entry: EntryForum){
         if(entry.category == 1) {
-            fs.rootThreadKehamilan.addDocument(data: [
-                "title": entry.title,
-                "desc": entry.desc,
-                "category": entry.category,
+            fs.rootThread.addDocument(data: [
+                "forumTitle": entry.forumTitle,
+                "forumDesc": entry.forumDesc,
+                "category": "kehamilan",
                 "date": FieldValue.serverTimestamp(),
-                "user_id": entry.user_id,
-                "image": entry.image
+                "authorName": entry.authorName,
+                "authorUsername" : entry.authorUsername,
+                "authorThumbnail": entry.authorThumbnail,
+                "authorAvatar" : entry.authorAvatar
             ]){
                 err in
                 if let err = err {
@@ -32,13 +34,15 @@ class ForumRepository {
                 }
             }
         }else if(entry.category == 2){
-            fs.rootThreadPerawatanBayi.addDocument(data: [
-                "title": entry.title,
-                "desc": entry.desc,
-                "category": entry.category,
+            fs.rootThread.addDocument(data: [
+                "forumTitle": entry.forumTitle,
+                "forumDesc": entry.forumDesc,
+                "category": "kehamilan",
                 "date": FieldValue.serverTimestamp(),
-                "user_id": entry.user_id,
-                "image": entry.image
+                "authorName": entry.authorName,
+                "authorUsername" : entry.authorUsername,
+                "authorThumbnail": entry.authorThumbnail,
+                "authorAvatar" : entry.authorAvatar
             ]){
                 err in
                 if let err = err {
@@ -48,13 +52,15 @@ class ForumRepository {
                 }
             }
         }else if(entry.category == 3){
-            fs.rootThreadKesehatanMental.addDocument(data: [
-                "title": entry.title,
-                "desc": entry.desc,
-                "category": entry.category,
+            fs.rootThread.addDocument(data: [
+                "forumTitle": entry.forumTitle,
+                "forumDesc": entry.forumDesc,
+                "category": "kehamilan",
                 "date": FieldValue.serverTimestamp(),
-                "user_id": entry.user_id,
-                "image": entry.image
+                "authorName": entry.authorName,
+                "authorUsername" : entry.authorUsername,
+                "authorThumbnail": entry.authorThumbnail,
+                "authorAvatar" : entry.authorAvatar
             ]){
                 err in
                 if let err = err {
@@ -64,13 +70,15 @@ class ForumRepository {
                 }
             }
         }else if(entry.category == 4){
-            fs.rootThreadPascaMelahirkan.addDocument(data: [
-                "title": entry.title,
-                "desc": entry.desc,
-                "category": entry.category,
+            fs.rootThread.addDocument(data: [
+                "forumTitle": entry.forumTitle,
+                "forumDesc": entry.forumDesc,
+                "category": "kehamilan",
                 "date": FieldValue.serverTimestamp(),
-                "user_id": entry.user_id,
-                "image": entry.image
+                "authorName": entry.authorName,
+                "authorUsername" : entry.authorUsername,
+                "authorThumbnail": entry.authorThumbnail,
+                "authorAvatar" : entry.authorAvatar
             ]){
                 err in
                 if let err = err {
@@ -80,13 +88,15 @@ class ForumRepository {
                 }
             }
         }else if(entry.category == 5){
-            fs.rootThreadPengasuhanAnak.addDocument(data: [
-                "title": entry.title,
-                "desc": entry.desc,
-                "category": entry.category,
+            fs.rootThread.addDocument(data: [
+                "forumTitle": entry.forumTitle,
+                "forumDesc": entry.forumDesc,
+                "category": "kehamilan",
                 "date": FieldValue.serverTimestamp(),
-                "user_id": entry.user_id,
-                "image": entry.image
+                "authorName": entry.authorName,
+                "authorUsername" : entry.authorUsername,
+                "authorThumbnail": entry.authorThumbnail,
+                "authorAvatar" : entry.authorAvatar
             ]){
                 err in
                 if let err = err {
@@ -96,13 +106,15 @@ class ForumRepository {
                 }
             }
         }else if(entry.category == 6){
-            fs.rootThreadLainnya.addDocument(data: [
-                "title": entry.title,
-                "desc": entry.desc,
-                "category": entry.category,
+            fs.rootThread.addDocument(data: [
+                "forumTitle": entry.forumTitle,
+                "forumDesc": entry.forumDesc,
+                "category": "kehamilan",
                 "date": FieldValue.serverTimestamp(),
-                "user_id": entry.user_id,
-                "image": entry.image
+                "authorName": entry.authorName,
+                "authorUsername" : entry.authorUsername,
+                "authorThumbnail": entry.authorThumbnail,
+                "authorAvatar" : entry.authorAvatar
             ]){
                 err in
                 if let err = err {
