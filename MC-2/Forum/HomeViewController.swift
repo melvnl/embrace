@@ -6,6 +6,12 @@
 //
 
 import UIKit
+<<<<<<< Updated upstream
+=======
+import Firebase
+import FirebaseAuth
+import FirebaseFirestore
+>>>>>>> Stashed changes
 
 class HomeViewController: UIViewController {
 
