@@ -34,6 +34,46 @@ class ForumRepository {
         }
     }
     
+    func fetchAllThreads(completion: @escaping (_ threads: [EntryForum]) -> Void){
+        fs.rootThread.getDocuments() { (querySnapshot, err) in
+                
+                if let err = err {
+                    print("Error getting user threads: \(err)")
+                }
+                
+                else {
+                    if querySnapshot!.documents.isEmpty {
+                        let emptyArray: [EntryForum] = []
+                        completion(emptyArray)
+                    }
+                    else{
+                        var entryList : [EntryForum] = []
+                        for document in querySnapshot!.documents {
+                            let ts = document.get("date") as! Timestamp
+                            let currThread = EntryForum(
+                                id: document.documentID,
+                                forumTitle: document.get("forumTitle")! as! String,
+                                forumDesc: document.get("forumDesc")! as! String,
+                                category: document.get("category") as! String,
+                                date: ts.dateValue(),
+                                authorName: document.get("authorName") as! String,
+                                authorUsername: document.get("authorUsername") as! String,
+                                authorAvatar: document.get("authorAvatar") as! String,
+                                forumThumbnail: document.get("forumThumbnail") as! String
+                            )
+                            entryList.append(currThread)
+                        }
+                        
+                        entryList.sort { (lhs: EntryForum, rhs: EntryForum) -> Bool in
+                            return lhs.date > rhs.date
+                        }
+                        
+                        completion(entryList)
+                    }
+                }
+            }
+    }
+    
     func fetchUserThreads(completion: @escaping (_ threads: [EntryForum]) -> Void){
         let group = DispatchGroup()
         var username = ""
