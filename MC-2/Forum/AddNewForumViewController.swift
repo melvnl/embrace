@@ -96,43 +96,60 @@ class AddNewForumViewController: UIViewController, UIImagePickerControllerDelega
     @IBAction func didTapSave(_ sender: Any) {
         if judulTextField.text?.isEmpty == false && deskripsiTextField.text?.isEmpty == false && selectedCategory != 0 {
             
-            var newEntry = EntryForum(
-               title: self.judulTextField.text!,
-               desc: self.deskripsiTextField.text!,
-               category: selectedCategory,
-               user_id: Auth.auth().currentUser!.uid
-               )
+            let group = DispatchGroup()
+            var currentUser: ProfileEntry?
+            group.enter()
             
-            uploadImage{ [self] imgUrl in
-                newEntry.image = imgUrl!
+            DispatchQueue.main.async{
+                self.showSpinner(onView: self.view)
+                profileRepo.fetchCurrentUser { currUser in
+                    currentUser = currUser
+                    group.leave()
+                }
+            }
+            
+            group.notify(queue: .main){ [self] in
+                var newEntry = EntryForum(
+                   forumTitle: self.judulTextField.text!,
+                   forumDesc: self.deskripsiTextField.text!,
+                   category: selectedCategory,
+                   authorName: currentUser?.name ?? "",
+                   authorUsername: currentUser?.username ?? "",
+                   authorAvatar: currentUser?.avatar ?? DEFAULT_AVATAR
+                   )
                 
-                if(isEditingEntry == true){
-                    // delete old image if imageview is hidden && old image url not empty
-                    if(imageContainer.isHidden && currEntry.image != EMPTY_IMAGE){
+                uploadImage{ [self] imgUrl in
+                    newEntry.authorThumbnail = imgUrl!
+                    
+                    if(isEditingEntry == true){
+                        // delete old image if imageview is hidden && old image url not empty
+                        if(imageContainer.isHidden && currEntry.authorThumbnail != EMPTY_IMAGE){
 
-                        // Create a reference to the file to delete
-                        let date = generateDateForStorage(currEntry.date)
-                        let f = "forum/" + Auth.auth().currentUser!.uid + "_" + date + ".jpg"
-                        let ref = Storage.storage().reference().child(f)
+                            // Create a reference to the file to delete
+                            let date = generateDateForStorage(currEntry.date)
+                            let f = "forum/" + Auth.auth().currentUser!.uid + "_" + date + ".jpg"
+                            let ref = Storage.storage().reference().child(f)
 
-                        // Delete the file
-                        ref.delete { error in
-                            if let error = error {
-                                print(error)
-                            } else {
-                                print("Old image deleted successfully")
+                            // Delete the file
+                            ref.delete { error in
+                                if let error = error {
+                                    print(error)
+                                } else {
+                                    print("Old image deleted successfully")
+                                }
                             }
                         }
+                        
+                        // update entry
+                        newEntry.id = currEntry.id
+                        updateCompletion?(newEntry)
                     }
-                    
-                    // update entry
-                    newEntry.id = currEntry.id
-                    updateCompletion?(newEntry)
+                    else{
+                        print("error")
+                        completion?(newEntry)
+                    }
                 }
-                else{
-                    print("error")
-                    completion?(newEntry)
-                }
+            
             }
         }
     }
@@ -192,15 +209,15 @@ class AddNewForumViewController: UIViewController, UIImagePickerControllerDelega
     
     func loadEntryFields(){
         // fill title, desc, mood
-        judulTextField.text = currEntry.title
-        deskripsiTextField.text = currEntry.desc
+        judulTextField.text = currEntry.forumTitle
+        deskripsiTextField.text = currEntry.forumDesc
         kategoriDropDown.selectedIndex = currEntry.category-1
         kategoriDropDown.text = getEntryCategoryText(currEntry)
         selectedCategory = currEntry.category
         
         // load image
-        if(currEntry.image != EMPTY_IMAGE){
-            let url = URL(string: currEntry.image)
+        if(currEntry.authorThumbnail != EMPTY_IMAGE){
+            let url = URL(string: currEntry.authorThumbnail)
             DispatchQueue.global().async {
                 let data = try? Data(contentsOf: url!)
                 DispatchQueue.main.async {

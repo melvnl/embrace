@@ -10,12 +10,14 @@ import UIKit
 
 struct EntryForum{
     var id = ""
-    var title = ""
-    var desc = ""
+    var forumTitle = ""
+    var forumDesc = ""
     var category = 0
     var date = Date.now
-    var user_id = ""
-    var image = EMPTY_IMAGE
+    var authorName = ""
+    var authorUsername = ""
+    var authorAvatar = DEFAULT_AVATAR
+    var authorThumbnail = EMPTY_IMAGE
 }
 
 func getEntryCategoryText(_ entry: EntryForum) -> String{
