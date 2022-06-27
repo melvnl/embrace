@@ -25,7 +25,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4dl-ww-NcO">
-                                <rect key="frame" x="122" y="130" width="150" height="21"/>
+                                <rect key="frame" x="122" y="130" width="50" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="MI5-An-zT3"/>
                                 </constraints>
@@ -60,16 +60,16 @@
                                     <action selector="sectionDidChange:" destination="YQ6-7y-VIv" eventType="valueChanged" id="bay-fP-14z"/>
                                 </connections>
                             </segmentedControl>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HRD-M3-rag">
-                                <rect key="frame" x="0.0" y="291" width="390" height="470"/>
-                                <connections>
-                                    <segue destination="3N8-pA-eoS" kind="embed" id="euo-HJ-OHQ"/>
-                                </connections>
-                            </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3uu-9D-z6q">
                                 <rect key="frame" x="0.0" y="291" width="390" height="470"/>
                                 <connections>
                                     <segue destination="NpW-0V-S24" kind="embed" id="61T-xf-eUd"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HRD-M3-rag">
+                                <rect key="frame" x="0.0" y="291" width="390" height="470"/>
+                                <connections>
+                                    <segue destination="3N8-pA-eoS" kind="embed" id="euo-HJ-OHQ"/>
                                 </connections>
                             </containerView>
                         </subviews>
@@ -79,13 +79,12 @@
                             <constraint firstItem="3uu-9D-z6q" firstAttribute="top" secondItem="4Ln-aA-FWl" secondAttribute="top" constant="291" id="1QS-WF-RnV"/>
                             <constraint firstItem="yee-MW-KPJ" firstAttribute="top" secondItem="j6l-kA-4Vu" secondAttribute="bottom" constant="15" id="1h6-Bb-37J"/>
                             <constraint firstItem="j6l-kA-4Vu" firstAttribute="top" secondItem="y8N-rU-1ae" secondAttribute="bottom" constant="11" id="8TP-2Q-77H"/>
-                            <constraint firstItem="4dl-ww-NcO" firstAttribute="trailing" secondItem="CUE-GU-6cV" secondAttribute="trailing" id="Aa6-l8-85c"/>
                             <constraint firstItem="j6l-kA-4Vu" firstAttribute="top" secondItem="CUE-GU-6cV" secondAttribute="bottom" constant="26" id="Csr-hG-iNV"/>
                             <constraint firstItem="HRD-M3-rag" firstAttribute="top" secondItem="3uu-9D-z6q" secondAttribute="top" id="Ctd-9A-ck6"/>
                             <constraint firstItem="3uu-9D-z6q" firstAttribute="centerX" secondItem="4Ln-aA-FWl" secondAttribute="centerX" id="PU2-T0-vK8"/>
                             <constraint firstItem="4dl-ww-NcO" firstAttribute="leading" secondItem="CUE-GU-6cV" secondAttribute="leading" id="Sqt-nj-o6F"/>
                             <constraint firstItem="3uu-9D-z6q" firstAttribute="top" secondItem="yee-MW-KPJ" secondAttribute="bottom" constant="1" id="Sv2-L1-kBy"/>
-                            <constraint firstItem="4dl-ww-NcO" firstAttribute="leading" secondItem="y8N-rU-1ae" secondAttribute="trailing" constant="22" id="X4O-ow-w7n"/>
+                            <constraint firstItem="4dl-ww-NcO" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="y8N-rU-1ae" secondAttribute="trailing" constant="8" symbolic="YES" id="X4O-ow-w7n"/>
                             <constraint firstItem="3uu-9D-z6q" firstAttribute="leading" secondItem="6Nk-2f-r5Y" secondAttribute="leading" id="dF1-R9-jZL"/>
                             <constraint firstItem="4dl-ww-NcO" firstAttribute="top" secondItem="6Nk-2f-r5Y" secondAttribute="top" constant="42" id="eWW-7h-gnU"/>
                             <constraint firstItem="j6l-kA-4Vu" firstAttribute="trailing" secondItem="4Ln-aA-FWl" secondAttribute="trailingMargin" id="eiR-yl-FP0"/>
@@ -100,6 +99,7 @@
                             <constraint firstItem="y8N-rU-1ae" firstAttribute="top" secondItem="6Nk-2f-r5Y" secondAttribute="top" constant="20" id="vNN-4u-D0I"/>
                             <constraint firstItem="HRD-M3-rag" firstAttribute="trailing" secondItem="3uu-9D-z6q" secondAttribute="trailing" id="vk1-b4-ICj"/>
                             <constraint firstItem="j6l-kA-4Vu" firstAttribute="leading" secondItem="y8N-rU-1ae" secondAttribute="leading" id="x0h-FD-c03"/>
+                            <constraint firstItem="6Nk-2f-r5Y" firstAttribute="trailing" secondItem="4dl-ww-NcO" secondAttribute="trailing" constant="218" id="y7W-V2-LeU"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="iSN-bf-i3S">

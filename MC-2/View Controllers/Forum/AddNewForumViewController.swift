@@ -28,9 +28,22 @@ class AddNewForumViewController: UIViewController, UIImagePickerControllerDelega
     @IBOutlet weak var kategoriDropDown: DropDown!
     @IBOutlet weak var simpanForumButton: UIButton!
     @IBOutlet weak var cancelImageButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        simpanForumButton.layer.shadowColor = CGColor(red: 208/255, green: 46/255, blue: 75/255, alpha: 1)
+        simpanForumButton.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+        simpanForumButton.layer.shadowOpacity = 1.0
+        simpanForumButton.layer.shadowRadius = 1.0
+        
+        simpanForumButton.layer.cornerRadius = 10
+        let gradient = CAGradientLayer()
+        gradient.colors = [CGColor(red: 255/255, green: 77/255, blue: 109/255, alpha: 1), CGColor(red: 208/255, green: 46/255, blue: 75/255, alpha: 1)]
+        gradient.frame = simpanForumButton.bounds
+        simpanForumButton.layer.insertSublayer(gradient, at: 0)
+        simpanForumButton.layer.masksToBounds = true;
+        
         judulTextField.becomeFirstResponder()
         navigationItem.largeTitleDisplayMode = .never
         
@@ -121,7 +134,7 @@ class AddNewForumViewController: UIViewController, UIImagePickerControllerDelega
                    authorName: currentUser?.name ?? "",
                    authorUsername: currentUser?.username ?? "",
                    authorAvatar: currentUser?.avatar ?? DEFAULT_AVATAR
-                   )
+                )
                 
                 uploadImage{ [self] imgUrl in
                     newEntry.forumThumbnail = imgUrl!

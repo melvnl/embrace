@@ -48,8 +48,8 @@ class ProfileViewController: UIViewController {
         profileImg.layer.cornerRadius = profileImg.frame.size.height / 2
         profileImg.clipsToBounds = true
         
-        
         loadProfile()
+        setBarTitle("Profil")
     }
     
     @IBAction func sectionDidChange(_ sender: UISegmentedControl) {

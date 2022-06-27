@@ -8,7 +8,6 @@
 import UIKit
 import Firebase
 import FirebaseAuth
-import FirebaseFirestore
 
 class HomeViewController: UIViewController {
 
@@ -18,7 +17,6 @@ class HomeViewController: UIViewController {
     
     @IBOutlet weak var forumTableView: UITableView!
     
-    let db = Firestore.firestore()
     var threads: [EntryForum] = []
     
     override func viewDidLoad() {
