@@ -157,6 +157,8 @@ extension TopicDetailController: UITableViewDelegate, UITableViewDataSource {
         cell.accAvatar.layer.cornerRadius = cell.accAvatar.frame.height / 2
         cell.accAvatar.clipsToBounds = true
         
+        cell.categoryTitle.layer.cornerRadius = 20
+        cell.categoryTitle.setCategoryColor(categorySub);
         return cell
     }
 }
