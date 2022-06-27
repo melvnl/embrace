@@ -13,7 +13,7 @@ import FirebaseStorage
 class AddNewForumViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     public var completion: ((EntryForum) -> Void)?
     public var updateCompletion: ((EntryForum) -> Void)?
-    private var selectedCategory = 0
+    private var selectedCategory = ""
     private var imgData: Data?
     
     // Variables for editing
@@ -41,12 +41,17 @@ class AddNewForumViewController: UIViewController, UIImagePickerControllerDelega
         
         // Setup dropdown menu
         // The list of array to display. Can be changed dynamically
-        kategoriDropDown.optionArray = ["Kehamilan", "Perawatan Bayi", "Kesehatan Mental", "Pasca Melahirkan", "Pengasuhan Anak", "Lainnya"]
-        // Its Id Values and its optional
-        kategoriDropDown.optionIds = [KEHAMILAN, PERAWATAN_BAYI, KESEHATAN_MENTAL, PASCA_MELAHIRKAN, PENGASUHAN_ANAK, LAINNYA]
+        kategoriDropDown.optionArray = [
+            Category.KEHAMILAN.rawValue,
+            Category.PERAWATAN_BAYI.rawValue,
+            Category.KESEHATAN_MENTAL.rawValue,
+            Category.PASCA_MELAHIRKAN.rawValue,
+            Category.PENGASUHAN_ANAK.rawValue,
+            Category.LAINNYA.rawValue
+        ]
         
         kategoriDropDown.didSelect{(selectedText , index ,id) in
-            self.selectedCategory = id
+            self.selectedCategory = selectedText
         }
         
         // Setup image dismiss button
@@ -94,7 +99,7 @@ class AddNewForumViewController: UIViewController, UIImagePickerControllerDelega
     }
     
     @IBAction func didTapSave(_ sender: Any) {
-        if judulTextField.text?.isEmpty == false && deskripsiTextField.text?.isEmpty == false && selectedCategory != 0 {
+        if judulTextField.text?.isEmpty == false && deskripsiTextField.text?.isEmpty == false && selectedCategory == "" {
             
             let group = DispatchGroup()
             var currentUser: ProfileEntry?
@@ -119,11 +124,11 @@ class AddNewForumViewController: UIViewController, UIImagePickerControllerDelega
                    )
                 
                 uploadImage{ [self] imgUrl in
-                    newEntry.authorThumbnail = imgUrl!
+                    newEntry.forumThumbnail = imgUrl!
                     
                     if(isEditingEntry == true){
                         // delete old image if imageview is hidden && old image url not empty
-                        if(imageContainer.isHidden && currEntry.authorThumbnail != EMPTY_IMAGE){
+                        if(imageContainer.isHidden && currEntry.forumThumbnail != EMPTY_IMAGE){
 
                             // Create a reference to the file to delete
                             let date = generateDateForStorage(currEntry.date)
@@ -211,13 +216,13 @@ class AddNewForumViewController: UIViewController, UIImagePickerControllerDelega
         // fill title, desc, mood
         judulTextField.text = currEntry.forumTitle
         deskripsiTextField.text = currEntry.forumDesc
-        kategoriDropDown.selectedIndex = currEntry.category-1
-        kategoriDropDown.text = getEntryCategoryText(currEntry)
+        kategoriDropDown.selectedIndex = getIndexFromCategory(Category(rawValue: currEntry.category)!)
+        kategoriDropDown.text = currEntry.category
         selectedCategory = currEntry.category
         
         // load image
-        if(currEntry.authorThumbnail != EMPTY_IMAGE){
-            let url = URL(string: currEntry.authorThumbnail)
+        if(currEntry.forumThumbnail != EMPTY_IMAGE){
+            let url = URL(string: currEntry.forumThumbnail)
             DispatchQueue.global().async {
                 let data = try? Data(contentsOf: url!)
                 DispatchQueue.main.async {

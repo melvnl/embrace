@@ -40,10 +40,24 @@ enum JournalFilterType: String{
     case year = "YEAR_FILTER_KEY"
 }
 
-let KEHAMILAN = 1
-let PERAWATAN_BAYI = 2
-let KESEHATAN_MENTAL = 3
-let PASCA_MELAHIRKAN = 4
-let PENGASUHAN_ANAK = 5
-let LAINNYA = 6
+enum Category: String {
+    case KEHAMILAN = "Kehamilan"
+    case PERAWATAN_BAYI = "Perawatan Bayi"
+    case KESEHATAN_MENTAL = "Kesehatan Mental"
+    case PASCA_MELAHIRKAN = "Pasca Melahirkan"
+    case PENGASUHAN_ANAK = "Pengasuhan Anak"
+    case LAINNYA = "Lainnya"
+}
+
+func getIndexFromCategory(_ category: Category) -> Int{
+    switch(category){
+    case .KEHAMILAN: return 1
+    case .PERAWATAN_BAYI: return 2
+    case .KESEHATAN_MENTAL: return 3
+    case .PASCA_MELAHIRKAN: return 4
+    case .PENGASUHAN_ANAK: return 5
+    case .LAINNYA: return 6
+    }
+}
+
 let EMPTY_IMAGE = "EMPTY_IMAGE_KEY"
