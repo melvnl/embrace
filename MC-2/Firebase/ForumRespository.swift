@@ -15,7 +15,7 @@ let forumRepo = ForumRepository()
 class ForumRepository {
     
     func createForum(entry: EntryForum){
-        fs.rootThread.addDocument(data: [
+        fs.rootForum.addDocument(data: [
             "forumTitle": entry.forumTitle,
             "forumDesc": entry.forumDesc,
             "category": entry.category,
@@ -35,7 +35,7 @@ class ForumRepository {
     }
     
     func fetchAllThreads(completion: @escaping (_ threads: [EntryForum]) -> Void){
-        fs.rootThread.getDocuments() { (querySnapshot, err) in
+        fs.rootForum.getDocuments() { (querySnapshot, err) in
                 
                 if let err = err {
                     print("Error getting user threads: \(err)")
@@ -87,7 +87,7 @@ class ForumRepository {
         }
         
         group.notify(queue: .main){
-            fs.rootThread.whereField("authorUsername", isEqualTo: username)
+            fs.rootForum.whereField("authorUsername", isEqualTo: username)
                 .getDocuments() { (querySnapshot, err) in
                     
                     if let err = err {

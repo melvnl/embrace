@@ -99,7 +99,7 @@ class AddNewForumViewController: UIViewController, UIImagePickerControllerDelega
     }
     
     @IBAction func didTapSave(_ sender: Any) {
-        if judulTextField.text?.isEmpty == false && deskripsiTextField.text?.isEmpty == false && selectedCategory == "" {
+        if judulTextField.text?.isEmpty == false && deskripsiTextField.text?.isEmpty == false && selectedCategory != "" {
             
             let group = DispatchGroup()
             var currentUser: ProfileEntry?

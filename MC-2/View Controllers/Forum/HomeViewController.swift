@@ -26,13 +26,17 @@ class HomeViewController: UIViewController {
 
         self.forumTableView.delegate = self
         self.forumTableView.dataSource = self
-        
-        self.forumTableView.rowHeight = 497.0
+        self.forumTableView.estimatedRowHeight = 497.0
+        self.forumTableView.rowHeight = UITableView.automaticDimension
+        self.forumTableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         
         self.forumTableView.register(UINib(nibName: "ForumTableViewCell", bundle: nil), forCellReuseIdentifier: "forumCellID")
         
-        fetchForumData()
         setBarTitle("Forum")
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        fetchForumData()
     }
     
     @IBAction func didTapNewNote() {
@@ -62,22 +66,46 @@ class HomeViewController: UIViewController {
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return threads.count
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return self.threads.count
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
+        return 1
+    }
+    
+    // Set the spacing between sections
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 5
+    }
+    
+    // Make the background color show through
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        let headerView = UIView()
+        headerView.backgroundColor = .gray
+        
+        return headerView
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let forumSection = threads[indexPath.section]
+        let forumSection = threads[(indexPath as NSIndexPath).section]
         let cell = forumTableView.dequeueReusableCell(withIdentifier: "forumCellID", for: indexPath) as! ForumTableViewCell
         
-        cell.categoryForum.setTitle(forumSection.category, for: .normal)
+        cell.categoryForum.titleLabel?.text = forumSection.category
         cell.dateForum.text = forumSection.date.toString("MMM d, yyyy")
         cell.titleForum.text = forumSection.forumTitle
         cell.descForum.text = forumSection.forumDesc
         
+        if(forumSection.forumThumbnail == EMPTY_IMAGE){
+            
+            cell.imgForum.isHidden = true
+        }
+        
         let forumImgUrl = URL(string: forumSection.forumThumbnail)!
         cell.imgForum.load(url: forumImgUrl)
+        
         
         let authorImgUrl = URL(string: forumSection.authorAvatar)!
         cell.authorImg.load(url: authorImgUrl)

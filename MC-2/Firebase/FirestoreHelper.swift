@@ -21,7 +21,7 @@ class FirestoreHelper {
     let settings = FirestoreSettings()
     let db = Firestore.firestore()
     var rootJournal : CollectionReference
-    var rootThread : CollectionReference
+    var rootForum : CollectionReference
     var rootSaves : CollectionReference
     var rootUsers: CollectionReference
     var rootComments: CollectionReference
@@ -29,7 +29,7 @@ class FirestoreHelper {
     init(){
         Firestore.firestore().settings = settings
         rootJournal = db.collection("journals")
-        rootThread = db.collection("threads")
+        rootForum = db.collection("forums")
         rootSaves = db.collection("saves")
         rootUsers = db.collection("users")
         rootComments = db.collection("comments")

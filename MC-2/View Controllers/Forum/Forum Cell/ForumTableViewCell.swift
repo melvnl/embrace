@@ -23,11 +23,12 @@ class ForumTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        categoryForum.layer.cornerRadius = 18
+        categoryForum.isUserInteractionEnabled = false
+        categoryForum.layer.cornerRadius = 14
         categoryForum.clipsToBounds = true
         
         authorImg.layer.masksToBounds = false
-        authorImg.layer.cornerRadius = authorImg.frame.height / 2
+        authorImg.layer.cornerRadius = 20
         authorImg.clipsToBounds = true
         
     }
