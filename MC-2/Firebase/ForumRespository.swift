@@ -128,12 +128,44 @@ class ForumRepository {
         }
     }
     
-    func saveThread(_ entry: EntryForum){
-        
+    func createJournal(entry: Entry){
+        fs.rootJournal.addDocument(data: [
+            "title": entry.title,
+            "desc": entry.desc,
+            "mood": entry.mood,
+            "date": FieldValue.serverTimestamp(),
+            "user_id": entry.user_id,
+            "image": entry.image
+        ]) { err in
+            if let err = err {
+                print("Error writing document: \(err)")
+            } else {
+                print("Document successfully written!")
+            }
+        }
     }
     
-    func deleteSavedThread(_ entry: EntryForum){
-        
+    func saveThread(_ id: String){
+        fs.rootSaves.addDocument(data: [
+            "user_id": Auth.auth().currentUser?.uid,
+            "thread_id": id
+        ]) { err in
+            if let err = err {
+                print("Error writing save document: \(err)")
+            } else {
+                print("Document successfully written!")
+            }
+        }
+    }
+    
+    func deleteSavedThread(_ id: String){
+        fs.rootSaves.document(id).delete() { err in
+            if let err = err {
+                print("Error removing saved thread entry: \(err)")
+            } else {
+                print("Journal entry successfully removed!")
+            }
+        }
     }
     
     
