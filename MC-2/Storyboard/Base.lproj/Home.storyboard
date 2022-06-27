@@ -17,32 +17,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XLi-ZF-hUp">
-                                <rect key="frame" x="16" y="88" width="60" height="29"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <searchBar contentMode="redraw" barStyle="blackTranslucent" searchBarStyle="minimal" text="Cari..." translatesAutoresizingMaskIntoConstraints="NO" id="kQR-jB-kbP">
-                                <rect key="frame" x="20" y="119" width="350" height="51"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="br9-jh-l3r">
+                                <rect key="frame" x="0.0" y="151" width="390" height="598"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="eTP-Js-7DS" id="s5O-xD-RHZ"/>
+                                    <outlet property="delegate" destination="eTP-Js-7DS" id="sOj-hG-ygi"/>
+                                </connections>
+                            </tableView>
+                            <searchBar contentMode="redraw" barStyle="blackTranslucent" searchBarStyle="minimal" text="Cari apa saja yang Anda butuhkan..." translatesAutoresizingMaskIntoConstraints="NO" id="kQR-jB-kbP">
+                                <rect key="frame" x="20" y="88" width="350" height="51"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="br9-jh-l3r">
-                                <rect key="frame" x="0.0" y="182" width="390" height="567"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="XWQ-CW-GMF"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="kQR-jB-kbP" firstAttribute="top" secondItem="XLi-ZF-hUp" secondAttribute="bottom" constant="2" id="1WC-gM-zNK"/>
                             <constraint firstItem="kQR-jB-kbP" firstAttribute="leading" secondItem="XWQ-CW-GMF" secondAttribute="leading" constant="20" id="6Ck-Vr-4LY"/>
                             <constraint firstItem="XWQ-CW-GMF" firstAttribute="trailing" secondItem="kQR-jB-kbP" secondAttribute="trailing" constant="20" id="78T-wL-vdJ"/>
-                            <constraint firstItem="XLi-ZF-hUp" firstAttribute="leading" secondItem="XWQ-CW-GMF" secondAttribute="leading" constant="16" id="9Iv-x2-2kf"/>
                             <constraint firstItem="br9-jh-l3r" firstAttribute="top" secondItem="kQR-jB-kbP" secondAttribute="bottom" constant="12" id="G2R-p1-BAO"/>
                             <constraint firstItem="XWQ-CW-GMF" firstAttribute="trailing" secondItem="br9-jh-l3r" secondAttribute="trailing" id="S06-ee-sWv"/>
                             <constraint firstItem="br9-jh-l3r" firstAttribute="leading" secondItem="XWQ-CW-GMF" secondAttribute="leading" id="YwX-hC-CBq"/>
-                            <constraint firstItem="XLi-ZF-hUp" firstAttribute="top" secondItem="XWQ-CW-GMF" secondAttribute="top" id="cck-A1-puw"/>
+                            <constraint firstItem="kQR-jB-kbP" firstAttribute="top" secondItem="XWQ-CW-GMF" secondAttribute="top" id="aBS-8X-3xF"/>
                             <constraint firstItem="XWQ-CW-GMF" firstAttribute="bottom" secondItem="br9-jh-l3r" secondAttribute="bottom" constant="12" id="gjH-cN-shK"/>
                         </constraints>
                     </view>

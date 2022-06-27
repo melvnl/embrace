@@ -147,7 +147,7 @@ class ForumRepository {
     
     func saveThread(_ id: String){
         fs.rootSaves.addDocument(data: [
-            "user_id": Auth.auth().currentUser?.uid,
+            "user_id": Auth.auth().currentUser?.uid ?? "",
             "thread_id": id
         ]) { err in
             if let err = err {

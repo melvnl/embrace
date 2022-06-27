@@ -9,6 +9,8 @@ import UIKit
 
 class MyPostViewController: UIViewController {
 
+    @IBOutlet weak var myPostTableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

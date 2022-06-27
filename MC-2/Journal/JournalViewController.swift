@@ -59,12 +59,14 @@ class JournalViewController: JournalParentVC, UITableViewDelegate, UITableViewDa
         }
         
         group.notify(queue: .main){ [self] in
+            removeSpinner()
+            
             if(newEntries == entries){
-                removeSpinner()
                 return
             }
+            
             entries = newEntries
-            removeSpinner()
+            
             if(isFiltered){
                 var filteredEntries : [Entry] = []
                 emptyJournalView.isHidden = true

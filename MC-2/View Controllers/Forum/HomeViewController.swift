@@ -6,6 +6,9 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseAuth
+import FirebaseFirestore
 
 class HomeViewController: UIViewController {
 
@@ -15,11 +18,21 @@ class HomeViewController: UIViewController {
     
     @IBOutlet weak var forumTableView: UITableView!
     
+    let db = Firestore.firestore()
+    var threads: [EntryForum] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.forumTableView.delegate = self
         self.forumTableView.dataSource = self
+        
+        self.forumTableView.rowHeight = 497.0
+        
+        self.forumTableView.register(UINib(nibName: "ForumTableViewCell", bundle: nil), forCellReuseIdentifier: "forumCellID")
+        
+        fetchForumData()
+        setBarTitle("Forum")
     }
     
     @IBAction func didTapNewNote() {
@@ -45,19 +58,64 @@ class HomeViewController: UIViewController {
         navigationController?.pushViewController(vc, animated: true)
     }
     
-
-
 }
 
-//MARK: TableView delegate and datasource
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return threads.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        
+        let forumSection = threads[indexPath.section]
+        let cell = forumTableView.dequeueReusableCell(withIdentifier: "forumCellID", for: indexPath) as! ForumTableViewCell
+        
+        cell.categoryForum.setTitle(forumSection.category, for: .normal)
+        cell.dateForum.text = forumSection.date.toString("MMM d, yyyy")
+        cell.titleForum.text = forumSection.forumTitle
+        cell.descForum.text = forumSection.forumDesc
+        
+        let forumImgUrl = URL(string: forumSection.forumThumbnail)!
+        cell.imgForum.load(url: forumImgUrl)
+        
+        let authorImgUrl = URL(string: forumSection.authorAvatar)!
+        cell.authorImg.load(url: authorImgUrl)
+        
+        cell.authorName.text = forumSection.authorName
+        cell.authorUsername.text = "@" + forumSection.authorUsername
+        
+        return cell
     }
     
-    
+    func fetchForumData() {
+        
+        var newEntries : [EntryForum] = []
+        let group = DispatchGroup()
+        group.enter()
+        
+        DispatchQueue.main.async {
+            self.showSpinner(onView: self.view)
+            forumRepo.fetchAllThreads { entryList in
+                newEntries = entryList
+                print(entryList)
+                group.leave()
+            }
+        }
+        
+        group.notify(queue: .main){ [self] in
+            removeSpinner()
+            
+            if(newEntries == threads){
+                return
+            }
+            
+            threads = newEntries
+            
+            forumTableView.dataSource = self
+            forumTableView.delegate = self
+            forumTableView.reloadData()
+        }
+        
+    }
 }

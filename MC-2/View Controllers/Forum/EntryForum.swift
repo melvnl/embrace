@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-struct EntryForum{
+struct EntryForum: Equatable {
     var id = ""
     var forumTitle = ""
     var forumDesc = ""
