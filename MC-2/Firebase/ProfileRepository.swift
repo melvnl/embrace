@@ -16,13 +16,14 @@ let profileRepo = ProfileRepository()
 
 class ProfileRepository{
     func fetchCurrentUser(completion: @escaping (_ currUser: ProfileEntry) -> Void){
-        Firestore.firestore().collection("users").document(Auth.auth().currentUser!.uid).getDocument { (docSnapshot, error) in
+        fs.rootUsers.document(Auth.auth().currentUser!.uid).getDocument { (docSnapshot, error) in
             if let doc = docSnapshot {
                 let currUser = ProfileEntry(
                     username: doc.get("username") as? String ?? "",
-                    name: doc.get("name") as? String ?? "",
+                    name: doc.get("nama") as? String ?? "",
                     description: doc.get("description") as? String ?? "",
-                    avatar: doc.get("avatar") as! String
+                    avatar: doc.get("avatar") as? String ?? DEFAULT_AVATAR,
+                    saves: doc.get("saves") as? [String] ?? []
                 )
                 completion(currUser)
             } else {
@@ -34,8 +35,8 @@ class ProfileRepository{
     }
     
     func updateProfile(uid: String, entry: ProfileEntry) {
-        Firestore.firestore().collection("users").document(uid).updateData([
-            "name": entry.name,
+        fs.rootUsers.document(uid).updateData([
+            "nama": entry.name,
             "description": entry.description,
             "avatar": entry.avatar
         ]) { err in

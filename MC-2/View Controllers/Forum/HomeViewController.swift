@@ -24,6 +24,7 @@ class HomeViewController: UIViewController, UISearchBarDelegate{
     var threads: [EntryForum] = []
     var filteredData: [EntryForum]!
     var isSearching = false
+    var currUser: ProfileEntry?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,7 +46,6 @@ class HomeViewController: UIViewController, UISearchBarDelegate{
         self.forumTableView.register(UINib(nibName: "ForumTableViewCell", bundle: nil), forCellReuseIdentifier: "forumCellID")
         
         setBarTitle("Forum")
-        
     }
     
     
@@ -61,12 +61,14 @@ class HomeViewController: UIViewController, UISearchBarDelegate{
         filteredData = threads.filter({ title -> Bool in
             return title.forumTitle.lowercased().contains(searchText.lowercased())
         })
+        
         forumTableView.reloadData()
 
     }
     
     
     override func viewDidAppear(_ animated: Bool) {
+        fetchCurrentUser()
         fetchForumData()
     }
     
@@ -92,10 +94,9 @@ class HomeViewController: UIViewController, UISearchBarDelegate{
         setBackBarItem()
         navigationController?.pushViewController(vc, animated: true)
     }
-    
 }
 
-extension HomeViewController: UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
+extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         
@@ -126,57 +127,49 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource, UISear
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if isSearching == true{
-            let forumSection = filteredData[(indexPath as NSIndexPath).section]
-            
-            let cell = forumTableView.dequeueReusableCell(withIdentifier: "forumCellID", for: indexPath) as! ForumTableViewCell
-             
-            cell.categoryForum.setTitle(forumSection.category, for: .normal)
-            cell.categoryForum.setCategoryColor(forumSection.category)
-            cell.dateForum.text = forumSection.date.toString("MMM d, yyyy")
-            cell.titleForum.text = forumSection.forumTitle
-            cell.descForum.text = forumSection.forumDesc
-             
-            if(forumSection.forumThumbnail == EMPTY_IMAGE){
-                cell.imgForum.isHidden = true
-            }
-             
-            let forumImgUrl = URL(string: forumSection.forumThumbnail)!
-            cell.imgForum.load(url: forumImgUrl)
-             
-            let authorImgUrl = URL(string: forumSection.authorAvatar)!
-            cell.authorImg.load(url: authorImgUrl)
-             
-            cell.authorName.text = forumSection.authorName
-            cell.authorUsername.text = "@" + forumSection.authorUsername
-            return cell
-        } else {
-            let forumSection = threads[(indexPath as NSIndexPath).section]
-            
-            let cell = forumTableView.dequeueReusableCell(withIdentifier: "forumCellID", for: indexPath) as! ForumTableViewCell
-             
-            cell.categoryForum.setTitle(forumSection.category, for: .normal)
-            cell.categoryForum.setCategoryColor(forumSection.category)
-            cell.dateForum.text = forumSection.date.toString("MMM d, yyyy")
-            cell.titleForum.text = forumSection.forumTitle
-            cell.descForum.text = forumSection.forumDesc
-             
-            if(forumSection.forumThumbnail == EMPTY_IMAGE){
-                cell.imgForum.isHidden = true
-            }
-             
-            let forumImgUrl = URL(string: forumSection.forumThumbnail)!
-            cell.imgForum.load(url: forumImgUrl)
-             
-            let authorImgUrl = URL(string: forumSection.authorAvatar)!
-            cell.authorImg.load(url: authorImgUrl)
-             
-            cell.authorName.text = forumSection.authorName
-            cell.authorUsername.text = "@" + forumSection.authorUsername
-            return cell
+        
+        let index = (indexPath as NSIndexPath).section
+        let forumSection = isSearching ? filteredData[index] : threads[index]
+        
+        let cell = forumTableView.dequeueReusableCell(withIdentifier: "forumCellID", for: indexPath) as! ForumTableViewCell
+    
+        cell.threadID = forumSection.id
+        cell.categoryForum.setTitle(forumSection.category, for: .normal)
+        cell.categoryForum.setCategoryColor(forumSection.category)
+        cell.dateForum.text = forumSection.date.toString("MMM d, yyyy")
+        cell.titleForum.text = forumSection.forumTitle
+        cell.descForum.text = forumSection.forumDesc
+        
+        if(forumSection.forumThumbnail == EMPTY_IMAGE){
+            cell.imgForum.isHidden = true
         }
         
-       
+        let forumImgUrl = URL(string: forumSection.forumThumbnail)!
+        cell.imgForum.load(url: forumImgUrl)
+        
+        let authorImgUrl = URL(string: forumSection.authorAvatar)!
+        cell.authorImg.load(url: authorImgUrl)
+        
+        cell.authorName.text = forumSection.authorName
+        cell.authorUsername.text = "@" + forumSection.authorUsername
+        
+        // set saved button state
+        if(currUser!.saves.contains(cell.threadID!)){
+            cell.isSaved = true
+        }
+        else{
+            cell.isSaved = false
+        }
+        
+        cell.setSavedStateImage()
+        
+        return cell
+    }
+    
+    func fetchCurrentUser(){
+        profileRepo.fetchCurrentUser{ currUser in
+            self.currUser = currUser
+        }
     }
     
     func fetchForumData() {
@@ -189,17 +182,12 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource, UISear
             self.showSpinner(onView: self.view)
             forumRepo.fetchAllThreads { entryList in
                 newEntries = entryList
-                print(entryList)
                 group.leave()
             }
         }
         
         group.notify(queue: .main){ [self] in
             removeSpinner()
-            
-            if(newEntries == threads){
-                return
-            }
             
             threads = newEntries
             
@@ -208,19 +196,6 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource, UISear
             forumTableView.reloadData()
         }
         
-    }
-    
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-
-        filteredData = []
-        
-        guard !searchText.isEmpty else { filteredData = threads; return}
-        
-        filteredData = threads.filter({title -> Bool in
-            return title.forumTitle.lowercased().contains(searchText.lowercased())
-        })
-        
-        self.forumTableView.reloadData()
     }
 }
 

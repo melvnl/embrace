@@ -14,6 +14,7 @@ class MyPostViewController: UIViewController {
     @IBOutlet weak var myPostTableView: UITableView!
     
     var forums: [EntryForum] = []
+    var currUser: ProfileEntry?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,6 +65,7 @@ extension MyPostViewController: UITableViewDataSource, UITableViewDelegate {
 
         let cell = myPostTableView.dequeueReusableCell(withIdentifier: "forumCellID", for: indexPath) as! ForumTableViewCell
         
+        cell.threadID = forumSection.id
         cell.categoryForum.setTitle(forumSection.category, for: .normal)
         cell.categoryForum.setCategoryColor(forumSection.category)
         cell.dateForum.text = forumSection.date.toString("MMM d, yyyy")
@@ -83,6 +85,11 @@ extension MyPostViewController: UITableViewDataSource, UITableViewDelegate {
         cell.authorName.text = forumSection.authorName
         cell.authorUsername.text = "@" + forumSection.authorUsername
         
+        if(currUser!.saves.contains(cell.threadID!)){
+            cell.isSaved = true
+            cell.setSavedStateImage()
+        }
+        
         return cell
         
     }
@@ -95,9 +102,12 @@ extension MyPostViewController: UITableViewDataSource, UITableViewDelegate {
         
         DispatchQueue.main.async {
             self.showSpinner(onView: self.view)
-            forumRepo.fetchUserThreads { entryList in
-                newEntries = entryList
-                group.leave()
+            profileRepo.fetchCurrentUser{ currUser in
+                self.currUser = currUser
+                forumRepo.fetchUserThreads { entryList in
+                    newEntries = entryList
+                    group.leave()
+                }
             }
         }
         

@@ -59,6 +59,9 @@
                                     <fontDescription key="titleFontDescription" type="system" weight="medium" pointSize="14"/>
                                     <color key="baseForegroundColor" red="0.32156862745098036" green="0.32156862745098036" blue="0.32156862745098036" alpha="1" colorSpace="calibratedRGB"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="didTapSaveThread:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="ybc-TJ-bd3"/>
+                                </connections>
                             </button>
                         </subviews>
                     </stackView>

@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 import FirebaseAuth
 import FirebaseFirestore
+import FirebaseFirestoreSwift
 
 let forumRepo = ForumRepository()
 
@@ -128,45 +129,78 @@ class ForumRepository {
         }
     }
     
-    func createJournal(entry: Entry){
-        fs.rootJournal.addDocument(data: [
-            "title": entry.title,
-            "desc": entry.desc,
-            "mood": entry.mood,
-            "date": FieldValue.serverTimestamp(),
-            "user_id": entry.user_id,
-            "image": entry.image
-        ]) { err in
+    func fetchSavedThreads(_ saves: [String], completion: @escaping (_ threads: [EntryForum]) -> Void){
+    
+        var savedThreads : [EntryForum] = []
+//        
+//        if(saves.count == 0 || saves.isEmpty){
+//            completion(savedThreads)
+//        }
+        
+        fs.rootForum.getDocuments() { (querySnapshot, err) in
+                
             if let err = err {
-                print("Error writing document: \(err)")
-            } else {
-                print("Document successfully written!")
+                print("Error getting user threads: \(err)")
+            }
+            
+            else {
+                if querySnapshot!.documents.isEmpty {
+                    let emptyArray: [EntryForum] = []
+                    completion(emptyArray)
+                }
+                else{
+                    for document in querySnapshot!.documents {
+                        let currId = document.documentID
+                        if (saves.contains(currId)){
+                            let ts = document.get("date") as! Timestamp
+                            let currThread = EntryForum(
+                                id: document.documentID,
+                                forumTitle: document.get("forumTitle")! as! String,
+                                forumDesc: document.get("forumDesc")! as! String,
+                                category: document.get("category") as! String,
+                                date: ts.dateValue(),
+                                authorName: document.get("authorName") as! String,
+                                authorUsername: document.get("authorUsername") as! String,
+                                authorAvatar: document.get("authorAvatar") as! String,
+                                forumThumbnail: document.get("forumThumbnail") as! String
+                            )
+                            savedThreads.append(currThread)
+                        }
+                    }
+                    
+                    savedThreads.sort { (lhs: EntryForum, rhs: EntryForum) -> Bool in
+                        return lhs.date > rhs.date
+                    }
+                    
+                    completion(savedThreads)
+                }
             }
         }
     }
     
     func saveThread(_ id: String){
-        fs.rootSaves.addDocument(data: [
-            "user_id": Auth.auth().currentUser?.uid ?? "",
-            "thread_id": id
-        ]) { err in
-            if let err = err {
-                print("Error writing save document: \(err)")
-            } else {
-                print("Document successfully written!")
+        fs.rootUsers.document(Auth.auth().currentUser!.uid).updateData(([
+            "saves": FieldValue.arrayUnion([id])
+        ])) { err in
+            if let err = err{
+                print("Error saving thread: \(err)")
+            }
+            else{
+                print("Thread successfully saved")
             }
         }
     }
     
     func deleteSavedThread(_ id: String){
-        fs.rootSaves.document(id).delete() { err in
-            if let err = err {
-                print("Error removing saved thread entry: \(err)")
-            } else {
-                print("Journal entry successfully removed!")
+        fs.rootUsers.document(Auth.auth().currentUser!.uid).updateData(([
+            "saves": FieldValue.arrayRemove([id])
+        ])) { err in
+            if let err = err{
+                print("Error deleting saved thread: \(err)")
+            }
+            else{
+                print("Saved thread successfully deleted")
             }
         }
     }
-    
-    
 }

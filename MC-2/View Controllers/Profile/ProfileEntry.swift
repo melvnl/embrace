@@ -15,4 +15,5 @@ struct ProfileEntry {
     var name = ""
     var description = ""
     var avatar = DEFAULT_AVATAR
+    var saves : [String] = []
 }

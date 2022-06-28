@@ -14,6 +14,7 @@ class SavedViewController: UIViewController {
     @IBOutlet weak var savedTableView: UITableView!
 
     var savedForums: [EntryForum] = []
+    var currUser: ProfileEntry?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,8 +30,10 @@ class SavedViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        print("Fetching saved data")
         fetchForumData()
     }
+    
 
 }
 
@@ -63,6 +66,7 @@ extension SavedViewController: UITableViewDataSource, UITableViewDelegate {
         let forumSection = savedForums[(indexPath as NSIndexPath).section]
         let cell = savedTableView.dequeueReusableCell(withIdentifier: "forumCellID", for: indexPath) as! ForumTableViewCell
         
+        cell.threadID = forumSection.id
         cell.categoryForum.setTitle(forumSection.category, for: .normal)
         cell.categoryForum.setCategoryColor(forumSection.category)
         cell.dateForum.text = forumSection.date.toString("MMM d, yyyy")
@@ -82,6 +86,11 @@ extension SavedViewController: UITableViewDataSource, UITableViewDelegate {
         cell.authorName.text = forumSection.authorName
         cell.authorUsername.text = "@" + forumSection.authorUsername
         
+        if(currUser!.saves.contains(cell.threadID!)){
+            cell.isSaved = true
+            cell.setSavedStateImage()
+        }
+        
         return cell
         
     }
@@ -93,24 +102,21 @@ extension SavedViewController: UITableViewDataSource, UITableViewDelegate {
         group.enter()
 
         DispatchQueue.main.async {
-//            self.showSpinner(onView: self.view)
-            //saved and delete threads (on progress)
-            forumRepo.fetchUserThreads { entryList in
-                newEntries = entryList
-                print("aaaaaa")
-                group.leave()
+            profileRepo.fetchCurrentUser{ currUser in
+                self.currUser = currUser
+                forumRepo.fetchSavedThreads(currUser.saves) { entryList in
+                    newEntries = entryList
+                    group.leave()
+                }
             }
+            
         }
 
         group.notify(queue: .main){ [self] in
-//            removeSpinner()
-
             if(newEntries == savedForums){
                 return
             }
-
             savedForums = newEntries
-
             savedTableView.dataSource = self
             savedTableView.delegate = self
             savedTableView.reloadData()
