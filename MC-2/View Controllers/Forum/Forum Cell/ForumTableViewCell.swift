@@ -33,6 +33,9 @@ class ForumTableViewCell: UITableViewCell {
         authorImg.layer.cornerRadius = 20
         authorImg.clipsToBounds = true
         
+        imgForum.layer.cornerRadius = 10
+        imgForum.layer.masksToBounds = true
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

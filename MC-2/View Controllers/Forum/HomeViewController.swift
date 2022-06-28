@@ -97,7 +97,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         let forumSection = threads[(indexPath as NSIndexPath).section]
         let cell = forumTableView.dequeueReusableCell(withIdentifier: "forumCellID", for: indexPath) as! ForumTableViewCell
         
-        cell.categoryForum.titleLabel?.text = forumSection.category
+        cell.categoryForum.setTitle(forumSection.category, for: .normal)
+        cell.categoryForum.setCategoryColor(forumSection.category)
         cell.dateForum.text = forumSection.date.toString("MMM d, yyyy")
         cell.titleForum.text = forumSection.forumTitle
         cell.descForum.text = forumSection.forumDesc

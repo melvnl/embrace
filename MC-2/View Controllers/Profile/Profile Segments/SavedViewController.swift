@@ -64,6 +64,7 @@ extension SavedViewController: UITableViewDataSource, UITableViewDelegate {
         let cell = savedTableView.dequeueReusableCell(withIdentifier: "forumCellID", for: indexPath) as! ForumTableViewCell
         
         cell.categoryForum.setTitle(forumSection.category, for: .normal)
+        cell.categoryForum.setCategoryColor(forumSection.category)
         cell.dateForum.text = forumSection.date.toString("MMM d, yyyy")
         cell.titleForum.text = forumSection.forumTitle
         cell.descForum.text = forumSection.forumDesc
@@ -92,17 +93,17 @@ extension SavedViewController: UITableViewDataSource, UITableViewDelegate {
         group.enter()
 
         DispatchQueue.main.async {
-            self.showSpinner(onView: self.view)
+//            self.showSpinner(onView: self.view)
             //saved and delete threads (on progress)
             forumRepo.fetchUserThreads { entryList in
                 newEntries = entryList
-                print(entryList)
+                print("aaaaaa")
                 group.leave()
             }
         }
 
         group.notify(queue: .main){ [self] in
-            removeSpinner()
+//            removeSpinner()
 
             if(newEntries == savedForums){
                 return

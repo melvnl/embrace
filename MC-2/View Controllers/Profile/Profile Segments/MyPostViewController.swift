@@ -20,7 +20,7 @@ class MyPostViewController: UIViewController {
 
         self.myPostTableView.delegate = self
         self.myPostTableView.dataSource = self
-        
+
         self.myPostTableView.estimatedRowHeight = 497.0
         self.myPostTableView.rowHeight = UITableView.automaticDimension
         self.myPostTableView.separatorStyle = UITableViewCell.SeparatorStyle.none
@@ -61,9 +61,11 @@ extension MyPostViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let forumSection = forums[(indexPath as NSIndexPath).section]
+
         let cell = myPostTableView.dequeueReusableCell(withIdentifier: "forumCellID", for: indexPath) as! ForumTableViewCell
         
         cell.categoryForum.setTitle(forumSection.category, for: .normal)
+        cell.categoryForum.setCategoryColor(forumSection.category)
         cell.dateForum.text = forumSection.date.toString("MMM d, yyyy")
         cell.titleForum.text = forumSection.forumTitle
         cell.descForum.text = forumSection.forumDesc
@@ -95,7 +97,6 @@ extension MyPostViewController: UITableViewDataSource, UITableViewDelegate {
             self.showSpinner(onView: self.view)
             forumRepo.fetchUserThreads { entryList in
                 newEntries = entryList
-                print(entryList)
                 group.leave()
             }
         }
