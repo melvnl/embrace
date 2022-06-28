@@ -28,6 +28,9 @@
                             <searchBar contentMode="redraw" barStyle="blackTranslucent" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="kQR-jB-kbP">
                                 <rect key="frame" x="20" y="88" width="350" height="51"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="eTP-Js-7DS" id="EBk-Pl-EfS"/>
+                                </connections>
                             </searchBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="XWQ-CW-GMF"/>

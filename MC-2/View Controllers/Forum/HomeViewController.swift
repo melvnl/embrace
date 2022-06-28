@@ -18,6 +18,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var forumTableView: UITableView!
     
     var threads: [EntryForum] = []
+    var filteredData: [EntryForum]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +30,9 @@ class HomeViewController: UIViewController {
         
         self.forumTableView.delegate = self
         self.forumTableView.dataSource = self
+        self.forumSearchBar.delegate = self
+        
+        filteredData = threads
         
         self.forumTableView.estimatedRowHeight = 497.0
         self.forumTableView.rowHeight = UITableView.automaticDimension
@@ -68,10 +72,10 @@ class HomeViewController: UIViewController {
     
 }
 
-extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
+extension HomeViewController: UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return self.threads.count
+        return self.filteredData.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
@@ -94,7 +98,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let forumSection = threads[(indexPath as NSIndexPath).section]
+        let forumSection = filteredData[(indexPath as NSIndexPath).section]
         let cell = forumTableView.dequeueReusableCell(withIdentifier: "forumCellID", for: indexPath) as! ForumTableViewCell
         
         cell.categoryForum.setTitle(forumSection.category, for: .normal)
@@ -148,6 +152,19 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             forumTableView.reloadData()
         }
         
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+
+        filteredData = []
+        
+        guard !searchText.isEmpty else { filteredData = threads; return}
+        
+        filteredData = threads.filter({title -> Bool in
+            return title.forumTitle.lowercased().contains(searchText.lowercased())
+        })
+        
+        self.forumTableView.reloadData()
     }
 }
 
