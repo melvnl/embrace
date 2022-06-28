@@ -76,7 +76,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="tintColor" red="0.4549019608" green="0.4549019608" blue="0.4549019608" alpha="0.8980392157" colorSpace="calibratedRGB"/>
                         <state key="normal" title="Button"/>
-                        <buttonConfiguration key="configuration" style="plain" image="bubble.left" catalog="system" title="128">
+                        <buttonConfiguration key="configuration" style="plain" image="bubble.left" catalog="system" title="0">
                             <fontDescription key="titleFontDescription" type="system" pointSize="14"/>
                         </buttonConfiguration>
                     </button>
@@ -90,11 +90,13 @@
                         </buttonConfiguration>
                     </button>
                 </subviews>
+                <connections>
+                    <outlet property="comment" destination="1vb-MD-G2W" id="c7o-cf-vFp"/>
+                </connections>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="BWx-HW-tZL"/>
             <connections>
                 <outlet property="accAvatar" destination="7fi-fF-WCf" id="BfJ-c5-lZO"/>
-                <outlet property="accComment" destination="1vb-MD-G2W" id="uZp-kd-e1H"/>
                 <outlet property="accName" destination="avO-Fn-fL1" id="96Y-l8-M4j"/>
                 <outlet property="accUsername" destination="wOr-9S-Uzx" id="cIl-gQ-GiH"/>
                 <outlet property="categoryTitle" destination="LHx-M9-6HM" id="ax7-dX-fHO"/>

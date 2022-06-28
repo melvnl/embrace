@@ -76,6 +76,10 @@
 		95A142152861788600567AE9 /* FilterGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A1420C2861788600567AE9 /* FilterGroupCell.swift */; };
 		95A142162861788600567AE9 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A1420D2861788600567AE9 /* FilterViewController.swift */; };
 		95A1421B28617C7F00567AE9 /* Date+DateComparison.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A1421A28617C7F00567AE9 /* Date+DateComparison.swift */; };
+		B05CD5E0286AAC240093C11A /* CommentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05CD5DF286AAC240093C11A /* CommentController.swift */; };
+		B05CD5E2286AB43B0093C11A /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05CD5E1286AB43B0093C11A /* Comment.swift */; };
+		B05CD5E4286B38E70093C11A /* CommentStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B05CD5E3286B38E70093C11A /* CommentStoryboard.storyboard */; };
+		B05CD5EA286B45930093C11A /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05CD5E9286B45930093C11A /* CommentCell.swift */; };
 		B05D1C7E28655CDA00CB3465 /* TableDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05D1C7C28655CDA00CB3465 /* TableDetailCell.swift */; };
 		B05D1C7F28655CDA00CB3465 /* TableDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B05D1C7D28655CDA00CB3465 /* TableDetailCell.xib */; };
 		B0A5C39428590ADA00865632 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A5C39328590ADA00865632 /* TableViewCell.swift */; };
@@ -132,6 +136,10 @@
 		95A1420D2861788600567AE9 /* FilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		95A1421A28617C7F00567AE9 /* Date+DateComparison.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+DateComparison.swift"; sourceTree = "<group>"; };
 		B02330F228597F230037A81B /* TopicRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicRepository.swift; sourceTree = "<group>"; };
+		B05CD5DF286AAC240093C11A /* CommentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentController.swift; sourceTree = "<group>"; };
+		B05CD5E1286AB43B0093C11A /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		B05CD5E3286B38E70093C11A /* CommentStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CommentStoryboard.storyboard; sourceTree = "<group>"; };
+		B05CD5E9286B45930093C11A /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 		B05D1C7C28655CDA00CB3465 /* TableDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableDetailCell.swift; sourceTree = "<group>"; };
 		B05D1C7D28655CDA00CB3465 /* TableDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableDetailCell.xib; sourceTree = "<group>"; };
 		B0A5C39328590ADA00865632 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
@@ -216,6 +224,7 @@
 				950D37E528640C3700F598E1 /* ProfileStoryboard.storyboard */,
 				950D37E728640C3700F598E1 /* TopicDetailStoryboard.storyboard */,
 				B0FEA0E92845117C00EF8DD9 /* LaunchScreen.storyboard */,
+				B05CD5E3286B38E70093C11A /* CommentStoryboard.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -260,6 +269,7 @@
 		950D37EE28640E3800F598E1 /* Topic */ = {
 			isa = PBXGroup;
 			children = (
+				B05CD5D8286AAA140093C11A /* Comment */,
 				B05D1C7B28655CB300CB3465 /* TopicCell */,
 				950D37EF28640E3800F598E1 /* TopicViewController.swift */,
 				950D37F028640E3800F598E1 /* CategoriesDetail.swift */,
@@ -324,6 +334,16 @@
 			name = Journal;
 			path = "MC-2/Journal";
 			sourceTree = SOURCE_ROOT;
+		};
+		B05CD5D8286AAA140093C11A /* Comment */ = {
+			isa = PBXGroup;
+			children = (
+				B05CD5DF286AAC240093C11A /* CommentController.swift */,
+				B05CD5E1286AB43B0093C11A /* Comment.swift */,
+				B05CD5E9286B45930093C11A /* CommentCell.swift */,
+			);
+			path = Comment;
+			sourceTree = "<group>";
 		};
 		B05D1C7B28655CB300CB3465 /* TopicCell */ = {
 			isa = PBXGroup;
@@ -467,6 +487,7 @@
 				B0FEA0E62845117B00EF8DD9 /* Main.storyboard in Resources */,
 				950D37EC28640C3700F598E1 /* TopicDetailStoryboard.storyboard in Resources */,
 				950D37EB28640C3700F598E1 /* ProfileStoryboard.storyboard in Resources */,
+				B05CD5E4286B38E70093C11A /* CommentStoryboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -478,6 +499,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				956733E62861CFD700A2B20F /* MyPostViewController.swift in Sources */,
+				B05CD5E0286AAC240093C11A /* CommentController.swift in Sources */,
 				95A1420E2861788600567AE9 /* Entry.swift in Sources */,
 				7260292E285ADD3D00644A82 /* ForumRespository.swift in Sources */,
 				72602921285AD11C00644A82 /* iOSDropDown.swift in Sources */,
@@ -489,6 +511,7 @@
 				B0FEA0E32845117B00EF8DD9 /* OnboardViewController.swift in Sources */,
 				95A142122861788600567AE9 /* JournalParentVC.swift in Sources */,
 				B05D1C7E28655CDA00CB3465 /* TableDetailCell.swift in Sources */,
+				B05CD5EA286B45930093C11A /* CommentCell.swift in Sources */,
 				95A141F5286177CD00567AE9 /* JournalRepository.swift in Sources */,
 				95A142112861788600567AE9 /* EntryDetailViewController.swift in Sources */,
 				B0FEA0DF2845117B00EF8DD9 /* AppDelegate.swift in Sources */,
@@ -501,6 +524,7 @@
 				72BD0405285A194800041943 /* AddNewForumViewController.swift in Sources */,
 				95A1420F2861788600567AE9 /* EntryViewController.swift in Sources */,
 				950D37F628640E3800F598E1 /* TopicDetailController.swift in Sources */,
+				B05CD5E2286AB43B0093C11A /* Comment.swift in Sources */,
 				95A1421B28617C7F00567AE9 /* Date+DateComparison.swift in Sources */,
 				950D37F428640E3800F598E1 /* CategoriesDetail.swift in Sources */,
 				72C66AFC284F383900261C91 /* LogInViewController.swift in Sources */,

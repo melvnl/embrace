@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import FirebaseFirestore
 import FirebaseAuth
+import FirebaseFirestoreSwift
 
 class TopicDetailController: UIViewController {
     
@@ -77,8 +78,10 @@ class TopicDetailController: UIViewController {
                 print("Error getting documents: \(err)")
             } else {
                     for document in querySnapshot!.documents {
+                        
 
                         let currEntry = CategoriesDetail(
+                            id: document.documentID,
                             categoryTitle: document.get("category")! as! String,
                             forumTitle: document.get("forumTitle")! as! String,
                             thumbnail: document.get("forumThumbnail") as? String ?? "",
@@ -129,6 +132,9 @@ extension TopicDetailController: UITableViewDelegate, UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        //buat post comment
+        db.collection("forums").document("mhF1O5Nt8eacumykpO8Q").collection("comment").addDocument(data: ["Avatar":"123"])
            print("section: \(indexPath.section)")
           
     }
@@ -147,7 +153,6 @@ extension TopicDetailController: UITableViewDelegate, UITableViewDataSource {
         cell.forumThumbnail.layer.cornerRadius = 10
         cell.forumThumbnail.layer.masksToBounds = true
         cell.categoryTitle.setTitle(detail.categoryTitle, for: .normal)
-//        cell.categoryTitle.titleLabel?.font = UIFont(name:"SF Pro", size: 10.0)
 
         //avatar
         cell.accName.text = detail.accName
@@ -156,6 +161,7 @@ extension TopicDetailController: UITableViewDelegate, UITableViewDataSource {
         cell.accAvatar.load(url: imgUrl)
         cell.accAvatar.layer.cornerRadius = cell.accAvatar.frame.height / 2
         cell.accAvatar.clipsToBounds = true
+        cell.forumId = detail.id
         
         cell.categoryTitle.layer.cornerRadius = 20
         cell.categoryTitle.setCategoryColor(categorySub);

@@ -33,19 +33,19 @@ class TopicViewController: UIViewController {
         
         let docRef = db.collection("forumCategory")
 
-        docRef.getDocuments() { (querySnapshot, err) in
+        docRef.whereField("forum", isEqualTo: "mhF1O5Nt8eacumykpO8Q").getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
             } else {
                     for document in querySnapshot!.documents {
 
-                        let currEntry = Categories(
-                            category: document.get("category")! as! String,
-                            thumbnail: document.get("thumbnail") as? String ?? "",
-                            desc: document.get("desc")! as! String
-                        )
+                let currEntry = Categories(
+                    category: document.get("category")! as! String,
+                    thumbnail: document.get("thumbnail") as? String ?? "",
+                    desc: document.get("desc")! as! String
+                )
                         self.categories.append(currEntry)
-                    }
+                }
                 self.table.delegate = self
                 self.table.dataSource = self
                 self.table.reloadData()
