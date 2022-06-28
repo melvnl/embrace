@@ -49,6 +49,7 @@
 		72C66AFC284F383900261C91 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C66AFB284F383900261C91 /* LogInViewController.swift */; };
 		72C66AFE284F384F00261C91 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C66AFD284F384F00261C91 /* HomeViewController.swift */; };
 		9505E24928640FEE00D6EA9D /* JournalStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9505E24728640FEE00D6EA9D /* JournalStoryboard.storyboard */; };
+		95072DDA286B66F80013F2C7 /* CommentButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95072DD9286B66F80013F2C7 /* CommentButton.swift */; };
 		950D37EB28640C3700F598E1 /* ProfileStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 950D37E528640C3700F598E1 /* ProfileStoryboard.storyboard */; };
 		950D37EC28640C3700F598E1 /* TopicDetailStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 950D37E728640C3700F598E1 /* TopicDetailStoryboard.storyboard */; };
 		950D37ED28640C3700F598E1 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 950D37E928640C3700F598E1 /* Home.storyboard */; };
@@ -108,6 +109,7 @@
 		72C66AFB284F383900261C91 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		72C66AFD284F384F00261C91 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		9505E24828640FEE00D6EA9D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "MC-2/Storyboard/Base.lproj/JournalStoryboard.storyboard"; sourceTree = "<group>"; };
+		95072DD9286B66F80013F2C7 /* CommentButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentButton.swift; sourceTree = "<group>"; };
 		950D37E628640C3700F598E1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/ProfileStoryboard.storyboard; sourceTree = "<group>"; };
 		950D37E828640C3700F598E1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/TopicDetailStoryboard.storyboard; sourceTree = "<group>"; };
 		950D37EA28640C3700F598E1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Home.storyboard; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 			children = (
 				72A6D3E12862CB9900150CB0 /* ForumTableViewCell.swift */,
 				72A6D3E22862CB9900150CB0 /* ForumTableViewCell.xib */,
+				95072DD9286B66F80013F2C7 /* CommentButton.swift */,
 			);
 			path = "Forum Cell";
 			sourceTree = "<group>";
@@ -508,6 +511,7 @@
 				95A142142861788600567AE9 /* JournalViewController.swift in Sources */,
 				95460F122862CFC600B73353 /* UIImageView+LoadImage.swift in Sources */,
 				72602936285AF1FA00644A82 /* UIViewController+BackButton.swift in Sources */,
+				95072DDA286B66F80013F2C7 /* CommentButton.swift in Sources */,
 				B0FEA0E32845117B00EF8DD9 /* OnboardViewController.swift in Sources */,
 				95A142122861788600567AE9 /* JournalParentVC.swift in Sources */,
 				B05D1C7E28655CDA00CB3465 /* TableDetailCell.swift in Sources */,

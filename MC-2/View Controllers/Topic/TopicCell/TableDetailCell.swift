@@ -29,6 +29,10 @@ class TableDetailCell: UITableViewCell {
         // Initialization code
     }
     
+    @IBAction func didTapComment(_ sender: Any) {
+        print("yo")
+    }
+    
     func prepare(for segue: UIStoryboardSegue, sender: Any?) {
        if segue.identifier == "goToComment" {
            guard let secondViewController = segue.destination as? CommentController else { return }

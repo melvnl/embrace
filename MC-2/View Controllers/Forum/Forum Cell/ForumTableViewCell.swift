@@ -17,9 +17,10 @@ class ForumTableViewCell: UITableViewCell {
     @IBOutlet weak var authorImg: UIImageView!
     @IBOutlet weak var authorName: UILabel!
     @IBOutlet weak var authorUsername: UILabel!
-    @IBOutlet weak var commentForum: UIButton!
+    @IBOutlet weak var commentForum: CommentButton!
     @IBOutlet weak var savedForum: UIButton!
-    
+    var threadId = ""
+
     override func awakeFromNib() {
         super.awakeFromNib()
         

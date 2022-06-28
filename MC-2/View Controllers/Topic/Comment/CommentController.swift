@@ -33,6 +33,7 @@ class CommentController: UIViewController {
     
         self.table.tableFooterView = UIView.init(frame: .zero)
         
+        print(forumId)
         
         let docRef = db.collection("comments")
         
