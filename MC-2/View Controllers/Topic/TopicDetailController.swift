@@ -134,7 +134,7 @@ extension TopicDetailController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         //buat post comment
-        db.collection("forums").document("mhF1O5Nt8eacumykpO8Q").collection("comment").addDocument(data: ["Avatar":"123"])
+//        db.collection("forums").document("mhF1O5Nt8eacumykpO8Q").collection("comment").addDocument(data: ["Avatar":"123"])
            print("section: \(indexPath.section)")
           
     }
@@ -143,6 +143,10 @@ extension TopicDetailController: UITableViewDelegate, UITableViewDataSource {
         
         let detail = categoriesDetail[indexPath.section]
         let cell = tableView.dequeueReusableCell(withIdentifier: "topicDetailCellId", for: indexPath) as! TableDetailCell
+        
+        cell.comment.addTarget(self, action: #selector(segueToNextView(_:)), for: .touchUpInside)
+        
+        cell.comment.setTitle("haha", for: .normal)
         
         //forum
         cell.forumTitle.text = detail.forumTitle
@@ -167,4 +171,6 @@ extension TopicDetailController: UITableViewDelegate, UITableViewDataSource {
         cell.categoryTitle.setCategoryColor(categorySub);
         return cell
     }
+    
+    
 }

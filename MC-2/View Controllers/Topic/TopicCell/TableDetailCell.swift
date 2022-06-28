@@ -30,17 +30,13 @@ class TableDetailCell: UITableViewCell {
     }
     
     func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-       if segue.identifier == "" {
+       if segue.identifier == "goToComment" {
            guard let secondViewController = segue.destination as? CommentController else { return }
         
            secondViewController.forumId = forumId
        }
     }
     
-    func goToCommentDetail(){
-        
-    }
-
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 

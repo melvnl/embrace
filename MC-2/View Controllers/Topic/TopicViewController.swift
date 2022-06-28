@@ -33,7 +33,7 @@ class TopicViewController: UIViewController {
         
         let docRef = db.collection("forumCategory")
 
-        docRef.whereField("forum", isEqualTo: "mhF1O5Nt8eacumykpO8Q").getDocuments() { (querySnapshot, err) in
+        docRef.getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
             } else {
