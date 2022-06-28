@@ -140,7 +140,7 @@ extension TopicDetailController: UITableViewDelegate, UITableViewDataSource {
         cell.authorUsername.text = detail.accUsername
         let imgUrl = URL(string: detail.accAvatar )!
         cell.authorImg.load(url: imgUrl)
-        cell.threadId = detail.id
+        cell.threadID = detail.id
         
         cell.categoryForum.setCategoryColor(detail.categoryTitle);
         return cell
