@@ -8,8 +8,12 @@
 import UIKit
 import Firebase
 import FirebaseAuth
+import FirebaseDatabase
 
-class HomeViewController: UIViewController {
+
+
+class HomeViewController: UIViewController, UISearchBarDelegate{
+    
 
     @IBOutlet weak var addNewForumButton: UIButton!
     
@@ -18,6 +22,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var forumTableView: UITableView!
     
     var threads: [EntryForum] = []
+    var searchData: [EntryForum]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +34,10 @@ class HomeViewController: UIViewController {
         
         self.forumTableView.delegate = self
         self.forumTableView.dataSource = self
+    
+        forumSearchBar.delegate = self
+        searchData = threads
+        
         
         self.forumTableView.estimatedRowHeight = 497.0
         self.forumTableView.rowHeight = UITableView.automaticDimension
@@ -38,6 +47,18 @@ class HomeViewController: UIViewController {
         
         setBarTitle("Forum")
     }
+    
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        guard !searchText.isEmpty  else { searchData = threads; return }
+
+        searchData = threads.filter({ title -> Bool in
+            return title.forumTitle.lowercased().contains(searchText.lowercased())
+        })
+        forumTableView.reloadData()
+
+    }
+    
     
     override func viewDidAppear(_ animated: Bool) {
         fetchForumData()
