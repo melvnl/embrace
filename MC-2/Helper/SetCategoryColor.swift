@@ -35,7 +35,7 @@ extension UIButton{
                 self.setTitleColor(UIColor(red: 77/255, green: 95/255, blue: 255/255, alpha: 1), for: .normal)
             
             case "Lainnya":
-                self.backgroundColor = UIColor(red: 247, green: 237, blue: 255, alpha: 1)
+                self.backgroundColor = UIColor(red: 247/255, green: 237/255, blue: 255/255, alpha: 1)
                 self.setTitleColor(UIColor(red: 177/255, green: 77/255, blue: 255/255, alpha: 1), for: .normal)
             default:
                 break;
