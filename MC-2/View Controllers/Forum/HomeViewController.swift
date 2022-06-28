@@ -8,8 +8,12 @@
 import UIKit
 import Firebase
 import FirebaseAuth
+import FirebaseDatabase
 
-class HomeViewController: UIViewController {
+
+
+class HomeViewController: UIViewController, UISearchBarDelegate{
+    
 
     @IBOutlet weak var addNewForumButton: UIButton!
     
@@ -19,6 +23,7 @@ class HomeViewController: UIViewController {
     
     var threads: [EntryForum] = []
     var filteredData: [EntryForum]!
+    var isSearching = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +36,6 @@ class HomeViewController: UIViewController {
         self.forumTableView.delegate = self
         self.forumTableView.dataSource = self
         self.forumSearchBar.delegate = self
-        
         filteredData = threads
         
         self.forumTableView.estimatedRowHeight = 497.0
@@ -41,7 +45,26 @@ class HomeViewController: UIViewController {
         self.forumTableView.register(UINib(nibName: "ForumTableViewCell", bundle: nil), forCellReuseIdentifier: "forumCellID")
         
         setBarTitle("Forum")
+        
     }
+    
+    
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        isSearching = true
+        guard !searchText.isEmpty  else {
+            filteredData = threads
+            forumTableView.reloadData()
+            return
+        }
+
+        filteredData = threads.filter({ title -> Bool in
+            return title.forumTitle.lowercased().contains(searchText.lowercased())
+        })
+        forumTableView.reloadData()
+
+    }
+    
     
     override func viewDidAppear(_ animated: Bool) {
         fetchForumData()
@@ -75,11 +98,17 @@ class HomeViewController: UIViewController {
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return self.filteredData.count
+        
+        if isSearching == true  {
+            return self.filteredData.count
+        }else {
+            return self.threads.count
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         return 1
+        
     }
     
     // Set the spacing between sections
@@ -97,30 +126,57 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource, UISear
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let forumSection = filteredData[(indexPath as NSIndexPath).section]
-        let cell = forumTableView.dequeueReusableCell(withIdentifier: "forumCellID", for: indexPath) as! ForumTableViewCell
-        
-        cell.categoryForum.setTitle(forumSection.category, for: .normal)
-        cell.categoryForum.setCategoryColor(forumSection.category)
-        cell.dateForum.text = forumSection.date.toString("MMM d, yyyy")
-        cell.titleForum.text = forumSection.forumTitle
-        cell.descForum.text = forumSection.forumDesc
-        
-        if(forumSection.forumThumbnail == EMPTY_IMAGE){
-            cell.imgForum.isHidden = true
+        if isSearching == true{
+            let forumSection = filteredData[(indexPath as NSIndexPath).section]
+            
+            let cell = forumTableView.dequeueReusableCell(withIdentifier: "forumCellID", for: indexPath) as! ForumTableViewCell
+             
+            cell.categoryForum.setTitle(forumSection.category, for: .normal)
+            cell.categoryForum.setCategoryColor(forumSection.category)
+            cell.dateForum.text = forumSection.date.toString("MMM d, yyyy")
+            cell.titleForum.text = forumSection.forumTitle
+            cell.descForum.text = forumSection.forumDesc
+             
+            if(forumSection.forumThumbnail == EMPTY_IMAGE){
+                cell.imgForum.isHidden = true
+            }
+             
+            let forumImgUrl = URL(string: forumSection.forumThumbnail)!
+            cell.imgForum.load(url: forumImgUrl)
+             
+            let authorImgUrl = URL(string: forumSection.authorAvatar)!
+            cell.authorImg.load(url: authorImgUrl)
+             
+            cell.authorName.text = forumSection.authorName
+            cell.authorUsername.text = "@" + forumSection.authorUsername
+            return cell
+        } else {
+            let forumSection = threads[(indexPath as NSIndexPath).section]
+            
+            let cell = forumTableView.dequeueReusableCell(withIdentifier: "forumCellID", for: indexPath) as! ForumTableViewCell
+             
+            cell.categoryForum.setTitle(forumSection.category, for: .normal)
+            cell.categoryForum.setCategoryColor(forumSection.category)
+            cell.dateForum.text = forumSection.date.toString("MMM d, yyyy")
+            cell.titleForum.text = forumSection.forumTitle
+            cell.descForum.text = forumSection.forumDesc
+             
+            if(forumSection.forumThumbnail == EMPTY_IMAGE){
+                cell.imgForum.isHidden = true
+            }
+             
+            let forumImgUrl = URL(string: forumSection.forumThumbnail)!
+            cell.imgForum.load(url: forumImgUrl)
+             
+            let authorImgUrl = URL(string: forumSection.authorAvatar)!
+            cell.authorImg.load(url: authorImgUrl)
+             
+            cell.authorName.text = forumSection.authorName
+            cell.authorUsername.text = "@" + forumSection.authorUsername
+            return cell
         }
         
-        let forumImgUrl = URL(string: forumSection.forumThumbnail)!
-        cell.imgForum.load(url: forumImgUrl)
-        
-        let authorImgUrl = URL(string: forumSection.authorAvatar)!
-        cell.authorImg.load(url: authorImgUrl)
-        
-        cell.authorName.text = forumSection.authorName
-        cell.authorUsername.text = "@" + forumSection.authorUsername
-        
-        return cell
+       
     }
     
     func fetchForumData() {
