@@ -33,14 +33,13 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        title = "Profil"
+    
         profileSection.backgroundColor = .clear
         profileSection.tintColor = .clear
 
-        profileSection.setTitleTextAttributes([NSAttributedString.Key.font : UIFont(name: ".SFProText-Medium", size: 16)!, NSAttributedString.Key.foregroundColor: UIColor.lightGray], for: .normal)
+        profileSection.setTitleTextAttributes([NSAttributedString.Key.font : UIFont.systemFont(ofSize: 16, weight: .regular), NSAttributedString.Key.foregroundColor: UIColor.lightGray], for: .normal)
 
-        profileSection.setTitleTextAttributes([NSAttributedString.Key.font : UIFont(name: ".SFProText-Semibold", size: 16)!, NSAttributedString.Key.foregroundColor: UIColor.TSPrimary], for: .selected)
+        profileSection.setTitleTextAttributes([NSAttributedString.Key.font : UIFont.systemFont(ofSize: 16, weight: .medium), NSAttributedString.Key.foregroundColor: UIColor.TSPrimary], for: .selected)
         
         self.view.addSubview(segmentindicator)
         
@@ -119,6 +118,6 @@ class ProfileViewController: UIViewController {
 
 extension UIColor {
     @nonobjc class var TSPrimary: UIColor {
-        return UIColor(red:0.85, green:0.11, blue:0.38, alpha:1.0)
+        return UIColor(red: 1.00, green: 0.30, blue: 0.43, alpha: 1.00)
     }
 }

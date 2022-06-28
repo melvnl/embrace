@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseAuth
 
 class SavedViewController: UIViewController {
 
@@ -19,10 +21,14 @@ class SavedViewController: UIViewController {
         self.savedTableView.delegate = self
         self.savedTableView.dataSource = self
         
-        self.savedTableView.rowHeight = 497.0
+        self.savedTableView.estimatedRowHeight = 497.0
+        self.savedTableView.rowHeight = UITableView.automaticDimension
+        self.savedTableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         
         self.savedTableView.register(UINib(nibName: "ForumTableViewCell", bundle: nil), forCellReuseIdentifier: "forumCellID")
-        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         fetchForumData()
     }
 
@@ -30,18 +36,41 @@ class SavedViewController: UIViewController {
 
 extension SavedViewController: UITableViewDataSource, UITableViewDelegate {
 
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return savedForums.count
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return self.savedForums.count
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
+        return 1
+    }
+    
+    // Set the spacing between sections
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 8
+    }
+    
+    // Make the background color show through
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        let headerView = UIView()
+        headerView.backgroundColor = UIColor(red: 0.96, green: 0.96, blue: 0.96, alpha: 1.00)
+        
+        return headerView
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let forumSection = savedForums[indexPath.section]
+        
+        let forumSection = savedForums[(indexPath as NSIndexPath).section]
         let cell = savedTableView.dequeueReusableCell(withIdentifier: "forumCellID", for: indexPath) as! ForumTableViewCell
         
         cell.categoryForum.setTitle(forumSection.category, for: .normal)
         cell.dateForum.text = forumSection.date.toString("MMM d, yyyy")
         cell.titleForum.text = forumSection.forumTitle
         cell.descForum.text = forumSection.forumDesc
+        
+        if(forumSection.forumThumbnail == EMPTY_IMAGE){
+            cell.imgForum.isHidden = true
+        }
         
         let forumImgUrl = URL(string: forumSection.forumThumbnail)!
         cell.imgForum.load(url: forumImgUrl)
@@ -53,6 +82,7 @@ extension SavedViewController: UITableViewDataSource, UITableViewDelegate {
         cell.authorUsername.text = "@" + forumSection.authorUsername
         
         return cell
+        
     }
     
     func fetchForumData() {

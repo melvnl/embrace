@@ -22,8 +22,14 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        forumSearchBar.searchTextField.textColor = UIColor(red: 0.32, green: 0.32, blue: 0.32, alpha: 1.00)
+        forumSearchBar.searchTextField.attributedPlaceholder = NSAttributedString (
+        string: "Cari apa saja yang Anda butuhkan...",
+        attributes: [NSAttributedString.Key.foregroundColor: UIColor(red: 0.32, green: 0.32, blue: 0.32, alpha: 1.00)])
+        
         self.forumTableView.delegate = self
         self.forumTableView.dataSource = self
+        
         self.forumTableView.estimatedRowHeight = 497.0
         self.forumTableView.rowHeight = UITableView.automaticDimension
         self.forumTableView.separatorStyle = UITableViewCell.SeparatorStyle.none
@@ -74,14 +80,14 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     // Set the spacing between sections
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 5
+        return 8
     }
     
     // Make the background color show through
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         let headerView = UIView()
-        headerView.backgroundColor = .gray
+        headerView.backgroundColor = UIColor(red: 0.96, green: 0.96, blue: 0.96, alpha: 1.00)
         
         return headerView
     }
@@ -97,13 +103,11 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         cell.descForum.text = forumSection.forumDesc
         
         if(forumSection.forumThumbnail == EMPTY_IMAGE){
-            
             cell.imgForum.isHidden = true
         }
         
         let forumImgUrl = URL(string: forumSection.forumThumbnail)!
         cell.imgForum.load(url: forumImgUrl)
-        
         
         let authorImgUrl = URL(string: forumSection.authorAvatar)!
         cell.authorImg.load(url: authorImgUrl)
@@ -145,3 +149,4 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         
     }
 }
+
