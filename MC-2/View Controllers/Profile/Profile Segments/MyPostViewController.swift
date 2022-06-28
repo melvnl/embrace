@@ -21,10 +21,14 @@ class MyPostViewController: UIViewController {
         self.myPostTableView.delegate = self
         self.myPostTableView.dataSource = self
         
-        self.myPostTableView.rowHeight = 497.0
+        self.myPostTableView.estimatedRowHeight = 497.0
+        self.myPostTableView.rowHeight = UITableView.automaticDimension
+        self.myPostTableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         
         self.myPostTableView.register(UINib(nibName: "ForumTableViewCell", bundle: nil), forCellReuseIdentifier: "forumCellID")
-        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         fetchForumData()
     }
     
@@ -32,18 +36,41 @@ class MyPostViewController: UIViewController {
 
 extension MyPostViewController: UITableViewDataSource, UITableViewDelegate {
 
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return forums.count
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return self.forums.count
     }
-
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
+        return 1
+    }
+    
+    // Set the spacing between sections
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 8
+    }
+    
+    // Make the background color show through
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        let headerView = UIView()
+        headerView.backgroundColor = UIColor(red: 0.96, green: 0.96, blue: 0.96, alpha: 1.00)
+        
+        return headerView
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let forumSection = forums[indexPath.section]
+        
+        let forumSection = forums[(indexPath as NSIndexPath).section]
         let cell = myPostTableView.dequeueReusableCell(withIdentifier: "forumCellID", for: indexPath) as! ForumTableViewCell
         
         cell.categoryForum.setTitle(forumSection.category, for: .normal)
         cell.dateForum.text = forumSection.date.toString("MMM d, yyyy")
         cell.titleForum.text = forumSection.forumTitle
         cell.descForum.text = forumSection.forumDesc
+        
+        if(forumSection.forumThumbnail == EMPTY_IMAGE){
+            cell.imgForum.isHidden = true
+        }
         
         let forumImgUrl = URL(string: forumSection.forumThumbnail)!
         cell.imgForum.load(url: forumImgUrl)
@@ -55,6 +82,7 @@ extension MyPostViewController: UITableViewDataSource, UITableViewDelegate {
         cell.authorUsername.text = "@" + forumSection.authorUsername
         
         return cell
+        
     }
 
     func fetchForumData() {
