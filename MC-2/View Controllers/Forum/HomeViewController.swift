@@ -53,7 +53,11 @@ class HomeViewController: UIViewController, UISearchBarDelegate{
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         isSearching = true
-        guard !searchText.isEmpty  else { filteredData = threads; return }
+        guard !searchText.isEmpty  else {
+            filteredData = threads
+            forumTableView.reloadData()
+            return
+        }
 
         filteredData = threads.filter({ title -> Bool in
             return title.forumTitle.lowercased().contains(searchText.lowercased())
