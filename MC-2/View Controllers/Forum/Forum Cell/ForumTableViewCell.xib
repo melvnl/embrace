@@ -42,7 +42,7 @@
                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YBB-w2-a99">
                         <rect key="frame" x="170" y="441.5" width="200" height="31"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X4U-WR-TJW">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X4U-WR-TJW" customClass="CommentButton" customModule="MC_2" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="100" height="31"/>
                                 <color key="tintColor" red="0.4549019608" green="0.4549019608" blue="0.4549019608" alpha="0.8980392157" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Button"/>

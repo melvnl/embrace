@@ -172,11 +172,22 @@
                         <outlet property="backBtn" destination="1Dl-Z5-S6N" id="ZIP-hN-kuH"/>
                         <outlet property="tableView" destination="62J-PL-z3W" id="vhg-Fn-NEB"/>
                         <outlet property="topicTitle" destination="xNE-gd-Rc8" id="eHr-u6-F2G"/>
+                        <segue destination="DtN-mm-0Op" kind="show" identifier="goToComment" id="eJM-Zm-qFZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LHR-Y2-9oa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-23.188405797101453" y="72.321428571428569"/>
+            <point key="canvasLocation" x="-23" y="74"/>
+        </scene>
+        <!--Storyboard Reference-->
+        <scene sceneID="W0k-5C-x76">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="CommentBoard" id="DtN-mm-0Op" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="bBg-nO-aKd"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xgV-33-jse" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="929" y="74"/>
         </scene>
     </scenes>
     <resources>

@@ -209,7 +209,7 @@
                                         <fragment content="Simpan jurnal">
                                             <attributes>
                                                 <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <font key="NSFont" size="16" name="SFPro-Semibold"/>
+                                                <font key="NSFont" metaFont="system" size="16"/>
                                                 <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                             </attributes>
                                         </fragment>
@@ -517,7 +517,7 @@
                                         <fragment content="Simpan jurnal">
                                             <attributes>
                                                 <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                <font key="NSFont" size="16" name="SFPro-Semibold"/>
+                                                <font key="NSFont" metaFont="system" size="16"/>
                                                 <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                             </attributes>
                                         </fragment>

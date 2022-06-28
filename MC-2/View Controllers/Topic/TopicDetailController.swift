@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import FirebaseFirestore
 import FirebaseAuth
+import FirebaseFirestoreSwift
 
 class TopicDetailController: UIViewController {
     
@@ -42,31 +43,11 @@ class TopicDetailController: UIViewController {
         tableView.dataSource = self
         tableView.separatorColor = UIColor.clear
 
-        tableView.register(UINib(nibName: "TableDetailCell", bundle: nil), forCellReuseIdentifier: "topicDetailCellId")
+        tableView.register(UINib(nibName: "ForumTableViewCell", bundle: nil), forCellReuseIdentifier: "forumCellID")
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 497
         
         topicTitle.text = categorySub;
-        
-        // header
-        // ini jangan di apus dl yak
-//        let docHeader = db.collection("forum").document(categoryDocId).getDocument { (docSnapshot, error) in
-//            if let doc = docSnapshot {
-//                let title = doc.get("category") as? String ?? ""
-//                let desc = doc.get("desc") as? String ?? ""
-//                let imgURL_ = URL(string: doc.get("bigThumbail") as? String ??  self.placeholderAvatar)!
-//
-//
-//                self.headerTitle.text = title
-//                self.topicTitle.text = title
-//                self.headerDesc.text = desc
-//                self.headerImg.load(url: imgURL_)
-//            } else {
-//                if let error = error {
-//                    print(error)
-//                }
-//            }
-//        }
         
         //detail
         print("test")
@@ -77,8 +58,10 @@ class TopicDetailController: UIViewController {
                 print("Error getting documents: \(err)")
             } else {
                     for document in querySnapshot!.documents {
+                        
 
                         let currEntry = CategoriesDetail(
+                            id: document.documentID,
                             categoryTitle: document.get("category")! as! String,
                             forumTitle: document.get("forumTitle")! as! String,
                             thumbnail: document.get("forumThumbnail") as? String ?? "",
@@ -129,6 +112,9 @@ extension TopicDetailController: UITableViewDelegate, UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        //buat post comment
+//        db.collection("forums").document("mhF1O5Nt8eacumykpO8Q").collection("comment").addDocument(data: ["Avatar":"123"])
            print("section: \(indexPath.section)")
           
     }
@@ -136,29 +122,36 @@ extension TopicDetailController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let detail = categoriesDetail[indexPath.section]
-        let cell = tableView.dequeueReusableCell(withIdentifier: "topicDetailCellId", for: indexPath) as! TableDetailCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "forumCellID", for: indexPath) as! ForumTableViewCell
+        
+        cell.commentForum.threadID = detail.id
+        cell.commentForum.addTarget(self, action: #selector(segueToNextView(_:)), for: .touchUpInside)
         
         //forum
-        cell.forumTitle.text = detail.forumTitle
-        cell.forumDesc.text = detail.desc
-        cell.date.text = detail.date.toString("MMM d, yyyy")
+        cell.titleForum.text = detail.forumTitle
+        cell.descForum.text = detail.desc
+        cell.dateForum.text = detail.date.toString("MMM d, yyyy")
         let forumImgUrl = URL(string: detail.thumbnail )!
-        cell.forumThumbnail.load(url: forumImgUrl)
-        cell.forumThumbnail.layer.cornerRadius = 10
-        cell.forumThumbnail.layer.masksToBounds = true
-        cell.categoryTitle.setTitle(detail.categoryTitle, for: .normal)
-//        cell.categoryTitle.titleLabel?.font = UIFont(name:"SF Pro", size: 10.0)
+        cell.imgForum.load(url: forumImgUrl)
+        cell.categoryForum.setTitle(detail.categoryTitle, for: .normal)
 
         //avatar
-        cell.accName.text = detail.accName
-        cell.accUsername.text = detail.accUsername
+        cell.authorName.text = detail.accName
+        cell.authorUsername.text = detail.accUsername
         let imgUrl = URL(string: detail.accAvatar )!
-        cell.accAvatar.load(url: imgUrl)
-        cell.accAvatar.layer.cornerRadius = cell.accAvatar.frame.height / 2
-        cell.accAvatar.clipsToBounds = true
+        cell.authorImg.load(url: imgUrl)
+        cell.threadId = detail.id
         
-        cell.categoryTitle.layer.cornerRadius = 20
-        cell.categoryTitle.setCategoryColor(categorySub);
+        cell.categoryForum.setCategoryColor(detail.categoryTitle);
         return cell
     }
+    
+    @objc func segueToNextView(_ sender: CommentButton){
+        let sb = UIStoryboard(name: "CommentStoryboard", bundle: nil)
+        let vc = sb.instantiateViewController(withIdentifier: "CommentController") as! CommentController
+        vc.forumId = sender.threadID!
+        present(vc, animated: true)
+    }
+    
+    
 }

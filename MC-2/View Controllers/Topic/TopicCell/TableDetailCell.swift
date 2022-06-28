@@ -20,14 +20,27 @@ class TableDetailCell: UITableViewCell {
     @IBOutlet weak var accName: UILabel!
     
     @IBOutlet weak var accUsername: UILabel!
+    @IBOutlet weak var comment: UIButton!
     
-    @IBOutlet weak var accComment: UIButton!
+    var forumId: String = ""
 
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
-
+    
+    @IBAction func didTapComment(_ sender: Any) {
+        print("yo")
+    }
+    
+    func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+       if segue.identifier == "goToComment" {
+           guard let secondViewController = segue.destination as? CommentController else { return }
+        
+           secondViewController.forumId = forumId
+       }
+    }
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 

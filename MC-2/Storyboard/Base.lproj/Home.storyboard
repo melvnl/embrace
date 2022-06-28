@@ -123,7 +123,7 @@
                                         <fragment content="Unggah forum">
                                             <attributes>
                                                 <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                <font key="NSFont" size="16" name="SFPro-Semibold"/>
+                                                <font key="NSFont" metaFont="system" size="16"/>
                                                 <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                             </attributes>
                                         </fragment>

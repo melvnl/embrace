@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 
 struct CategoriesDetail{
+    var id = ""
     var categoryTitle = ""
     var forumTitle = ""
     var thumbnail = ""
@@ -17,6 +18,5 @@ struct CategoriesDetail{
     
     var accName = ""
     var accUsername = ""
-    var accComments = ""
     var accAvatar = ""
 }

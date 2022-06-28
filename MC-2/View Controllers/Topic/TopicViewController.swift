@@ -39,13 +39,13 @@ class TopicViewController: UIViewController {
             } else {
                     for document in querySnapshot!.documents {
 
-                        let currEntry = Categories(
-                            category: document.get("category")! as! String,
-                            thumbnail: document.get("thumbnail") as? String ?? "",
-                            desc: document.get("desc")! as! String
-                        )
+                let currEntry = Categories(
+                    category: document.get("category")! as! String,
+                    thumbnail: document.get("thumbnail") as? String ?? "",
+                    desc: document.get("desc")! as! String
+                )
                         self.categories.append(currEntry)
-                    }
+                }
                 self.table.delegate = self
                 self.table.dataSource = self
                 self.table.reloadData()

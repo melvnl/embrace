@@ -10,7 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TableDetailCell" customModule="MC_2" customModuleProvider="target"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="topicDetailCellId" rowHeight="437" id="pJq-NV-xrr" customClass="TableDetailCell" customModule="MC_2">
+        <tableViewCell userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="topicDetailCellId" rowHeight="437" id="pJq-NV-xrr" customClass="TableDetailCell" customModule="MC_2">
             <rect key="frame" x="0.0" y="0.0" width="390" height="497"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pJq-NV-xrr" id="XGL-Vd-eyr" customClass="TableDetailCell" customModule="MC_2" customModuleProvider="target">
@@ -74,11 +74,16 @@
                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1vb-MD-G2W">
                         <rect key="frame" x="166" y="420" width="101" height="31"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" red="1" green="0.0" blue="0.25425197840000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="tintColor" red="0.4549019608" green="0.4549019608" blue="0.4549019608" alpha="0.8980392157" colorSpace="calibratedRGB"/>
                         <state key="normal" title="Button"/>
-                        <buttonConfiguration key="configuration" style="plain" image="bubble.left" catalog="system" title="128">
+                        <buttonConfiguration key="configuration" style="plain" image="bubble.left" catalog="system" title="0">
                             <fontDescription key="titleFontDescription" type="system" pointSize="14"/>
+                            <color key="baseForegroundColor" red="0.4549019608" green="0.4549019608" blue="0.4549019608" alpha="1" colorSpace="calibratedRGB"/>
                         </buttonConfiguration>
+                        <connections>
+                            <action selector="didTapComment:" destination="pJq-NV-xrr" eventType="touchUpInside" id="iuv-zk-jaF"/>
+                        </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DE2-lB-Ajj">
                         <rect key="frame" x="267" y="420" width="103" height="31"/>
@@ -94,10 +99,10 @@
             <viewLayoutGuide key="safeArea" id="BWx-HW-tZL"/>
             <connections>
                 <outlet property="accAvatar" destination="7fi-fF-WCf" id="BfJ-c5-lZO"/>
-                <outlet property="accComment" destination="1vb-MD-G2W" id="uZp-kd-e1H"/>
                 <outlet property="accName" destination="avO-Fn-fL1" id="96Y-l8-M4j"/>
                 <outlet property="accUsername" destination="wOr-9S-Uzx" id="cIl-gQ-GiH"/>
                 <outlet property="categoryTitle" destination="LHx-M9-6HM" id="ax7-dX-fHO"/>
+                <outlet property="comment" destination="1vb-MD-G2W" id="Bth-uJ-1kV"/>
                 <outlet property="date" destination="5CC-sg-HmO" id="FPE-VM-9nq"/>
                 <outlet property="forumDesc" destination="mgU-lW-OPD" id="T5O-pz-1dK"/>
                 <outlet property="forumThumbnail" destination="5YD-3c-D1A" id="wNO-J3-U6d"/>
