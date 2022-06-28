@@ -26,8 +26,6 @@ class TableDetailCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        
-        print("table detail called")
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
