@@ -57,6 +57,7 @@
 		950D37F428640E3800F598E1 /* CategoriesDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950D37F028640E3800F598E1 /* CategoriesDetail.swift */; };
 		950D37F528640E3800F598E1 /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950D37F128640E3800F598E1 /* Categories.swift */; };
 		950D37F628640E3800F598E1 /* TopicDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950D37F228640E3800F598E1 /* TopicDetailController.swift */; };
+		953A4CF0286C62E60091A9C3 /* CommentRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953A4CEF286C62E60091A9C3 /* CommentRepository.swift */; };
 		95460F122862CFC600B73353 /* UIImageView+LoadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95460F112862CFC600B73353 /* UIImageView+LoadImage.swift */; };
 		956733E62861CFD700A2B20F /* MyPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956733DD2861CFD700A2B20F /* MyPostViewController.swift */; };
 		956733E72861CFD700A2B20F /* SavedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956733DE2861CFD700A2B20F /* SavedViewController.swift */; };
@@ -81,8 +82,6 @@
 		B05CD5E2286AB43B0093C11A /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05CD5E1286AB43B0093C11A /* Comment.swift */; };
 		B05CD5E4286B38E70093C11A /* CommentStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B05CD5E3286B38E70093C11A /* CommentStoryboard.storyboard */; };
 		B05CD5EA286B45930093C11A /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05CD5E9286B45930093C11A /* CommentCell.swift */; };
-		B05D1C7E28655CDA00CB3465 /* TableDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05D1C7C28655CDA00CB3465 /* TableDetailCell.swift */; };
-		B05D1C7F28655CDA00CB3465 /* TableDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B05D1C7D28655CDA00CB3465 /* TableDetailCell.xib */; };
 		B0A5C39428590ADA00865632 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A5C39328590ADA00865632 /* TableViewCell.swift */; };
 		B0A7C4E828531F5600144E6D /* VerificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A7C4E728531F5600144E6D /* VerificationController.swift */; };
 		B0C643F1286A229500565BA5 /* SetCategoryColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C643F0286A229500565BA5 /* SetCategoryColor.swift */; };
@@ -117,6 +116,7 @@
 		950D37F028640E3800F598E1 /* CategoriesDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesDetail.swift; sourceTree = "<group>"; };
 		950D37F128640E3800F598E1 /* Categories.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Categories.swift; sourceTree = "<group>"; };
 		950D37F228640E3800F598E1 /* TopicDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicDetailController.swift; sourceTree = "<group>"; };
+		953A4CEF286C62E60091A9C3 /* CommentRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentRepository.swift; sourceTree = "<group>"; };
 		95460F112862CFC600B73353 /* UIImageView+LoadImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+LoadImage.swift"; sourceTree = "<group>"; };
 		956733DD2861CFD700A2B20F /* MyPostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPostViewController.swift; sourceTree = "<group>"; };
 		956733DE2861CFD700A2B20F /* SavedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedViewController.swift; sourceTree = "<group>"; };
@@ -142,8 +142,6 @@
 		B05CD5E1286AB43B0093C11A /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		B05CD5E3286B38E70093C11A /* CommentStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CommentStoryboard.storyboard; sourceTree = "<group>"; };
 		B05CD5E9286B45930093C11A /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
-		B05D1C7C28655CDA00CB3465 /* TableDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableDetailCell.swift; sourceTree = "<group>"; };
-		B05D1C7D28655CDA00CB3465 /* TableDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableDetailCell.xib; sourceTree = "<group>"; };
 		B0A5C39328590ADA00865632 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		B0A7C4E728531F5600144E6D /* VerificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationController.swift; sourceTree = "<group>"; };
 		B0C643F0286A229500565BA5 /* SetCategoryColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetCategoryColor.swift; sourceTree = "<group>"; };
@@ -213,6 +211,7 @@
 				95A141F4286177CD00567AE9 /* JournalRepository.swift */,
 				7260292D285ADD3D00644A82 /* ForumRespository.swift */,
 				956733E12861CFD700A2B20F /* ProfileRepository.swift */,
+				953A4CEF286C62E60091A9C3 /* CommentRepository.swift */,
 			);
 			path = Firebase;
 			sourceTree = "<group>";
@@ -273,7 +272,6 @@
 			isa = PBXGroup;
 			children = (
 				B05CD5D8286AAA140093C11A /* Comment */,
-				B05D1C7B28655CB300CB3465 /* TopicCell */,
 				950D37EF28640E3800F598E1 /* TopicViewController.swift */,
 				950D37F028640E3800F598E1 /* CategoriesDetail.swift */,
 				950D37F128640E3800F598E1 /* Categories.swift */,
@@ -346,15 +344,6 @@
 				B05CD5E9286B45930093C11A /* CommentCell.swift */,
 			);
 			path = Comment;
-			sourceTree = "<group>";
-		};
-		B05D1C7B28655CB300CB3465 /* TopicCell */ = {
-			isa = PBXGroup;
-			children = (
-				B05D1C7C28655CDA00CB3465 /* TableDetailCell.swift */,
-				B05D1C7D28655CDA00CB3465 /* TableDetailCell.xib */,
-			);
-			path = TopicCell;
 			sourceTree = "<group>";
 		};
 		B0FEA0D22845117B00EF8DD9 = {
@@ -485,7 +474,6 @@
 				72A92C8C284F6E2300B2F1F4 /* GoogleService-Info.plist in Resources */,
 				950D37ED28640C3700F598E1 /* Home.storyboard in Resources */,
 				72A6D3E42862CB9900150CB0 /* ForumTableViewCell.xib in Resources */,
-				B05D1C7F28655CDA00CB3465 /* TableDetailCell.xib in Resources */,
 				B0FEA0E82845117C00EF8DD9 /* Assets.xcassets in Resources */,
 				B0FEA0E62845117B00EF8DD9 /* Main.storyboard in Resources */,
 				950D37EC28640C3700F598E1 /* TopicDetailStoryboard.storyboard in Resources */,
@@ -506,6 +494,7 @@
 				95A1420E2861788600567AE9 /* Entry.swift in Sources */,
 				7260292E285ADD3D00644A82 /* ForumRespository.swift in Sources */,
 				72602921285AD11C00644A82 /* iOSDropDown.swift in Sources */,
+				953A4CF0286C62E60091A9C3 /* CommentRepository.swift in Sources */,
 				956733EB2861CFD700A2B20F /* ProfileEntry.swift in Sources */,
 				72602932285AE87200644A82 /* UIView+Fade.swift in Sources */,
 				95A142142861788600567AE9 /* JournalViewController.swift in Sources */,
@@ -514,7 +503,6 @@
 				95072DDA286B66F80013F2C7 /* CommentButton.swift in Sources */,
 				B0FEA0E32845117B00EF8DD9 /* OnboardViewController.swift in Sources */,
 				95A142122861788600567AE9 /* JournalParentVC.swift in Sources */,
-				B05D1C7E28655CDA00CB3465 /* TableDetailCell.swift in Sources */,
 				B05CD5EA286B45930093C11A /* CommentCell.swift in Sources */,
 				95A141F5286177CD00567AE9 /* JournalRepository.swift in Sources */,
 				95A142112861788600567AE9 /* EntryDetailViewController.swift in Sources */,
