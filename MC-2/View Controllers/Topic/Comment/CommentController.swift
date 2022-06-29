@@ -13,14 +13,22 @@ class CommentController: UIViewController {
 
     
     @IBOutlet weak var table: UITableView!
-//    @IBOutlet weak var username: UILabel!
-//    @IBOutlet weak var name: UILabel!
-//    @IBOutlet weak var value: UILabel!
-//    @IBOutlet weak var avatar: UIImageView!
     
     let db = Firestore.firestore()
     var comment : [Comment] = []
+    let userID = Auth.auth().currentUser!.uid
     
+    @IBOutlet weak var postButton: UIButton!
+    @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var textField: UITextField!
+    
+    let placeholderAvatar: String =  "https://firebasestorage.googleapis.com/v0/b/embrace-mini-challenge-2.appspot.com/o/avatar.png?alt=media&token=228d6d5e-53b2-461d-886f-90889981a393"
+    
+    @IBOutlet weak var currentUserAvatar: UIImageView!
+    
+    var authorName: String = ""
+    var authorUsername: String = ""
+    var authorAvatar: String = ""
     var forumId: String = "";
     
     override func viewDidLoad() {
@@ -33,7 +41,29 @@ class CommentController: UIViewController {
     
         self.table.tableFooterView = UIView.init(frame: .zero)
         
-        print(forumId)
+//        print(forumId)
+//
+        fs.rootUsers.document(Auth.auth().currentUser!.uid).getDocument { (docSnapshot, error) in
+            if let doc = docSnapshot {
+                
+                self.authorUsername = doc.get("username") as? String ?? "";
+                self.authorName = doc.get("nama") as? String ?? "";
+                self.authorAvatar = doc.get("avatar") as? String ?? DEFAULT_AVATAR;
+                
+            } else {
+                if let error = error {
+                    print(error)
+                }
+            }
+        }
+        
+//        print("taikkk", authorName)
+//
+        let imgUrl = URL(string: authorAvatar )!
+        currentUserAvatar.load(url: imgUrl)
+
+        currentUserAvatar.layer.cornerRadius = currentUserAvatar.frame.height/2
+        currentUserAvatar.clipsToBounds = true
         
         let docRef = db.collection("comments")
         
@@ -62,7 +92,22 @@ class CommentController: UIViewController {
 
         // Do any additional setup after loading the view.
     }
-
+    @IBAction func backTapped(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func postComment(_ sender: Any) {
+        
+        let commentValue = textField.text
+        Firestore.firestore().collection("comments").addDocument(data: [
+            "forumId": forumId,
+            "value": commentValue,
+            "authorName": authorName,
+            "authorUsername": authorUsername,
+            "authorAvatar": authorAvatar,
+        ])
+        
+    }
 }
 
 extension CommentController: UITableViewDelegate, UITableViewDataSource {
@@ -78,6 +123,10 @@ extension CommentController: UITableViewDelegate, UITableViewDataSource {
         let height: CGFloat = 1
         
         return height
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 400
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -97,8 +146,6 @@ extension CommentController: UITableViewDelegate, UITableViewDataSource {
         let comments = comment[indexPath.section]
         let cell = table.dequeueReusableCell(withIdentifier: "commentCell", for: indexPath) as! CommentCell
         
-        table.layer.cornerRadius = 10
-        
         cell.forumId = comments.forumId
         cell.name.text = comments.name
         cell.username.text = comments.username
@@ -107,6 +154,9 @@ extension CommentController: UITableViewDelegate, UITableViewDataSource {
         
         let imgUrl = URL(string: comments.avatar )!
         cell.avatar.load(url: imgUrl)
+        
+        cell.avatar.layer.cornerRadius = cell.avatar.frame.height/2
+        cell.avatar.clipsToBounds = true
     
         return cell
     }

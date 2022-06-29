@@ -112,11 +112,7 @@ extension TopicDetailController: UITableViewDelegate, UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        //buat post comment
-//        db.collection("forums").document("mhF1O5Nt8eacumykpO8Q").collection("comment").addDocument(data: ["Avatar":"123"])
            print("section: \(indexPath.section)")
-          
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
