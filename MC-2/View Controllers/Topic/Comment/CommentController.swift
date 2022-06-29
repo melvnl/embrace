@@ -26,9 +26,7 @@ class CommentController: UIViewController {
     
     @IBOutlet weak var currentUserAvatar: UIImageView!
     
-    var authorName: String = ""
-    var authorUsername: String = ""
-    var authorAvatar: String = ""
+    var currUser: ProfileEntry?
     var forumId: String = "";
     
     override func viewDidLoad() {
@@ -40,27 +38,6 @@ class CommentController: UIViewController {
         table.separatorColor = UIColor.clear
     
         self.table.tableFooterView = UIView.init(frame: .zero)
-        
-        fs.rootUsers.document(Auth.auth().currentUser!.uid).getDocument { (docSnapshot, error) in
-            if let doc = docSnapshot {
-                self.authorUsername = doc.get("username")! as! String;
-                self.authorName = doc.get("nama")! as! String;
-                self.authorAvatar = doc.get("avatar")! as! String;
-                
-            } else {
-                if let error = error {
-                    print(error)
-                }
-            }
-        }
-        
-//        print("taikkk", authorName)
-//
-        let imgUrl = URL(string: authorAvatar )!
-        currentUserAvatar.load(url: imgUrl)
-
-        currentUserAvatar.layer.cornerRadius = currentUserAvatar.frame.height/2
-        currentUserAvatar.clipsToBounds = true
         
         let docRef = db.collection("comments")
         
@@ -85,10 +62,32 @@ class CommentController: UIViewController {
             
                 print(self.comment);
             }
-            }
+        }
 
         // Do any additional setup after loading the view.
+        fetchUser()
     }
+    
+    func fetchUser(){
+        let group = DispatchGroup()
+        
+        group.enter()
+        DispatchQueue.main.async {
+            profileRepo.fetchCurrentUser{ currUser in
+                self.currUser = currUser
+                group.leave()
+            }
+        }
+        
+        group.notify(queue: .main){ [self] in
+            let imgUrl = URL(string: currUser!.avatar ?? DEFAULT_AVATAR )!
+            currentUserAvatar.load(url: imgUrl)
+            currentUserAvatar.layer.cornerRadius = currentUserAvatar.frame.height/2
+            currentUserAvatar.clipsToBounds = true
+        }
+        
+    }
+    
     @IBAction func backTapped(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }
@@ -96,14 +95,13 @@ class CommentController: UIViewController {
     @IBAction func postComment(_ sender: Any) {
         
         let commentValue = textField.text
-        Firestore.firestore().collection("comments").addDocument(data: [
+        fs.db.collection("comments").addDocument(data: [
             "forumId": forumId,
             "value": commentValue,
-            "authorName": authorName,
-            "authorUsername": authorUsername,
-            "authorAvatar": authorAvatar,
+            "authorName": currUser?.name,
+            "authorUsername": currUser?.username,
+            "authorAvatar": currUser?.avatar,
         ])
-        
     }
 }
 

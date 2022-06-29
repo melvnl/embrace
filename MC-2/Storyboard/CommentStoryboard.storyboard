@@ -117,9 +117,11 @@
                     </view>
                     <connections>
                         <outlet property="backButton" destination="DGF-z2-1Z7" id="twl-rP-Egb"/>
+
                         <outlet property="currentUserAvatar" destination="0Ts-LW-F2L" id="sNY-AA-Nqi"/>
+
                         <outlet property="postButton" destination="DII-hO-AIH" id="gKN-Q4-CPL"/>
-                        <outlet property="table" destination="M6X-Kj-diY" id="ckL-V9-Ujc"/>
+                        <outlet property="table" destination="M6X-Kj-diY" id="M33-IY-Pb6"/>
                         <outlet property="textField" destination="ZKP-eW-9eb" id="pLV-3Q-CP4"/>
                     </connections>
                 </viewController>
