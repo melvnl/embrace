@@ -73,21 +73,13 @@ class CommentController: UIViewController {
             date: Date.now
         )
         
-        let group = DispatchGroup()
-        group.enter()
-        
-        DispatchQueue.main.async{
-            commentRepo.createComment(newComment){ success in
-                group.leave()
+        commentRepo.createComment(newComment){ [self] success in
+            if (success){
+                textField.text = ""
+                postButton.isEnabled = false
+                loadComments()
             }
         }
-        
-        group.notify(queue: .main){ [self] in
-            textField.text = ""
-            postButton.isEnabled = false
-            loadComments()
-        }
-        
     }
     
     @objc func editingChanged(_ textField: UITextField) {
