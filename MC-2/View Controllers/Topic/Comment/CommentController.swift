@@ -36,6 +36,9 @@ class CommentController: UIViewController {
         table.dataSource = self
         
         table.separatorColor = UIColor.clear
+        
+        table.estimatedRowHeight = 200
+        table.rowHeight = UITableView.automaticDimension
     
         self.table.tableFooterView = UIView.init(frame: .zero)
         
@@ -63,6 +66,8 @@ class CommentController: UIViewController {
                 print(self.comment);
             }
         }
+        
+        
 
         // Do any additional setup after loading the view.
         fetchUser()
@@ -121,9 +126,9 @@ extension CommentController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 400
+        return UITableView.automaticDimension
     }
-    
+
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView()
         headerView.backgroundColor = .clear
@@ -150,7 +155,7 @@ extension CommentController: UITableViewDelegate, UITableViewDataSource {
         let imgUrl = URL(string: comments.avatar )!
         cell.avatar.load(url: imgUrl)
         
-        cell.avatar.layer.cornerRadius = cell.avatar.frame.height/2
+        cell.avatar.layer.cornerRadius = 15
         cell.avatar.clipsToBounds = true
     
         return cell
