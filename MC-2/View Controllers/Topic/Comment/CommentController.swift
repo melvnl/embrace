@@ -42,6 +42,9 @@ class CommentController: UIViewController {
     
         self.table.tableFooterView = UIView.init(frame: .zero)
         
+        textField.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
+        postButton.isEnabled = false
+        
         let docRef = db.collection("comments")
         
         docRef.whereField("forumId", isEqualTo: forumId).getDocuments() { (querySnapshot, err) in
@@ -66,9 +69,6 @@ class CommentController: UIViewController {
                 print(self.comment);
             }
         }
-        
-        
-
         // Do any additional setup after loading the view.
         fetchUser()
     }
@@ -107,6 +107,18 @@ class CommentController: UIViewController {
             "authorUsername": currUser?.username,
             "authorAvatar": currUser?.avatar,
         ])
+        
+        textField.text = ""
+        postButton.isEnabled = false
+    }
+    
+    @objc func editingChanged(_ textField: UITextField) {
+        if (textField.text == ""){
+            postButton.isEnabled = false
+        }
+        else{
+            postButton.isEnabled = true
+        }
     }
 }
 
@@ -143,6 +155,7 @@ extension CommentController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let comments = comment[indexPath.section]
         let cell = table.dequeueReusableCell(withIdentifier: "commentCell", for: indexPath) as! CommentCell
         
