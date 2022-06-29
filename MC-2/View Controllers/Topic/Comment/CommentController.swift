@@ -41,14 +41,11 @@ class CommentController: UIViewController {
     
         self.table.tableFooterView = UIView.init(frame: .zero)
         
-//        print(forumId)
-//
         fs.rootUsers.document(Auth.auth().currentUser!.uid).getDocument { (docSnapshot, error) in
             if let doc = docSnapshot {
-                
-                self.authorUsername = doc.get("username") as? String ?? "";
-                self.authorName = doc.get("nama") as? String ?? "";
-                self.authorAvatar = doc.get("avatar") as? String ?? DEFAULT_AVATAR;
+                self.authorUsername = doc.get("username")! as! String;
+                self.authorName = doc.get("nama")! as! String;
+                self.authorAvatar = doc.get("avatar")! as! String;
                 
             } else {
                 if let error = error {
