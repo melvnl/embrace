@@ -14,4 +14,5 @@ struct Comment{
     var username = ""
     var name = ""
     var value = ""
+    var date = Date.now
 }

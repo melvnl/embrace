@@ -10,17 +10,16 @@ import Firebase
 import FirebaseAuth
 
 class CommentController: UIViewController {
-
     
     @IBOutlet weak var table: UITableView!
-//    @IBOutlet weak var username: UILabel!
-//    @IBOutlet weak var name: UILabel!
-//    @IBOutlet weak var value: UILabel!
-//    @IBOutlet weak var avatar: UIImageView!
-    
-    let db = Firestore.firestore()
-    var comment : [Comment] = []
-    
+    @IBOutlet weak var postButton: UIButton!
+    @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var textField: UITextField!
+    @IBOutlet weak var currentUserAvatar: UIImageView!
+
+    var comments : [Comment] = []
+    let userID = Auth.auth().currentUser!.uid
+    var currUser: ProfileEntry?
     var forumId: String = "";
     
     override func viewDidLoad() {
@@ -30,44 +29,72 @@ class CommentController: UIViewController {
         table.dataSource = self
         
         table.separatorColor = UIColor.clear
+        
+        table.estimatedRowHeight = 200
+        table.rowHeight = UITableView.automaticDimension
     
         self.table.tableFooterView = UIView.init(frame: .zero)
         
-        print(forumId)
+        textField.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
+        postButton.isEnabled = false
         
-        let docRef = db.collection("comments")
-        
-        docRef.whereField("forumId", isEqualTo: forumId).getDocuments() { (querySnapshot, err) in
-            if let err = err {
-                print("Error getting documents: \(err)")
-            } else {
-                    for document in querySnapshot!.documents {
-
-                let commentEntry = Comment(
-                    forumId: document.get("forumId")! as! String,
-                    avatar: document.get("authorAvatar") as? String ?? "",
-                    username: document.get("authorUsername") as? String ?? "",
-                    name: document.get("authorName") as? String ?? "",
-                    value: document.get("value")! as! String
-                )
-                self.comment.append(commentEntry)
-                }
-                self.table.delegate = self
-                self.table.dataSource = self
-                self.table.reloadData()
-            
-                print(self.comment);
-            }
-            }
-
-        // Do any additional setup after loading the view.
+        loadComments()
+        profileRepo.fetchCurrentUser{ [self] currUser in
+            self.currUser = currUser
+            let imgUrl = URL(string: currUser.avatar)!
+            currentUserAvatar.load(url: imgUrl)
+            currentUserAvatar.layer.cornerRadius = 20
+            currentUserAvatar.clipsToBounds = true
+        }
     }
-
+    
+    func loadComments(){
+        comments.removeAll()
+        commentRepo.fetchComments(forumId){ [self] comments in
+            self.comments = comments
+            self.table.delegate = self
+            self.table.dataSource = self
+            self.table.reloadData()
+        }
+    }
+    
+    @IBAction func backTapped(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func postComment(_ sender: Any) {
+        
+        let newComment = Comment(
+            forumId: forumId,
+            avatar: currUser!.avatar,
+            username: currUser!.username,
+            name: currUser!.name,
+            value: textField.text!,
+            date: Date.now
+        )
+        
+        commentRepo.createComment(newComment){ [self] success in
+            if (success){
+                textField.text = ""
+                postButton.isEnabled = false
+                loadComments()
+            }
+        }
+    }
+    
+    @objc func editingChanged(_ textField: UITextField) {
+        if (textField.text == ""){
+            postButton.isEnabled = false
+        }
+        else{
+            postButton.isEnabled = true
+        }
+    }
 }
 
 extension CommentController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return comment.count
+        return comments.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -80,6 +107,10 @@ extension CommentController: UITableViewDelegate, UITableViewDataSource {
         return height
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView()
         headerView.backgroundColor = .clear
@@ -94,16 +125,14 @@ extension CommentController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let comments = comment[indexPath.section]
-        let cell = table.dequeueReusableCell(withIdentifier: "commentCell", for: indexPath) as! CommentCell
         
-        table.layer.cornerRadius = 10
+        let comments = comments[indexPath.section]
+        let cell = table.dequeueReusableCell(withIdentifier: "commentCell", for: indexPath) as! CommentCell
         
         cell.forumId = comments.forumId
         cell.name.text = comments.name
         cell.username.text = comments.username
         cell.value.text = comments.value
-        
         
         let imgUrl = URL(string: comments.avatar )!
         cell.avatar.load(url: imgUrl)
