@@ -86,6 +86,7 @@
 		B0A5C39428590ADA00865632 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A5C39328590ADA00865632 /* TableViewCell.swift */; };
 		B0A7C4E828531F5600144E6D /* VerificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A7C4E728531F5600144E6D /* VerificationController.swift */; };
 		B0C643F1286A229500565BA5 /* SetCategoryColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C643F0286A229500565BA5 /* SetCategoryColor.swift */; };
+		B0F451B02871C36C00FF516C /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = B0F451AF2871C36C00FF516C /* Alamofire */; };
 		B0FEA0DF2845117B00EF8DD9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FEA0DE2845117B00EF8DD9 /* AppDelegate.swift */; };
 		B0FEA0E12845117B00EF8DD9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FEA0E02845117B00EF8DD9 /* SceneDelegate.swift */; };
 		B0FEA0E32845117B00EF8DD9 /* OnboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FEA0E22845117B00EF8DD9 /* OnboardViewController.swift */; };
@@ -163,6 +164,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				72A92CA1284F740B00B2F1F4 /* FirebaseDatabase in Frameworks */,
+				B0F451B02871C36C00FF516C /* Alamofire in Frameworks */,
 				72A92CAF284F740B00B2F1F4 /* FirebaseFunctionsCombine-Community in Frameworks */,
 				72A92CA7284F740B00B2F1F4 /* FirebaseFirestore in Frameworks */,
 				72A92C93284F740B00B2F1F4 /* FirebaseAnalyticsSwift in Frameworks */,
@@ -435,6 +437,7 @@
 				72A92CBE284F740B00B2F1F4 /* FirebaseRemoteConfigSwift */,
 				72A92CC0284F740B00B2F1F4 /* FirebaseStorage */,
 				72A92CC2284F740B00B2F1F4 /* FirebaseStorageCombine-Community */,
+				B0F451AF2871C36C00FF516C /* Alamofire */,
 			);
 			productName = "MC-2";
 			productReference = B0FEA0DB2845117B00EF8DD9 /* MC-2.app */;
@@ -466,6 +469,7 @@
 			mainGroup = B0FEA0D22845117B00EF8DD9;
 			packageReferences = (
 				72A92C8D284F740B00B2F1F4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				B0F451AE2871C36C00FF516C /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = B0FEA0DC2845117B00EF8DD9 /* Products */;
 			projectDirPath = "";
@@ -729,6 +733,8 @@
 				DEVELOPMENT_TEAM = MMBFGFQP35;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "MC-2/Info.plist";
+				INFOPLIST_KEY_NSCameraUsageDescription = "";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -757,6 +763,8 @@
 				DEVELOPMENT_TEAM = MMBFGFQP35;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "MC-2/Info.plist";
+				INFOPLIST_KEY_NSCameraUsageDescription = "";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -805,6 +813,14 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 9.0.0;
+			};
+		};
+		B0F451AE2871C36C00FF516C /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -944,6 +960,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 72A92C8D284F740B00B2F1F4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = "FirebaseStorageCombine-Community";
+		};
+		B0F451AF2871C36C00FF516C /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B0F451AE2871C36C00FF516C /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
