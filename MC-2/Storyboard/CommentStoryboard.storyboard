@@ -20,7 +20,7 @@
                                 <rect key="frame" x="0.0" y="117" width="414" height="54"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZKP-eW-9eb">
-                                        <rect key="frame" x="70" y="10" width="246" height="34"/>
+                                        <rect key="frame" x="69" y="10" width="247" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="263" id="hxc-Fu-kB2"/>
                                         </constraints>
@@ -41,10 +41,10 @@
                                         </connections>
                                     </button>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0Ts-LW-F2L">
-                                        <rect key="frame" x="15" y="8" width="41" height="38"/>
+                                        <rect key="frame" x="15" y="7" width="40" height="40"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" secondItem="0Ts-LW-F2L" secondAttribute="height" multiplier="41:38" id="49Y-og-VSQ"/>
-                                            <constraint firstAttribute="width" constant="41" id="exd-qm-aiX"/>
+                                            <constraint firstAttribute="width" secondItem="0Ts-LW-F2L" secondAttribute="height" multiplier="1:1" id="49Y-og-VSQ"/>
+                                            <constraint firstAttribute="width" constant="40" id="exd-qm-aiX"/>
                                         </constraints>
                                     </imageView>
                                 </subviews>
