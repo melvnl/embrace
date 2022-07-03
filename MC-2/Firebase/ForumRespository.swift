@@ -14,6 +14,10 @@ import Alamofire
 
 let forumRepo = ForumRepository()
 
+let headers: HTTPHeaders = [
+        "Content-Type": "application/json"
+    ]
+
 class ForumRepository {
     
     func createForum(entry: EntryForum){
@@ -29,14 +33,11 @@ class ForumRepository {
         ]){
             err in
             if let err = err {
+                
                 let dcWebhook = Bundle.main.object(forInfoDictionaryKey: "discord_webhook") as! String
                 
-                let headers: HTTPHeaders = [
-                        "Content-Type": "application/json"
-                    ]
-                
                 let parameters: [String: String] = [
-                    "content" : err.localizedDescription,
+                    "content" : "\(err.localizedDescription) when creating new forum - \(Auth.auth().currentUser?.email)",
                 ]
                 
                 AF.request(dcWebhook, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON {
@@ -59,7 +60,22 @@ class ForumRepository {
         fs.rootForum.getDocuments() { (querySnapshot, err) in
                 
                 if let err = err {
-                    print("Error getting user threads: \(err)")
+                    let dcWebhook = Bundle.main.object(forInfoDictionaryKey: "discord_webhook") as! String
+                    
+                    let parameters: [String: String] = [
+                        "content" : "\(err.localizedDescription) when fetching all forum - \(Auth.auth().currentUser?.email)",
+                    ]
+                    
+                    AF.request(dcWebhook, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON {
+                                response in
+                                switch (response.result) {
+                                case .success:
+                                    print(response)
+                                    break
+                                case .failure:
+                                    print(Error.self)
+                                }
+                            }
                 }
                 
                 else {
@@ -112,7 +128,22 @@ class ForumRepository {
                 .getDocuments() { (querySnapshot, err) in
                     
                     if let err = err {
-                        print("Error getting user threads: \(err)")
+                        let dcWebhook = Bundle.main.object(forInfoDictionaryKey: "discord_webhook") as! String
+                        
+                        let parameters: [String: String] = [
+                            "content" : "\(err.localizedDescription) when fetch forum from \(username)",
+                        ]
+                        
+                        AF.request(dcWebhook, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON {
+                                    response in
+                                    switch (response.result) {
+                                    case .success:
+                                        print(response)
+                                        break
+                                    case .failure:
+                                        print(Error.self)
+                                    }
+                                }
                     }
                     
                     else {
@@ -160,7 +191,22 @@ class ForumRepository {
         fs.rootForum.getDocuments() { (querySnapshot, err) in
                 
             if let err = err {
-                print("Error getting user threads: \(err)")
+                let dcWebhook = Bundle.main.object(forInfoDictionaryKey: "discord_webhook") as! String
+                
+                let parameters: [String: String] = [
+                    "content" : "\(err.localizedDescription) when fetching saved threads from - \(Auth.auth().currentUser?.email)",
+                ]
+                
+                AF.request(dcWebhook, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON {
+                            response in
+                            switch (response.result) {
+                            case .success:
+                                print(response)
+                                break
+                            case .failure:
+                                print(Error.self)
+                            }
+                        }
             }
             
             else {
@@ -203,7 +249,22 @@ class ForumRepository {
             "saves": FieldValue.arrayUnion([id])
         ])) { err in
             if let err = err{
-                print("Error saving thread: \(err)")
+                let dcWebhook = Bundle.main.object(forInfoDictionaryKey: "discord_webhook") as! String
+                
+                let parameters: [String: String] = [
+                    "content" : "\(err.localizedDescription) when save a thread/forum - \(Auth.auth().currentUser?.email)",
+                ]
+                
+                AF.request(dcWebhook, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON {
+                            response in
+                            switch (response.result) {
+                            case .success:
+                                print(response)
+                                break
+                            case .failure:
+                                print(Error.self)
+                            }
+                        }
             }
             else{
                 print("Thread successfully saved")
@@ -216,7 +277,22 @@ class ForumRepository {
             "saves": FieldValue.arrayRemove([id])
         ])) { err in
             if let err = err{
-                print("Error deleting saved thread: \(err)")
+                let dcWebhook = Bundle.main.object(forInfoDictionaryKey: "discord_webhook") as! String
+                
+                let parameters: [String: String] = [
+                    "content" : "\(err.localizedDescription) when deleting a saved forum from user with id - \(id) \(Auth.auth().currentUser?.email)",
+                ]
+                
+                AF.request(dcWebhook, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON {
+                            response in
+                            switch (response.result) {
+                            case .success:
+                                print(response)
+                                break
+                            case .failure:
+                                print(Error.self)
+                            }
+                        }
             }
             else{
                 print("Saved thread successfully deleted")

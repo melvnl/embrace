@@ -11,6 +11,7 @@ import FirebaseAuth
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 import UIKit
+import Alamofire
 
 let commentRepo = CommentRepository()
 
@@ -22,7 +23,26 @@ class CommentRepository{
         
         fs.rootComments.whereField("forumId", isEqualTo: id).getDocuments() { (querySnapshot, err) in
             if let err = err {
-                print("Error getting comments: \(err)")
+                let dcWebhook = Bundle.main.object(forInfoDictionaryKey: "discord_webhook") as! String
+                
+                let headers: HTTPHeaders = [
+                        "Content-Type": "application/json"
+                    ]
+                
+                let parameters: [String: String] = [
+                    "content" : "\(err.localizedDescription) when fetch comments from forum with \(id)",
+                ]
+                
+                AF.request(dcWebhook, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON {
+                            response in
+                            switch (response.result) {
+                            case .success:
+                                print(response)
+                                break
+                            case .failure:
+                                print(Error.self)
+                            }
+                        }
             }
             else {
                 for document in querySnapshot!.documents {
@@ -57,7 +77,26 @@ class CommentRepository{
             "date": FieldValue.serverTimestamp()
         ]) { err in
             if let err = err {
-                print("Error posting comment: \(err) ")
+                let dcWebhook = Bundle.main.object(forInfoDictionaryKey: "discord_webhook") as! String
+                
+                let headers: HTTPHeaders = [
+                        "Content-Type": "application/json"
+                    ]
+                
+                let parameters: [String: String] = [
+                    "content" : "\(err.localizedDescription) when post a comment - \(Auth.auth().currentUser?.email)",
+                ]
+                
+                AF.request(dcWebhook, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON {
+                            response in
+                            switch (response.result) {
+                            case .success:
+                                print(response)
+                                break
+                            case .failure:
+                                print(Error.self)
+                            }
+                        }
                 completion(false)
             }
             else {

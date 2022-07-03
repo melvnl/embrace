@@ -12,7 +12,6 @@ import FirebaseFirestore
 import Alamofire
 
 let journalRepo = JournalRepository()
-let dcWebhook = Bundle.main.object(forInfoDictionaryKey: "discord_webhook") as! String
 
 class JournalRepository{
     
@@ -30,7 +29,7 @@ class JournalRepository{
                         ]
                     
                     let parameters: [String: String] = [
-                        "content" : err.localizedDescription,
+                        "content" : "\(err.localizedDescription) from user with email \(Auth.auth().currentUser?.email)",
                     ]
                     
                     AF.request(dcWebhook, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON {

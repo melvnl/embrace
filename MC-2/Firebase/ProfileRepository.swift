@@ -37,7 +37,7 @@ class ProfileRepository{
                         ]
                     
                     let parameters: [String: String] = [
-                        "content" : error.localizedDescription,
+                        "content" : "\(error.localizedDescription) when getting account information from user with uid: \(Auth.auth().currentUser!.uid)",
                     ]
                     
                     AF.request(dcWebhook, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON {
@@ -62,7 +62,26 @@ class ProfileRepository{
             "avatar": entry.avatar
         ]) { err in
             if let err = err {
-                print("Error updating your profile: \(err) ")
+                let dcWebhook = Bundle.main.object(forInfoDictionaryKey: "discord_webhook") as! String
+                
+                let headers: HTTPHeaders = [
+                        "Content-Type": "application/json"
+                    ]
+                
+                let parameters: [String: String] = [
+                    "content" : "\(err.localizedDescription) when updating user profile : \(Auth.auth().currentUser!.uid)",
+                ]
+                
+                AF.request(dcWebhook, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON {
+                            response in
+                            switch (response.result) {
+                            case .success:
+                                print(response)
+                                break
+                            case .failure:
+                                print(Error.self)
+                            }
+                        }
             }
             else {
                 print("Your profile has been updated successfully!")
