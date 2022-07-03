@@ -48,10 +48,7 @@ class TopicDetailController: UIViewController {
         tableView.estimatedRowHeight = 497
         
         topicTitle.text = categorySub;
-        
-        //detail
-        print("test")
-        print(categoryDocId)
+    
         let docRef = db.collection("forums")
         docRef.whereField("category", isEqualTo: categoryDocId).getDocuments() { (querySnapshot, err) in
             if let err = err {

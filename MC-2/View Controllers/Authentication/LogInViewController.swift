@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseAuth
+import Alamofire
 
 class LogInViewController: UIViewController {
     
@@ -24,9 +25,8 @@ class LogInViewController: UIViewController {
     
     let imageIcon = UIImageView()
     
+    let dcWebhook = Bundle.main.object(forInfoDictionaryKey: "discord_webhook") as! String
     
-        
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -110,11 +110,30 @@ class LogInViewController: UIViewController {
         let email = emailTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         let password = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         
+        let headers: HTTPHeaders = [
+                "Content-Type": "application/json"
+            ]
         //Signing in the user
         Auth.auth().signIn(withEmail: email, password: password) { result, error in
             if error != nil {
                 //Could not signin
-
+                
+                
+                let parameters: [String: String] = [
+                    "content" : error!.localizedDescription,
+                ]
+                
+                AF.request(self.dcWebhook, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON {
+                            response in
+                            switch (response.result) {
+                            case .success:
+                                print(response)
+                                break
+                            case .failure:
+                                print(Error.self)
+                            }
+                        }
+                
                 self.errorLabel.text = error!.localizedDescription
                 self.errorLabel.alpha = 1
             }else{

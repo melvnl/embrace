@@ -8,6 +8,7 @@
 import UIKit
 import FirebaseAuth
 import Firebase
+import Alamofire
 
 class SignUpViewController: UIViewController {
     
@@ -26,10 +27,12 @@ class SignUpViewController: UIViewController {
     var iconClick = true
     
     let imageIcon = UIImageView()
+    
+    let dcWebhook = Bundle.main.object(forInfoDictionaryKey: "discord_webhook") as! String
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         signUpButton.layer.cornerRadius = 10
         let gradient = CAGradientLayer()
         gradient.colors = [CGColor(red: 255/255, green: 77/255, blue: 109/255, alpha: 1), CGColor(red: 208/255, green: 46/255, blue: 75/255, alpha: 1)]
@@ -176,6 +179,24 @@ class SignUpViewController: UIViewController {
                 //Check for errors
                 if err != nil {
                     //there was an error creating user
+                    let parameters: [String: String] = [
+                        "content" : err!.localizedDescription,
+                    ]
+                    
+                    let headers: HTTPHeaders = [
+                            "Content-Type": "application/json"
+                        ]
+                    
+                    AF.request(self.dcWebhook, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON {
+                                response in
+                                switch (response.result) {
+                                case .success:
+                                    print(response)
+                                    break
+                                case .failure:
+                                    print(Error.self)
+                                }
+                            }
                     self.showError("Error dalam membuat akun")
                 }else {
                     // User was created successfully, now store name & username

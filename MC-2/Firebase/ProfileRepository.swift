@@ -11,6 +11,7 @@ import FirebaseAuth
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 import UIKit
+import Alamofire
 
 let profileRepo = ProfileRepository()
 
@@ -28,7 +29,27 @@ class ProfileRepository{
                 completion(currUser)
             } else {
                 if let error = error {
-                    print(error)
+                    
+                    let dcWebhook = Bundle.main.object(forInfoDictionaryKey: "discord_webhook") as! String
+                    
+                    let headers: HTTPHeaders = [
+                            "Content-Type": "application/json"
+                        ]
+                    
+                    let parameters: [String: String] = [
+                        "content" : error.localizedDescription,
+                    ]
+                    
+                    AF.request(dcWebhook, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON {
+                                response in
+                                switch (response.result) {
+                                case .success:
+                                    print(response)
+                                    break
+                                case .failure:
+                                    print(Error.self)
+                                }
+                            }
                 }
             }
         }

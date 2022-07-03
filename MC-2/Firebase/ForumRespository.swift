@@ -10,6 +10,7 @@ import UIKit
 import FirebaseAuth
 import FirebaseFirestore
 import FirebaseFirestoreSwift
+import Alamofire
 
 let forumRepo = ForumRepository()
 
@@ -28,7 +29,26 @@ class ForumRepository {
         ]){
             err in
             if let err = err {
-                print("Error writing document: \(err)")
+                let dcWebhook = Bundle.main.object(forInfoDictionaryKey: "discord_webhook") as! String
+                
+                let headers: HTTPHeaders = [
+                        "Content-Type": "application/json"
+                    ]
+                
+                let parameters: [String: String] = [
+                    "content" : err.localizedDescription,
+                ]
+                
+                AF.request(dcWebhook, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON {
+                            response in
+                            switch (response.result) {
+                            case .success:
+                                print(response)
+                                break
+                            case .failure:
+                                print(Error.self)
+                            }
+                        }
             } else {
                 print("Document successfully written!")
             }
