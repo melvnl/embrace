@@ -100,6 +100,8 @@ class CommentRepository{
                 completion(false)
             }
             else {
+                // update forum counter
+                forumRepo.addCommentCounter(comment.forumId)
                 print("Comment has been posted successfully!")
                 completion(true)
             }

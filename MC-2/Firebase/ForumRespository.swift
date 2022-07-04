@@ -29,7 +29,8 @@ class ForumRepository {
             "authorName": entry.authorName,
             "authorUsername" : entry.authorUsername,
             "forumThumbnail": entry.forumThumbnail,
-            "authorAvatar" : entry.authorAvatar
+            "authorAvatar" : entry.authorAvatar,
+            "count": 0
         ]){
             err in
             if let err = err {
@@ -96,7 +97,63 @@ class ForumRepository {
                                 authorName: document.get("authorName") as! String,
                                 authorUsername: document.get("authorUsername") as! String,
                                 authorAvatar: document.get("authorAvatar") as! String,
-                                forumThumbnail: document.get("forumThumbnail") as! String
+                                forumThumbnail: document.get("forumThumbnail") as! String,
+                                count: document.get("count") as! Int
+                            )
+                            entryList.append(currThread)
+                        }
+                        
+                        entryList.sort { (lhs: EntryForum, rhs: EntryForum) -> Bool in
+                            return lhs.date > rhs.date
+                        }
+                        
+                        completion(entryList)
+                    }
+                }
+            }
+    }
+    
+    func fetchCategoryThreads(_ id: String, completion: @escaping (_ threads: [EntryForum]) -> Void){
+        fs.rootForum.whereField("category", isEqualTo: id).getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    let dcWebhook = Bundle.main.object(forInfoDictionaryKey: "discord_webhook") as! String
+                    
+                    let parameters: [String: String] = [
+                        "content" : "\(err.localizedDescription) when fetching category forum - \(Auth.auth().currentUser?.email)",
+                    ]
+                    
+                    AF.request(dcWebhook, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON {
+                                response in
+                                switch (response.result) {
+                                case .success:
+                                    print(response)
+                                    break
+                                case .failure:
+                                    print(Error.self)
+                                }
+                            }
+                }
+                
+                else {
+                    if querySnapshot!.documents.isEmpty {
+                        let emptyArray: [EntryForum] = []
+                        completion(emptyArray)
+                    }
+                    else{
+                        var entryList : [EntryForum] = []
+                        for document in querySnapshot!.documents {
+                            let ts = document.get("date") as! Timestamp
+                            let currThread = EntryForum(
+                                id: document.documentID,
+                                forumTitle: document.get("forumTitle")! as! String,
+                                forumDesc: document.get("forumDesc")! as! String,
+                                category: document.get("category") as! String,
+                                date: ts.dateValue(),
+                                authorName: document.get("authorName") as! String,
+                                authorUsername: document.get("authorUsername") as! String,
+                                authorAvatar: document.get("authorAvatar") as! String,
+                                forumThumbnail: document.get("forumThumbnail") as! String,
+                                count: document.get("count") as! Int
                             )
                             entryList.append(currThread)
                         }
@@ -164,7 +221,8 @@ class ForumRepository {
                                     authorName: document.get("authorName") as! String,
                                     authorUsername: document.get("authorUsername") as! String,
                                     authorAvatar: document.get("authorAvatar") as! String,
-                                    forumThumbnail: document.get("forumThumbnail") as! String
+                                    forumThumbnail: document.get("forumThumbnail") as! String,
+                                    count: document.get("count") as! Int
                                 )
                                 entryList.append(currThread)
                             }
@@ -228,7 +286,8 @@ class ForumRepository {
                                 authorName: document.get("authorName") as! String,
                                 authorUsername: document.get("authorUsername") as! String,
                                 authorAvatar: document.get("authorAvatar") as! String,
-                                forumThumbnail: document.get("forumThumbnail") as! String
+                                forumThumbnail: document.get("forumThumbnail") as! String,
+                                count: document.get("count") as! Int
                             )
                             savedThreads.append(currThread)
                         }
@@ -296,6 +355,34 @@ class ForumRepository {
             }
             else{
                 print("Saved thread successfully deleted")
+            }
+        }
+    }
+    
+    func addCommentCounter(_ id: String){
+        fs.rootForum.document(id).updateData([
+            "count": FieldValue.increment(Int64(1))
+        ]) { err in
+            if let err = err{
+                let dcWebhook = Bundle.main.object(forInfoDictionaryKey: "discord_webhook") as! String
+                
+                let parameters: [String: String] = [
+                    "content" : "\(err.localizedDescription) when updating comment counter of forum with id - \(id)",
+                ]
+                
+                AF.request(dcWebhook, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON {
+                            response in
+                            switch (response.result) {
+                            case .success:
+                                print(response)
+                                break
+                            case .failure:
+                                print(Error.self)
+                            }
+                        }
+            }
+            else{
+                print("Updated comment counter successfully")
             }
         }
     }

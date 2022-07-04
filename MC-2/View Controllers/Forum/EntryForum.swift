@@ -18,4 +18,5 @@ struct EntryForum: Equatable {
     var authorUsername = ""
     var authorAvatar = DEFAULT_AVATAR
     var forumThumbnail = EMPTY_IMAGE
+    var count = 0
 }

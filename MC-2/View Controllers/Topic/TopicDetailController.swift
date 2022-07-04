@@ -22,9 +22,10 @@ class TopicDetailController: UIViewController {
     @IBOutlet weak var headerDesc: UILabel!
     
     @IBOutlet weak var tableView: UITableView!
-    let placeholderAvatar: String =  "https://firebasestorage.googleapis.com/v0/b/embrace-mini-challenge-2.appspot.com/o/avatar.png?alt=media&token=228d6d5e-53b2-461d-886f-90889981a393"
     
-    var categoriesDetail : [CategoriesDetail] = []
+    var currUser: ProfileEntry?
+    
+    var categoriesDetail : [EntryForum] = []
     
     var categoryDocId: String = "";
     var categoryTitle: String = "";
@@ -48,35 +49,43 @@ class TopicDetailController: UIViewController {
         tableView.estimatedRowHeight = 497
         
         topicTitle.text = categorySub;
+    }
     
-        let docRef = db.collection("forums")
-        docRef.whereField("category", isEqualTo: categoryDocId).getDocuments() { (querySnapshot, err) in
-            if let err = err {
-                print("Error getting documents: \(err)")
-            } else {
-                    for document in querySnapshot!.documents {
-                        
-
-                        let currEntry = CategoriesDetail(
-                            id: document.documentID,
-                            categoryTitle: document.get("category")! as! String,
-                            forumTitle: document.get("forumTitle")! as! String,
-                            thumbnail: document.get("forumThumbnail") as? String ?? "",
-                            desc: document.get("forumDesc")! as! String,
-                            date: (document.get("date")! as! Timestamp).dateValue(),
-                            accName: document.get("authorName")! as! String,
-                            accUsername: document.get("authorUsername")! as! String,
-                            accAvatar: document.get("authorAvatar")! as! String
-                        )
-                        self.categoriesDetail.append(currEntry)
-                    }
-                self.tableView.delegate = self
-                self.tableView.dataSource = self
-                self.tableView.reloadData()
-
-                print(self.categoriesDetail);
+    override func viewDidAppear(_ animated: Bool) {
+        fetchCurrentUser()
+        fetchForumData()
+    }
+    
+    func fetchForumData() {
+        
+        var newEntries : [EntryForum] = []
+        let group = DispatchGroup()
+        group.enter()
+        
+        DispatchQueue.main.async {
+            self.showSpinner(onView: self.view)
+            forumRepo.fetchAllThreads { entryList in
+                newEntries = entryList
+                group.leave()
             }
-            }
+        }
+        
+        group.notify(queue: .main){ [self] in
+            removeSpinner()
+            
+            categoriesDetail = newEntries
+            
+            tableView.dataSource = self
+            tableView.delegate = self
+            tableView.reloadData()
+        }
+        
+    }
+    
+    func fetchCurrentUser(){
+        profileRepo.fetchCurrentUser{ currUser in
+            self.currUser = currUser
+        }
     }
 }
 
@@ -117,25 +126,35 @@ extension TopicDetailController: UITableViewDelegate, UITableViewDataSource {
         let detail = categoriesDetail[indexPath.section]
         let cell = tableView.dequeueReusableCell(withIdentifier: "forumCellID", for: indexPath) as! ForumTableViewCell
         
+        cell.threadID = detail.id
+        cell.categoryForum.setTitle(detail.category, for: .normal)
+        cell.categoryForum.setCategoryColor(detail.category)
+        cell.dateForum.text = detail.date.toString("MMM d, yyyy")
+        cell.titleForum.text = detail.forumTitle
+        cell.descForum.text = detail.forumDesc
         cell.commentForum.threadID = detail.id
         cell.commentForum.addTarget(self, action: #selector(segueToNextView(_:)), for: .touchUpInside)
+        cell.commentForum.setTitle(String(detail.count), for: .normal)
+        cell.commentForum.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .medium)
         
-        //forum
-        cell.titleForum.text = detail.forumTitle
-        cell.descForum.text = detail.desc
-        cell.dateForum.text = detail.date.toString("MMM d, yyyy")
-        let forumImgUrl = URL(string: detail.thumbnail )!
+        if(detail.forumThumbnail == EMPTY_IMAGE){
+            cell.imgForum.isHidden = true
+        }
+        
+        let forumImgUrl = URL(string: detail.forumThumbnail)!
         cell.imgForum.load(url: forumImgUrl)
-        cell.categoryForum.setTitle(detail.categoryTitle, for: .normal)
-
-        //avatar
-        cell.authorName.text = detail.accName
-        cell.authorUsername.text = detail.accUsername
-        let imgUrl = URL(string: detail.accAvatar )!
-        cell.authorImg.load(url: imgUrl)
-        cell.threadID = detail.id
         
-        cell.categoryForum.setCategoryColor(detail.categoryTitle);
+        let authorImgUrl = URL(string: detail.authorAvatar)!
+        cell.authorImg.load(url: authorImgUrl)
+        
+        cell.authorName.text = detail.authorName
+        cell.authorUsername.text = "@" + detail.authorUsername
+        
+        if(currUser!.saves.contains(cell.threadID!)){
+            cell.isSaved = true
+            cell.setSavedStateImage()
+        }
+        
         return cell
     }
     

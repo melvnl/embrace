@@ -40,19 +40,19 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YBB-w2-a99">
-                        <rect key="frame" x="170" y="441.5" width="200" height="31"/>
+                        <rect key="frame" x="162" y="441.5" width="208" height="31"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X4U-WR-TJW" customClass="CommentButton" customModule="MC_2" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="100" height="31"/>
+                                <rect key="frame" x="0.0" y="0.0" width="104" height="31"/>
                                 <color key="tintColor" red="0.4549019608" green="0.4549019608" blue="0.4549019608" alpha="0.8980392157" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="bubble.left" catalog="system" title="  Angka">
+                                <buttonConfiguration key="configuration" style="plain" image="bubble.left" catalog="system" title="  Angka" imagePadding="6">
                                     <fontDescription key="titleFontDescription" type="system" weight="medium" pointSize="14"/>
                                     <color key="baseForegroundColor" red="0.32156862749999998" green="0.32156862749999998" blue="0.32156862749999998" alpha="1" colorSpace="calibratedRGB"/>
                                 </buttonConfiguration>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Seq-Co-x3Z">
-                                <rect key="frame" x="100" y="0.0" width="100" height="31"/>
+                                <rect key="frame" x="104" y="0.0" width="104" height="31"/>
                                 <color key="tintColor" red="0.4549019608" green="0.4549019608" blue="0.4549019608" alpha="0.8980392157" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="bookmark" catalog="system" title="  Simpan">

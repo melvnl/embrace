@@ -139,6 +139,10 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         cell.dateForum.text = forumSection.date.toString("MMM d, yyyy")
         cell.titleForum.text = forumSection.forumTitle
         cell.descForum.text = forumSection.forumDesc
+        cell.commentForum.threadID = forumSection.id
+        cell.commentForum.addTarget(self, action: #selector(segueToNextView(_:)), for: .touchUpInside)
+        cell.commentForum.setTitle(String(forumSection.count), for: .normal)
+        cell.commentForum.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .medium)
         
         if(forumSection.forumThumbnail == EMPTY_IMAGE){
             cell.imgForum.isHidden = true
@@ -164,6 +168,13 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         cell.setSavedStateImage()
         
         return cell
+    }
+    
+    @objc func segueToNextView(_ sender: CommentButton){
+        let sb = UIStoryboard(name: "CommentStoryboard", bundle: nil)
+        let vc = sb.instantiateViewController(withIdentifier: "CommentController") as! CommentController
+        vc.forumId = sender.threadID!
+        present(vc, animated: true)
     }
     
     func fetchCurrentUser(){
