@@ -32,8 +32,9 @@ class ForumTableViewCell: UITableViewCell {
         categoryForum.isUserInteractionEnabled = false
         categoryForum.layer.cornerRadius = 14
         categoryForum.clipsToBounds = true
-        
+
         descForum.isScrollEnabled = false
+        descForum.sizeToFit()
         
         authorImg.layer.masksToBounds = false
         authorImg.layer.cornerRadius = 20
