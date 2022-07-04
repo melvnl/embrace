@@ -86,11 +86,10 @@ class ProfileRepository{
             }
             else {
                 self.updateForumProfile(entry)
+                self.updateCommentProfile(entry)
                 print("Your profile has been updated successfully!")
             }
         }
-        
-        //updateForumProfile(entry)
         
     }
     
