@@ -10,8 +10,6 @@ import Firebase
 import FirebaseAuth
 import FirebaseDatabase
 
-
-
 class HomeViewController: UIViewController, UISearchBarDelegate{
     
 
@@ -28,7 +26,7 @@ class HomeViewController: UIViewController, UISearchBarDelegate{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         forumSearchBar.searchTextField.textColor = UIColor(red: 0.32, green: 0.32, blue: 0.32, alpha: 1.00)
         forumSearchBar.searchTextField.attributedPlaceholder = NSAttributedString (
         string: "Cari apa saja yang Anda butuhkan...",
@@ -208,5 +206,6 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
     }
+    
 }
 
