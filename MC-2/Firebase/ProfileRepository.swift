@@ -85,18 +85,20 @@ class ProfileRepository{
                         }
             }
             else {
+                self.updateForumProfile(entry)
                 print("Your profile has been updated successfully!")
             }
         }
         
-        updateForumProfile(entry)
-        updateCommentProfile(entry)
+        //updateForumProfile(entry)
         
     }
     
     func updateCommentProfile(_ entry: ProfileEntry){
+        var username = entry.username
+        username.remove(at: username.startIndex)
         fs.rootComments
-            .whereField("authorUsername", isEqualTo: entry.username)
+            .whereField("authorUsername", isEqualTo: username)
             .getDocuments() { (querySnapshot, err) in
                 if let err = err {
                     let dcWebhook = Bundle.main.object(forInfoDictionaryKey: "discord_webhook") as! String
@@ -120,19 +122,26 @@ class ProfileRepository{
                                 }
                             }
                 } else {
-                    let document = querySnapshot?.documents.first
-                    document?.reference.updateData([
-                        "authorAvatar": entry.avatar,
-                        "authorName": entry.name,
-                        "authorUsername": entry.username
-                    ])
+                    let batch = fs.db.batch()
+                    for document in querySnapshot!.documents {
+                        
+                        batch.updateData(
+                            [
+                                "authorAvatar": entry.avatar,
+                                "authorName": entry.name
+                            ], forDocument: document.reference)
+                        print("Updating document uid: \(document.documentID)")
+                    }
+                    batch.commit()
                 }
             }
     }
     
     func updateForumProfile(_ entry: ProfileEntry){
+        var username = entry.username
+        username.remove(at: username.startIndex)
         fs.rootForum
-            .whereField("authorUsername", isEqualTo: entry.username)
+            .whereField("authorUsername", isEqualTo: username)
             .getDocuments() { (querySnapshot, err) in
                 if let err = err {
                     let dcWebhook = Bundle.main.object(forInfoDictionaryKey: "discord_webhook") as! String
@@ -156,12 +165,17 @@ class ProfileRepository{
                                 }
                             }
                 } else {
-                    let document = querySnapshot?.documents.first
-                    document?.reference.updateData([
-                        "authorAvatar": entry.avatar,
-                        "authorName": entry.name,
-                        "authorUsername": entry.username
-                    ])
+                    let batch = fs.db.batch()
+                    for document in querySnapshot!.documents {
+                        
+                        batch.updateData(
+                            [
+                                "authorAvatar": entry.avatar,
+                                "authorName": entry.name
+                            ], forDocument: document.reference)
+                        print("Updating document uid: \(document.documentID)")
+                    }
+                    batch.commit()
                 }
             }
     }
