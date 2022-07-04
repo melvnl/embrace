@@ -23,7 +23,7 @@ class CommentRepository{
         
         fs.rootComments.whereField("forumId", isEqualTo: id).getDocuments() { (querySnapshot, err) in
             if let err = err {
-                let dcWebhook = Bundle.main.object(forInfoDictionaryKey: "discord_webhook") as! String
+                let dcWebhook = ProcessInfo.processInfo.environment["DISCORD_WEBHOOK"]
                 
                 let headers: HTTPHeaders = [
                         "Content-Type": "application/json"
@@ -33,7 +33,7 @@ class CommentRepository{
                     "content" : "\(err.localizedDescription) when fetch comments from forum with \(id)",
                 ]
                 
-                AF.request(dcWebhook, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON {
+                AF.request(dcWebhook!, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON {
                             response in
                             switch (response.result) {
                             case .success:
@@ -77,7 +77,7 @@ class CommentRepository{
             "date": FieldValue.serverTimestamp()
         ]) { err in
             if let err = err {
-                let dcWebhook = Bundle.main.object(forInfoDictionaryKey: "discord_webhook") as! String
+                let dcWebhook = ProcessInfo.processInfo.environment["DISCORD_WEBHOOK"]
                 
                 let headers: HTTPHeaders = [
                         "Content-Type": "application/json"
@@ -87,7 +87,7 @@ class CommentRepository{
                     "content" : "\(err.localizedDescription) when post a comment - \(Auth.auth().currentUser?.email)",
                 ]
                 
-                AF.request(dcWebhook, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON {
+                AF.request(dcWebhook!, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON {
                             response in
                             switch (response.result) {
                             case .success:

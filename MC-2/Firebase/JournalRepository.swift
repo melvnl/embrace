@@ -22,17 +22,17 @@ class JournalRepository{
             .getDocuments() { (querySnapshot, err) in
                 
                 if let err = err {
-                    let dcWebhook = Bundle.main.object(forInfoDictionaryKey: "discord_webhook") as! String
+                    let dcWebhook = ProcessInfo.processInfo.environment["DISCORD_WEBHOOK"]
                     
                     let headers: HTTPHeaders = [
                             "Content-Type": "application/json"
                         ]
                     
                     let parameters: [String: String] = [
-                        "content" : "\(err.localizedDescription) from user with email \(Auth.auth().currentUser?.email)",
+                        "content" : "\(err.localizedDescription) from user with email \(String(describing: Auth.auth().currentUser?.email))",
                     ]
                     
-                    AF.request(dcWebhook, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON {
+                    AF.request(dcWebhook!, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON {
                                 response in
                                 switch (response.result) {
                                 case .success:
@@ -85,7 +85,26 @@ class JournalRepository{
             "image": entry.image
         ]) { err in
             if let err = err {
-                print("Error writing document: \(err)")
+                let dcWebhook = ProcessInfo.processInfo.environment["DISCORD_WEBHOOK"]
+                
+                let headers: HTTPHeaders = [
+                        "Content-Type": "application/json"
+                    ]
+                
+                let parameters: [String: String] = [
+                    "content" : "\(err.localizedDescription) from user with email \(String(describing: Auth.auth().currentUser?.email)) when creating a new journal",
+                ]
+                
+                AF.request(dcWebhook!, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON {
+                            response in
+                            switch (response.result) {
+                            case .success:
+                                print(response)
+                                break
+                            case .failure:
+                                print(Error.self)
+                            }
+                        }
             } else {
                 print("Document successfully written!")
             }
@@ -100,7 +119,26 @@ class JournalRepository{
             "image": entry.image
         ]) { err in
             if let err = err {
-                print("Error updating journal entry: \(err)")
+                let dcWebhook = ProcessInfo.processInfo.environment["DISCORD_WEBHOOK"]
+                
+                let headers: HTTPHeaders = [
+                        "Content-Type": "application/json"
+                    ]
+                
+                let parameters: [String: String] = [
+                    "content" : "\(err.localizedDescription) from user with email \(String(describing: Auth.auth().currentUser?.email)) when updating a journal",
+                ]
+                
+                AF.request(dcWebhook!, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON {
+                            response in
+                            switch (response.result) {
+                            case .success:
+                                print(response)
+                                break
+                            case .failure:
+                                print(Error.self)
+                            }
+                        }
             } else {
                 print("Journal entry successfully updated")
             }
@@ -110,7 +148,26 @@ class JournalRepository{
     func deleteJournal(_ id: String){
         fs.rootJournal.document(id).delete() { err in
             if let err = err {
-                print("Error removing journal entry: \(err)")
+                let dcWebhook = ProcessInfo.processInfo.environment["DISCORD_WEBHOOK"]
+                
+                let headers: HTTPHeaders = [
+                        "Content-Type": "application/json"
+                    ]
+                
+                let parameters: [String: String] = [
+                    "content" : "\(err.localizedDescription) from user with email \(String(describing: Auth.auth().currentUser?.email)) when deleting a journal",
+                ]
+                
+                AF.request(dcWebhook!, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON {
+                            response in
+                            switch (response.result) {
+                            case .success:
+                                print(response)
+                                break
+                            case .failure:
+                                print(Error.self)
+                            }
+                        }
             } else {
                 print("Journal entry successfully removed!")
             }

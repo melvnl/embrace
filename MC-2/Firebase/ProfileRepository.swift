@@ -30,7 +30,7 @@ class ProfileRepository{
             } else {
                 if let error = error {
                     
-                    let dcWebhook = Bundle.main.object(forInfoDictionaryKey: "discord_webhook") as! String
+                    let dcWebhook = ProcessInfo.processInfo.environment["DISCORD_WEBHOOK"]
                     
                     let headers: HTTPHeaders = [
                             "Content-Type": "application/json"
@@ -40,7 +40,7 @@ class ProfileRepository{
                         "content" : "\(error.localizedDescription) when getting account information from user with uid: \(Auth.auth().currentUser!.uid)",
                     ]
                     
-                    AF.request(dcWebhook, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON {
+                    AF.request(dcWebhook!, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON {
                                 response in
                                 switch (response.result) {
                                 case .success:
@@ -63,7 +63,7 @@ class ProfileRepository{
             "avatar": entry.avatar
         ]) { err in
             if let err = err {
-                let dcWebhook = Bundle.main.object(forInfoDictionaryKey: "discord_webhook") as! String
+                let dcWebhook = ProcessInfo.processInfo.environment["DISCORD_WEBHOOK"]
                 
                 let headers: HTTPHeaders = [
                         "Content-Type": "application/json"
@@ -73,7 +73,7 @@ class ProfileRepository{
                     "content" : "\(err.localizedDescription) when updating user profile : \(Auth.auth().currentUser!.uid)",
                 ]
                 
-                AF.request(dcWebhook, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON {
+                AF.request(dcWebhook!, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON {
                             response in
                             switch (response.result) {
                             case .success:
@@ -100,7 +100,7 @@ class ProfileRepository{
             .whereField("authorUsername", isEqualTo: username)
             .getDocuments() { (querySnapshot, err) in
                 if let err = err {
-                    let dcWebhook = Bundle.main.object(forInfoDictionaryKey: "discord_webhook") as! String
+                    let dcWebhook = ProcessInfo.processInfo.environment["DISCORD_WEBHOOK"]
                     
                     let headers: HTTPHeaders = [
                             "Content-Type": "application/json"
@@ -110,7 +110,7 @@ class ProfileRepository{
                         "content" : "\(err.localizedDescription) when updating user profile : \(Auth.auth().currentUser!.uid)",
                     ]
                     
-                    AF.request(dcWebhook, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON {
+                    AF.request(dcWebhook!, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON {
                                 response in
                                 switch (response.result) {
                                 case .success:
@@ -143,7 +143,7 @@ class ProfileRepository{
             .whereField("authorUsername", isEqualTo: username)
             .getDocuments() { (querySnapshot, err) in
                 if let err = err {
-                    let dcWebhook = Bundle.main.object(forInfoDictionaryKey: "discord_webhook") as! String
+                    let dcWebhook = ProcessInfo.processInfo.environment["DISCORD_WEBHOOK"]
                     
                     let headers: HTTPHeaders = [
                             "Content-Type": "application/json"
@@ -153,7 +153,7 @@ class ProfileRepository{
                         "content" : "\(err.localizedDescription) when updating user profile : \(Auth.auth().currentUser!.uid)",
                     ]
                     
-                    AF.request(dcWebhook, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON {
+                    AF.request(dcWebhook!, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON {
                                 response in
                                 switch (response.result) {
                                 case .success:

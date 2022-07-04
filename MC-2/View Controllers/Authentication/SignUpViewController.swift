@@ -28,8 +28,6 @@ class SignUpViewController: UIViewController {
     
     let imageIcon = UIImageView()
     
-    let dcWebhook = Bundle.main.object(forInfoDictionaryKey: "discord_webhook") as! String
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -179,6 +177,9 @@ class SignUpViewController: UIViewController {
                 //Check for errors
                 if err != nil {
                     //there was an error creating user
+                    
+                    let dcWebhook = ProcessInfo.processInfo.environment["DISCORD_WEBHOOKS"]
+                    
                     let parameters: [String: String] = [
                         "content" : err!.localizedDescription,
                     ]
@@ -187,7 +188,7 @@ class SignUpViewController: UIViewController {
                             "Content-Type": "application/json"
                         ]
                     
-                    AF.request(self.dcWebhook, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON {
+                    AF.request(dcWebhook!, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON {
                                 response in
                                 switch (response.result) {
                                 case .success:

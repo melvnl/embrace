@@ -35,13 +35,13 @@ class ForumRepository {
             err in
             if let err = err {
                 
-                let dcWebhook = Bundle.main.object(forInfoDictionaryKey: "discord_webhook") as! String
+                let dcWebhook = ProcessInfo.processInfo.environment["DISCORD_WEBHOOK"]
                 
                 let parameters: [String: String] = [
-                    "content" : "\(err.localizedDescription) when creating new forum - \(Auth.auth().currentUser?.email)",
+                    "content" : "\(err.localizedDescription) when creating new forum - \(String(describing: Auth.auth().currentUser?.email))",
                 ]
                 
-                AF.request(dcWebhook, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON {
+                AF.request(dcWebhook!, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON {
                             response in
                             switch (response.result) {
                             case .success:
@@ -61,13 +61,13 @@ class ForumRepository {
         fs.rootForum.getDocuments() { (querySnapshot, err) in
                 
                 if let err = err {
-                    let dcWebhook = Bundle.main.object(forInfoDictionaryKey: "discord_webhook") as! String
+                    let dcWebhook = ProcessInfo.processInfo.environment["DISCORD_WEBHOOK"]
                     
                     let parameters: [String: String] = [
-                        "content" : "\(err.localizedDescription) when fetching all forum - \(Auth.auth().currentUser?.email)",
+                        "content" : "\(err.localizedDescription) when fetching all forum - \(String(describing: Auth.auth().currentUser?.email))",
                     ]
                     
-                    AF.request(dcWebhook, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON {
+                    AF.request(dcWebhook!, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON {
                                 response in
                                 switch (response.result) {
                                 case .success:
@@ -116,13 +116,13 @@ class ForumRepository {
     func fetchCategoryThreads(_ id: String, completion: @escaping (_ threads: [EntryForum]) -> Void){
         fs.rootForum.whereField("category", isEqualTo: id).getDocuments() { (querySnapshot, err) in
                 if let err = err {
-                    let dcWebhook = Bundle.main.object(forInfoDictionaryKey: "discord_webhook") as! String
+                    let dcWebhook = ProcessInfo.processInfo.environment["DISCORD_WEBHOOK"]
                     
                     let parameters: [String: String] = [
-                        "content" : "\(err.localizedDescription) when fetching category forum - \(Auth.auth().currentUser?.email)",
+                        "content" : "\(err.localizedDescription) when fetching category forum - \(String(describing: Auth.auth().currentUser?.email))",
                     ]
                     
-                    AF.request(dcWebhook, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON {
+                    AF.request(dcWebhook!, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON {
                                 response in
                                 switch (response.result) {
                                 case .success:
@@ -185,13 +185,13 @@ class ForumRepository {
                 .getDocuments() { (querySnapshot, err) in
                     
                     if let err = err {
-                        let dcWebhook = Bundle.main.object(forInfoDictionaryKey: "discord_webhook") as! String
+                        let dcWebhook = ProcessInfo.processInfo.environment["DISCORD_WEBHOOK"]
                         
                         let parameters: [String: String] = [
                             "content" : "\(err.localizedDescription) when fetch forum from \(username)",
                         ]
                         
-                        AF.request(dcWebhook, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON {
+                        AF.request(dcWebhook!, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON {
                                     response in
                                     switch (response.result) {
                                     case .success:
@@ -249,13 +249,13 @@ class ForumRepository {
         fs.rootForum.getDocuments() { (querySnapshot, err) in
                 
             if let err = err {
-                let dcWebhook = Bundle.main.object(forInfoDictionaryKey: "discord_webhook") as! String
+                let dcWebhook = ProcessInfo.processInfo.environment["DISCORD_WEBHOOK"]
                 
                 let parameters: [String: String] = [
-                    "content" : "\(err.localizedDescription) when fetching saved threads from - \(Auth.auth().currentUser?.email)",
+                    "content" : "\(err.localizedDescription) when fetching saved threads from - \(String(describing: Auth.auth().currentUser?.email))",
                 ]
                 
-                AF.request(dcWebhook, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON {
+                AF.request(dcWebhook!, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON {
                             response in
                             switch (response.result) {
                             case .success:
@@ -308,13 +308,13 @@ class ForumRepository {
             "saves": FieldValue.arrayUnion([id])
         ])) { err in
             if let err = err{
-                let dcWebhook = Bundle.main.object(forInfoDictionaryKey: "discord_webhook") as! String
+                let dcWebhook = ProcessInfo.processInfo.environment["DISCORD_WEBHOOK"]
                 
                 let parameters: [String: String] = [
-                    "content" : "\(err.localizedDescription) when save a thread/forum - \(Auth.auth().currentUser?.email)",
+                    "content" : "\(err.localizedDescription) when save a thread/forum - \(String(describing: Auth.auth().currentUser?.email))",
                 ]
                 
-                AF.request(dcWebhook, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON {
+                AF.request(dcWebhook!, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON {
                             response in
                             switch (response.result) {
                             case .success:
@@ -336,13 +336,13 @@ class ForumRepository {
             "saves": FieldValue.arrayRemove([id])
         ])) { err in
             if let err = err{
-                let dcWebhook = Bundle.main.object(forInfoDictionaryKey: "discord_webhook") as! String
+                let dcWebhook = ProcessInfo.processInfo.environment["DISCORD_WEBHOOK"]
                 
                 let parameters: [String: String] = [
-                    "content" : "\(err.localizedDescription) when deleting a saved forum from user with id - \(id) \(Auth.auth().currentUser?.email)",
+                    "content" : "\(err.localizedDescription) when deleting a saved forum from user with id - \(id) \(String(describing: Auth.auth().currentUser?.email))",
                 ]
                 
-                AF.request(dcWebhook, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON {
+                AF.request(dcWebhook!, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON {
                             response in
                             switch (response.result) {
                             case .success:
@@ -364,13 +364,13 @@ class ForumRepository {
             "count": FieldValue.increment(Int64(1))
         ]) { err in
             if let err = err{
-                let dcWebhook = Bundle.main.object(forInfoDictionaryKey: "discord_webhook") as! String
+                let dcWebhook = ProcessInfo.processInfo.environment["DISCORD_WEBHOOK"]
                 
                 let parameters: [String: String] = [
                     "content" : "\(err.localizedDescription) when updating comment counter of forum with id - \(id)",
                 ]
                 
-                AF.request(dcWebhook, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON {
+                AF.request(dcWebhook!, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON {
                             response in
                             switch (response.result) {
                             case .success:
