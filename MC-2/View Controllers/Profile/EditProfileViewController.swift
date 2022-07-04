@@ -20,7 +20,6 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     @IBOutlet weak var usernameTxtField: UITextField!
     @IBOutlet weak var nameTxtField: UITextField!
     @IBOutlet weak var descTxtField: UITextField!
-    @IBOutlet weak var backtoProfileBtn: UIBarButtonItem!
     
     private var imgData: Data?
     

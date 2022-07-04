@@ -10,8 +10,6 @@ import Firebase
 import FirebaseAuth
 import FirebaseDatabase
 
-
-
 class HomeViewController: UIViewController, UISearchBarDelegate{
     
 
@@ -197,5 +195,6 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
     }
+    
 }
 

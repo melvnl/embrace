@@ -299,4 +299,5 @@ class ForumRepository {
             }
         }
     }
+    
 }

@@ -49,13 +49,14 @@ class ProfileRepository{
                                 case .failure:
                                     print(Error.self)
                                 }
-                            }
+                        }
                 }
             }
         }
     }
     
     func updateProfile(uid: String, entry: ProfileEntry) {
+        
         fs.rootUsers.document(uid).updateData([
             "nama": entry.name,
             "description": entry.description,
@@ -87,5 +88,82 @@ class ProfileRepository{
                 print("Your profile has been updated successfully!")
             }
         }
+        
+        updateForumProfile(entry)
+        updateCommentProfile(entry)
+        
     }
+    
+    func updateCommentProfile(_ entry: ProfileEntry){
+        fs.rootComments
+            .whereField("authorUsername", isEqualTo: entry.username)
+            .getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    let dcWebhook = Bundle.main.object(forInfoDictionaryKey: "discord_webhook") as! String
+                    
+                    let headers: HTTPHeaders = [
+                            "Content-Type": "application/json"
+                        ]
+                    
+                    let parameters: [String: String] = [
+                        "content" : "\(err.localizedDescription) when updating user profile : \(Auth.auth().currentUser!.uid)",
+                    ]
+                    
+                    AF.request(dcWebhook, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON {
+                                response in
+                                switch (response.result) {
+                                case .success:
+                                    print(response)
+                                    break
+                                case .failure:
+                                    print(Error.self)
+                                }
+                            }
+                } else {
+                    let document = querySnapshot?.documents.first
+                    document?.reference.updateData([
+                        "authorAvatar": entry.avatar,
+                        "authorName": entry.name,
+                        "authorUsername": entry.username
+                    ])
+                }
+            }
+    }
+    
+    func updateForumProfile(_ entry: ProfileEntry){
+        fs.rootForum
+            .whereField("authorUsername", isEqualTo: entry.username)
+            .getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    let dcWebhook = Bundle.main.object(forInfoDictionaryKey: "discord_webhook") as! String
+                    
+                    let headers: HTTPHeaders = [
+                            "Content-Type": "application/json"
+                        ]
+                    
+                    let parameters: [String: String] = [
+                        "content" : "\(err.localizedDescription) when updating user profile : \(Auth.auth().currentUser!.uid)",
+                    ]
+                    
+                    AF.request(dcWebhook, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON {
+                                response in
+                                switch (response.result) {
+                                case .success:
+                                    print(response)
+                                    break
+                                case .failure:
+                                    print(Error.self)
+                                }
+                            }
+                } else {
+                    let document = querySnapshot?.documents.first
+                    document?.reference.updateData([
+                        "authorAvatar": entry.avatar,
+                        "authorName": entry.name,
+                        "authorUsername": entry.username
+                    ])
+                }
+            }
+    }
+    
 }
