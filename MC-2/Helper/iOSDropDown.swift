@@ -13,8 +13,6 @@ open class DropDown: UITextField {
     var shadow: UIView!
     public var selectedIndex: Int?
 
-    // MARK: IBInspectable
-
     @IBInspectable public var rowHeight: CGFloat = 30
     @IBInspectable public var rowBackgroundColor: UIColor = .white
     @IBInspectable public var itemsColor: UIColor = .darkGray
@@ -110,7 +108,6 @@ open class DropDown: UITextField {
         }
     }
 
-    // Init
     override public init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
@@ -122,8 +119,6 @@ open class DropDown: UITextField {
         setupUI()
         delegate = self
     }
-
-    // MARK: Closures
 
     fileprivate var didSelectCompletion: (String, Int, Int) -> Void = { _, _, _ in }
     fileprivate var TableWillAppearCompletion: () -> Void = { }
@@ -323,8 +318,6 @@ open class DropDown: UITextField {
                        })
     }
 
-    // MARK: Filter Methods
-
     open func searchFilter(text: String, searchText: String) -> Bool {
         return text.range(of: searchText, options: .caseInsensitive) != nil
     }
@@ -352,8 +345,6 @@ open class DropDown: UITextField {
     }
 }
 
-// MARK: UITextFieldDelegate
-
 extension DropDown: UITextFieldDelegate {
     public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         superview?.endEditing(true)
@@ -362,7 +353,6 @@ extension DropDown: UITextFieldDelegate {
 
     public func textFieldDidBeginEditing(_ textField: UITextField) {
         textField.text = ""
-        // self.selectedIndex = nil
         dataArray = optionArray
         touchAction()
     }
@@ -384,8 +374,6 @@ extension DropDown: UITextFieldDelegate {
         return true
     }
 }
-
-// MARK: UITableViewDataSource
 
 extension DropDown: UITableViewDataSource {
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -423,8 +411,6 @@ extension DropDown: UITableViewDataSource {
     }
 }
 
-// MARK: UITableViewDelegate
-
 extension DropDown: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedIndex = (indexPath as NSIndexPath).row
@@ -453,8 +439,6 @@ extension DropDown: UITableViewDelegate {
         }
     }
 }
-
-// MARK: Arrow
 
 enum Position {
     case left
@@ -519,7 +503,6 @@ class Arrow: UIView {
 
         // Mask to path
         shapeLayer.path = bezierPath.cgPath
-        //  shapeLayer.fillColor = arrowColor.cgColor
 
         if #available(iOS 12.0, *) {
             self.layer.addSublayer(shapeLayer)

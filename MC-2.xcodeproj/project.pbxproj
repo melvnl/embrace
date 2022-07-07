@@ -74,6 +74,7 @@
 		95A142162861788600567AE9 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A1420D2861788600567AE9 /* FilterViewController.swift */; };
 		95A1421B28617C7F00567AE9 /* Date+DateComparison.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A1421A28617C7F00567AE9 /* Date+DateComparison.swift */; };
 		A0A93C0B2871E2A600C2840B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A0A93C0A2871E2A600C2840B /* LaunchScreen.storyboard */; };
+		A0B6CBA52876A7FC00E64C20 /* DismissKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B6CBA42876A7FC00E64C20 /* DismissKeyboard.swift */; };
 		B05CD5E0286AAC240093C11A /* CommentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05CD5DF286AAC240093C11A /* CommentController.swift */; };
 		B05CD5E2286AB43B0093C11A /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05CD5E1286AB43B0093C11A /* Comment.swift */; };
 		B05CD5E4286B38E70093C11A /* CommentStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B05CD5E3286B38E70093C11A /* CommentStoryboard.storyboard */; };
@@ -135,7 +136,7 @@
 		95A1420D2861788600567AE9 /* FilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		95A1421A28617C7F00567AE9 /* Date+DateComparison.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+DateComparison.swift"; sourceTree = "<group>"; };
 		A0A93C0A2871E2A600C2840B /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
-		B02330F228597F230037A81B /* TopicRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicRepository.swift; sourceTree = "<group>"; };
+		A0B6CBA42876A7FC00E64C20 /* DismissKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissKeyboard.swift; sourceTree = "<group>"; };
 		B05CD5DF286AAC240093C11A /* CommentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentController.swift; sourceTree = "<group>"; };
 		B05CD5E1286AB43B0093C11A /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		B05CD5E3286B38E70093C11A /* CommentStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CommentStoryboard.storyboard; sourceTree = "<group>"; };
@@ -238,6 +239,7 @@
 			children = (
 				72602920285AD11C00644A82 /* iOSDropDown.swift */,
 				72602931285AE87200644A82 /* UIView+Fade.swift */,
+				A0B6CBA42876A7FC00E64C20 /* DismissKeyboard.swift */,
 				95A1421A28617C7F00567AE9 /* Date+DateComparison.swift */,
 				72602935285AF1FA00644A82 /* UIViewController+BackButton.swift */,
 				72A92CC5284F9CAC00B2F1F4 /* Constants.swift */,
@@ -304,14 +306,6 @@
 			path = Profile;
 			sourceTree = "<group>";
 		};
-		95A141F02861775600567AE9 /* Recovered References */ = {
-			isa = PBXGroup;
-			children = (
-				B02330F228597F230037A81B /* TopicRepository.swift */,
-			);
-			name = "Recovered References";
-			sourceTree = "<group>";
-		};
 		95A142042861788600567AE9 /* Journal */ = {
 			isa = PBXGroup;
 			children = (
@@ -344,7 +338,6 @@
 			children = (
 				B0FEA0DD2845117B00EF8DD9 /* MC-2 */,
 				B0FEA0DC2845117B00EF8DD9 /* Products */,
-				95A141F02861775600567AE9 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -509,6 +502,7 @@
 				950D37F628640E3800F598E1 /* TopicDetailController.swift in Sources */,
 				B05CD5E2286AB43B0093C11A /* Comment.swift in Sources */,
 				95A1421B28617C7F00567AE9 /* Date+DateComparison.swift in Sources */,
+				A0B6CBA52876A7FC00E64C20 /* DismissKeyboard.swift in Sources */,
 				950D37F428640E3800F598E1 /* CategoriesDetail.swift in Sources */,
 				72C66AFC284F383900261C91 /* LogInViewController.swift in Sources */,
 				7260292B285AD55700644A82 /* FirestoreHelper.swift in Sources */,
@@ -626,6 +620,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -680,6 +675,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -697,9 +693,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = MMBFGFQP35;
+				DEVELOPMENT_TEAM = J3D4SXSPFL;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "MC-2/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = Embrace;
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -707,6 +704,8 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -727,9 +726,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = MMBFGFQP35;
+				DEVELOPMENT_TEAM = J3D4SXSPFL;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "MC-2/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = Embrace;
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -737,6 +737,8 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

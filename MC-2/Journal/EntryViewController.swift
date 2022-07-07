@@ -83,6 +83,8 @@ class EntryViewController: UIViewController, UIImagePickerControllerDelegate, UI
         if(isEditingEntry){
             loadEntryFields()
         }
+        
+        self.hideKeyboardWhenTappedAround()
     }
     
     func loadEntryFields(){

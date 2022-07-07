@@ -65,6 +65,8 @@ class LogInViewController: UIViewController {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(UITapGestureRecognizer:)))
         imageIcon.isUserInteractionEnabled = true
         imageIcon.addGestureRecognizer(tapGestureRecognizer)
+        
+        self.hideKeyboardWhenTappedAround()
     }
     
     @objc func imageTapped(UITapGestureRecognizer:UITapGestureRecognizer) {
@@ -132,8 +134,4 @@ class LogInViewController: UIViewController {
         }
     }
     
-    @IBAction func buatAkunTapped(_ sender: Any){
-//        self.performSegue(withIdentifier: "gotosignup", sender: self)
-    }
-
 }

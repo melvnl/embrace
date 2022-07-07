@@ -119,15 +119,12 @@ class VerificationController: UIViewController {
         verifLabel.textColor = UIColor.darkGray
         verifLabel.set(textColor: UIColor.black , range: NSMakeRange(60, userEmail.count))
         
-        
-        // Do any additional setup after loading the view.
         navigationController?.navigationBar.tintColor = UIColor(red: 58/255, green: 58/255, blue: 58/255, alpha: 1)
         let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor(red: 58/255, green: 58/255, blue: 58/255, alpha: 1)]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
         
         navigationController?.navigationBar.topItem!.title = ""
 
-        // Do any additional setup after loading the view.
     }
     
     override func viewWillDisappear(_ animated: Bool) {

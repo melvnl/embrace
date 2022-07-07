@@ -66,6 +66,8 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
 //        show add image button
         addImgBtn.isHidden = false
         addImgBtn.alpha = 1
+        
+        self.hideKeyboardWhenTappedAround()
     }
     
     @IBAction func didTapImgBtn(_ sender: Any) {

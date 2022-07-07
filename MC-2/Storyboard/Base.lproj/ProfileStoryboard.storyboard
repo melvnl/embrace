@@ -25,7 +25,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4dl-ww-NcO">
-                                <rect key="frame" x="122" y="130" width="252" height="21"/>
+                                <rect key="frame" x="122" y="130" width="50" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="dN7-6B-fvf"/>
                                 </constraints>
@@ -34,7 +34,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j6l-kA-4Vu">
-                                <rect key="frame" x="20" y="199" width="354" height="45"/>
+                                <rect key="frame" x="20" y="196" width="354" height="48"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
                                 <color key="textColor" red="0.22745098039215686" green="0.22745098039215686" blue="0.22745098039215686" alpha="1" colorSpace="calibratedRGB"/>
@@ -42,7 +42,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CUE-GU-6cV">
-                                <rect key="frame" x="122" y="152" width="252" height="21"/>
+                                <rect key="frame" x="122" y="152" width="50" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.45490196078431372" green="0.45490196078431372" blue="0.45490196078431372" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -79,10 +79,8 @@
                             <constraint firstItem="3uu-9D-z6q" firstAttribute="top" secondItem="4Ln-aA-FWl" secondAttribute="top" constant="291" id="1QS-WF-RnV"/>
                             <constraint firstItem="yee-MW-KPJ" firstAttribute="top" secondItem="j6l-kA-4Vu" secondAttribute="bottom" constant="15" id="1h6-Bb-37J"/>
                             <constraint firstItem="4dl-ww-NcO" firstAttribute="trailing" secondItem="CUE-GU-6cV" secondAttribute="trailing" id="6rP-q0-tCy"/>
-                            <constraint firstItem="j6l-kA-4Vu" firstAttribute="top" secondItem="y8N-rU-1ae" secondAttribute="bottom" constant="11" id="8TP-2Q-77H"/>
-                            <constraint firstItem="j6l-kA-4Vu" firstAttribute="top" secondItem="CUE-GU-6cV" secondAttribute="bottom" constant="26" id="Csr-hG-iNV"/>
+                            <constraint firstItem="j6l-kA-4Vu" firstAttribute="top" secondItem="y8N-rU-1ae" secondAttribute="bottom" constant="8" id="8TP-2Q-77H"/>
                             <constraint firstItem="HRD-M3-rag" firstAttribute="top" secondItem="3uu-9D-z6q" secondAttribute="top" id="Ctd-9A-ck6"/>
-                            <constraint firstItem="4dl-ww-NcO" firstAttribute="trailing" secondItem="j6l-kA-4Vu" secondAttribute="trailing" id="Dko-ws-xjV"/>
                             <constraint firstItem="3uu-9D-z6q" firstAttribute="centerX" secondItem="4Ln-aA-FWl" secondAttribute="centerX" id="PU2-T0-vK8"/>
                             <constraint firstItem="3uu-9D-z6q" firstAttribute="top" secondItem="yee-MW-KPJ" secondAttribute="bottom" constant="1" id="Sv2-L1-kBy"/>
                             <constraint firstItem="CUE-GU-6cV" firstAttribute="top" secondItem="4dl-ww-NcO" secondAttribute="bottom" constant="1" id="T35-GR-5z6"/>
@@ -166,15 +164,15 @@
                                                 <textInputTraits key="textInputTraits"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="color" keyPath="arrowColor">
-                                                        <color key="value" red="0.4549019608" green="0.4549019608" blue="0.4549019608" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isSearchEnable" value="NO"/>
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="checkMarkEnabled" value="NO"/>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="arrowSize">
-                                                        <real key="value" value="10"/>
+                                                        <real key="value" value="0.0"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="color" keyPath="selectedRowColor">
-                                                        <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </textField>

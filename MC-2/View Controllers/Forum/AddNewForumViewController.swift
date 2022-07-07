@@ -87,6 +87,8 @@ class AddNewForumViewController: UIViewController, UIImagePickerControllerDelega
         if(isEditingEntry){
             loadEntryFields()
         }
+        
+        self.hideKeyboardWhenTappedAround()
     }
     
     @IBAction func didTapAddImage(_ sender: Any) {

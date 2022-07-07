@@ -71,6 +71,8 @@ class SignUpViewController: UIViewController {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(UITapGestureRecognizer:)))
         imageIcon.isUserInteractionEnabled = true
         imageIcon.addGestureRecognizer(tapGestureRecognizer)
+        
+        self.hideKeyboardWhenTappedAround()
     }
     
     @objc func imageTapped(UITapGestureRecognizer:UITapGestureRecognizer) {
@@ -208,15 +210,6 @@ class SignUpViewController: UIViewController {
                     user?.sendEmailVerification()
                     
                     let db = Firestore.firestore()
-                    //firebaseUid and firestoreUid is diff
-//                    db.collection("users").addDocument(data: ["nama":nama, "username":username, "uid":result!.user.uid]) { error in
-//                        if error != nil {
-//                            //show error message
-//                            self.showError("Error dalam menyimpan data akun")
-//                        }
-//                    }
-                    
-                    //firebaseUid and firestoreUid is equal
                     db.collection("users").document(userUid ?? "").setData(["nama":nama, "username":username, "uid":result!.user.uid]) { error in
                                                 if error != nil {
                                                     //show error message
