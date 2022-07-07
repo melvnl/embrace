@@ -64,7 +64,7 @@ class TopicDetailController: UIViewController {
         
         DispatchQueue.main.async {
             self.showSpinner(onView: self.view)
-            forumRepo.fetchAllThreads { entryList in
+            forumRepo.fetchCategoryThreads(self.categoryDocId) { entryList in
                 newEntries = entryList
                 group.leave()
             }
@@ -103,10 +103,6 @@ extension TopicDetailController: UITableViewDelegate, UITableViewDataSource {
         let height: CGFloat = 1
 
         return height
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 497;
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
