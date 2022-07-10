@@ -111,11 +111,11 @@
             <objects>
                 <viewController storyboardIdentifier="LoginVC" id="7FA-X7-0yQ" customClass="LogInViewController" customModule="MC_2" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Xt8-y4-vtf">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="eCa-WN-skE">
-                                <rect key="frame" x="20" y="128" width="350" height="79"/>
+                                <rect key="frame" x="20" y="84" width="350" height="79"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Selamat datang kembali, Bun!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5fg-tE-CdQ">
                                         <rect key="frame" x="0.0" y="0.0" width="350" height="28.666666666666668"/>
@@ -124,7 +124,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Masuk ke akun Embrace Anda menggunakan Email dan kata sandi yang telah dibuat" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JtV-Vr-zBS">
-                                        <rect key="frame" x="0.0" y="40.666666666666657" width="350" height="38.333333333333343"/>
+                                        <rect key="frame" x="0.0" y="40.666666666666671" width="350" height="38.333333333333329"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <color key="textColor" red="0.4549019608" green="0.4549019608" blue="0.4549019608" alpha="0.8980392157" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -132,7 +132,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="ftq-tP-sTi">
-                                <rect key="frame" x="20" y="247" width="350" height="344"/>
+                                <rect key="frame" x="20" y="203" width="350" height="344"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EMAIL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mhG-8G-DrC" userLabel="Email">
                                         <rect key="frame" x="0.0" y="0.0" width="350" height="14.333333333333334"/>
@@ -141,7 +141,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hYB-CN-7F7">
-                                        <rect key="frame" x="0.0" y="34.333333333333314" width="350" height="50"/>
+                                        <rect key="frame" x="0.0" y="34.333333333333343" width="350" height="50"/>
                                         <color key="textColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -199,7 +199,6 @@
                                                     <fontDescription key="titleFontDescription" type="system" weight="medium" pointSize="14"/>
                                                 </buttonConfiguration>
                                                 <connections>
-                                                    <action selector="buatAkunTapped:" destination="7FA-X7-0yQ" eventType="touchUpInside" id="4o6-yT-PVG"/>
                                                     <segue destination="QIe-ue-lDZ" kind="push" id="DcI-MD-D2B"/>
                                                 </connections>
                                             </button>
@@ -226,7 +225,6 @@
                     </view>
                     <navigationItem key="navigationItem" title="Masuk akun" id="SLR-36-mRB"/>
                     <connections>
-                        <outlet property="buatAkunButton" destination="vf1-kq-kO4" id="LE3-HL-u9a"/>
                         <outlet property="emailTextField" destination="hYB-CN-7F7" id="0dF-D0-UTy"/>
                         <outlet property="errorLabel" destination="O9A-8i-QWg" id="Cen-kc-Joj"/>
                         <outlet property="logInButton" destination="xgq-Sv-tLQ" id="sma-SE-MKW"/>
@@ -246,14 +244,14 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dqm-gu-ukN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2240" y="601"/>
+            <point key="canvasLocation" x="2728" y="632"/>
         </scene>
         <!--Verification-->
         <scene sceneID="UsT-Cn-JCi">
             <objects>
                 <viewController storyboardIdentifier="VerifVC" title="Verification" id="Wbg-cp-8MC" customClass="VerificationController" customModule="MC_2" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nPg-Tf-pT6">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="verif" translatesAutoresizingMaskIntoConstraints="NO" id="c4F-pR-n4P">
@@ -261,13 +259,13 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Verifikasi Email" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jAA-Iw-BVr">
-                                <rect key="frame" x="113" y="499" width="164" height="29"/>
+                                <rect key="frame" x="113" y="479" width="164" height="29"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Too-jA-tR0">
-                                <rect key="frame" x="20" y="536" width="350" height="48"/>
+                                <rect key="frame" x="20" y="516" width="350" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="Vt7-16-SzN"/>
                                 </constraints>
@@ -300,11 +298,11 @@
             <objects>
                 <viewController id="QIe-ue-lDZ" customClass="SignUpViewController" customModule="MC_2" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Qc2-NQ-suL">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="vc3-y8-9vW">
-                                <rect key="frame" x="20" y="128" width="350" height="79"/>
+                                <rect key="frame" x="20" y="84" width="350" height="79"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Selamat datang, Bun!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dhR-1r-6s1">
                                         <rect key="frame" x="0.0" y="0.0" width="350" height="28.666666666666668"/>
@@ -313,7 +311,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Buat akun Embrace Anda dengan memasukkan informasi yang ada dibawah" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LiI-U5-PgT">
-                                        <rect key="frame" x="0.0" y="40.666666666666657" width="350" height="38.333333333333343"/>
+                                        <rect key="frame" x="0.0" y="40.666666666666671" width="350" height="38.333333333333329"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <color key="textColor" red="0.45490196078431372" green="0.45490196078431372" blue="0.45490196078431372" alpha="0.89803921568627454" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -321,7 +319,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="sal-Mm-cnV">
-                                <rect key="frame" x="20" y="246.99999999999994" width="350" height="552.66666666666652"/>
+                                <rect key="frame" x="20" y="203" width="350" height="552.66666666666663"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NAMA" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SyW-gR-fTV">
                                         <rect key="frame" x="0.0" y="0.0" width="350" height="14.333333333333334"/>
@@ -330,7 +328,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nama" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eSs-yg-xKf">
-                                        <rect key="frame" x="0.0" y="34.333333333333314" width="350" height="50"/>
+                                        <rect key="frame" x="0.0" y="34.333333333333343" width="350" height="50"/>
                                         <color key="textColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -474,7 +472,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="gT0-GT-zaA"/>
+        <segue reference="DcI-MD-D2B"/>
         <segue reference="znw-ZQ-HH6"/>
     </inferredMetricsTieBreakers>
     <resources>
